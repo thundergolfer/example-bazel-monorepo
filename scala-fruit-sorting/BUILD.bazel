@@ -1,0 +1,9 @@
+
+SRCS = glob(["*.scala"])
+
+scala_binary(
+    name = "scala-fruit-sorting",
+    srcs = SRCS,
+    main_class = "Sorter",
+    deps = [],
+)

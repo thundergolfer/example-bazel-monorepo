@@ -17,13 +17,12 @@ http_archive(
 # SCALA SUPPORT
 ######################
 
-rules_scala_version = "499df53b38f66ace84d8c426f3b5d8a338a4798f"
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+# Note: commit before https://github.com/bazelbuild/rules_scala/issues/726 was introduced
+rules_scala_version = "88ad68b3b9d2b533099cdd3d88a41d106edfeecb"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "77d7f90414643eff22e379eaa8865f2e87a0241ffcfea857421fc5eeefa30c2e",
+    sha256 = "96b79ceec705bf6e81c4099bb9dcf0aec15747e658dc9406cb4bbf8b108ca38a",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
