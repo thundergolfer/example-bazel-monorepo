@@ -1,0 +1,1 @@
+build --force_python=PY3 --python_path="/usr/local/bin/python3"
