@@ -1,1 +1,10 @@
+##########
+Python
+##########
 build --force_python=PY3 --python_path="/usr/local/bin/python3"
+
+##########
+Scala
+##########
+build --strategy=Scalac=worker
+test --strategy=Scalac=worker
