@@ -27,7 +27,10 @@ There's Scala code contained in [`scala-fruit-sorting`](/scala-fruit-sorting).
 ##### Dependency Management
 
 Its third-party dependencies are managed
-by [`johnynek/bazel-deps`](https://github.com/johnynek/bazel-deps). 
+by [`johnynek/bazel-deps`](https://github.com/johnynek/bazel-deps). The usage of that tool is wrapped up in a script
+as [`tools/update_jvm_dependencies.sh`](tools/update_jvm_dependencies.sh). 
+
+To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/dependencies/jvm_dependencies.yaml) and then run the script.  
 
 
 ### Python Support
