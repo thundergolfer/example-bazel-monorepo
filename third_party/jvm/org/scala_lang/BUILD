@@ -1,4 +1,4 @@
-scala_library(
+java_library(
     name = "scala_library",
     exports = [
         "@io_bazel_rules_scala_scala_library"
@@ -13,7 +13,7 @@ scala_library(
 
 
 
-scala_library(
+java_library(
     name = "scala_reflect",
     exports = [
         "@io_bazel_rules_scala_scala_reflect"

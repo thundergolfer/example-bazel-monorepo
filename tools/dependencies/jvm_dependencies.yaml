@@ -6,8 +6,10 @@ dependencies:
 
 options:
   languages: ["java", "scala:2.11.12"]
+   # Don't use licenses it doesn't work. Related to: https://github.com/johnynek/bazel-deps/issues/192
   licenses: [notice]
   resolvers:
+    - {id: mavencentral, url: "https://repo.maven.apache.org/maven2/" }
     - {id: jcenter, type: default, url: "https://jcenter.bintray.com/"}
   thirdPartyDirectory: third_party/jvm
 
@@ -15,8 +17,8 @@ options:
 replacements:
   org.scala-lang:
     scala-library:
-      lang: scala/unmangled
+      lang: java
       target: "@io_bazel_rules_scala_scala_library"
     scala-reflect:
-      lang: scala/unmangled
+      lang: java
       target: "@io_bazel_rules_scala_scala_reflect"
