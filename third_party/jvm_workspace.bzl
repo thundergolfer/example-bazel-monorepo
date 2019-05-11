@@ -1,4 +1,4 @@
-# Do not edit. bazel-deps autogenerates this file from tools/dependencies/jvm_dependencies.yaml.
+# Do not edit. bazel-deps autogenerates this file from ./tools/dependencies/jvm_dependencies.yaml.
 def _jar_artifact_impl(ctx):
     jar_name = "%s.jar" % ctx.name
     ctx.download(
