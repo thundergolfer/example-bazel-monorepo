@@ -1,2 +1,14 @@
-# the-one-true-bazel-monorepo
-Example Bazel-ified monorepo, supporting Scala + Python
+# The One True ~~Morty~~ Monorepo
+
+Example Bazel-ified monorepo, supporting Java, Scala + Python
+
+## Project Structure
+
+### Java Support
+
+
+### Scala Support
+
+
+### Python Support
+
