@@ -9,6 +9,15 @@ as a reference implementation.
 
 The project's code uses the contrived scenario of a fruit shop rather than the typical To-Do list.
 
+## Getting Started
+
+**Prerequisites:**
+ 
+- [Install Bazel](https://docs.bazel.build/versions/master/install.html)
+- Python 3.7
+
+Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`.  
+
 ## Project Structure
 
 ### Java Support
