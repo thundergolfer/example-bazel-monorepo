@@ -51,7 +51,7 @@ is used to for third-party `pip` packaging.
 
 ##### Dependency Management
 
-> ⚠️ **Note:** [`rules_python`] is currently designated as "ALPHA" software. The UX of managing third-party dependencies is pretty bad.  
+> ⚠️ **Note:** [`rules_python`](https://github.com/bazelbuild/rules_python) is currently designated as "ALPHA" software. The UX of managing third-party dependencies is pretty bad.  
 
 In order to add new third-party packages for Python, add them to [`tools/dependencies/python_requirements.txt`](/tools/dependencies/python_requirements.txt).
 
