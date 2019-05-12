@@ -1,17 +1,37 @@
+# NOTE: The 'lang' field for Scala dependencies should really have 'scala' as the value, but right now BUILD
+#       files under third_party/ are required by Bazel to have 'licenses' declared. Here 'licenses: [notice]'
+#       is declared to satisfy this, but 'scala_library'/'scala_import' do not support that field.
+#       You get an error like: "//third_party/jvm/org/scalactic:scalactic: no such attribute 'licenses' in 'scala_import' rule"
+#       Ref: https://github.com/bazelbuild/rules_scala/issues/353
+
 dependencies:
   com.google.guava:
     guava:
       lang: java
       version: '23.0'
 
+  org.scalactic:
+    scalactic:
+      lang: scala
+      version: "3.0.5"
+
+  org.scalatest:
+    scalatest:
+      exports:
+        - "org.scalactic:scalactic"
+      lang: scala
+      version: "3.0.5"
+
 options:
+  # Required to avoid "name 'scala_import' is not defined (did you mean 'java_import'?)" error
+  buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")" ]
   languages: ["java", "scala:2.11.12"]
    # Don't use licenses it doesn't work. Related to: https://github.com/johnynek/bazel-deps/issues/192
   licenses: [notice]
   resolvers:
     - {id: mavencentral, url: "https://repo.maven.apache.org/maven2/" }
     - {id: jcenter, type: default, url: "https://jcenter.bintray.com/"}
-  thirdPartyDirectory: third_party/jvm
+  thirdPartyDirectory: 3rdparty/jvm
 
 
 replacements:

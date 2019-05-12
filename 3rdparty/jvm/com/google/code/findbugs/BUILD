@@ -1,3 +1,4 @@
+load("@io_bazel_rules_scala//scala:scala_import.bzl", "scala_import")
 java_library(
     name = "jsr305",
     exports = [
@@ -7,7 +8,7 @@ java_library(
         "notice"
     ],
     visibility = [
-        "//third_party/jvm:__subpackages__"
+        "//3rdparty/jvm:__subpackages__"
     ]
 )
 

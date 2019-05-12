@@ -3,7 +3,7 @@
 set -eux
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
-WORKSPACE_FILEPATH="./third_party/jvm_workspace.bzl"
+WORKSPACE_FILEPATH="./3rdparty/jvm_workspace.bzl"
 DEPS_YAML_FILEPATH="./tools/dependencies/jvm_dependencies.yaml"
 
 usage() { echo "./update_jvm_dependencies.sh <path to bazel-deps repo>"; }
