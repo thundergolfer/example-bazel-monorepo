@@ -1,9 +1,3 @@
-# NOTE: The 'lang' field for Scala dependencies should really have 'scala' as the value, but right now BUILD
-#       files under third_party/ are required by Bazel to have 'licenses' declared. Here 'licenses: [notice]'
-#       is declared to satisfy this, but 'scala_library'/'scala_import' do not support that field.
-#       You get an error like: "//third_party/jvm/org/scalactic:scalactic: no such attribute 'licenses' in 'scala_import' rule"
-#       Ref: https://github.com/bazelbuild/rules_scala/issues/353
-
 dependencies:
   com.google.guava:
     guava:
@@ -31,6 +25,8 @@ options:
   resolvers:
     - {id: mavencentral, url: "https://repo.maven.apache.org/maven2/" }
     - {id: jcenter, type: default, url: "https://jcenter.bintray.com/"}
+  # NOTE: third_party/jvm would be preferred, but causes problems with Bazel wanting license declared.
+  #       See https://github.com/bazelbuild/rules_scala/issues/353.
   thirdPartyDirectory: 3rdparty/jvm
 
 
