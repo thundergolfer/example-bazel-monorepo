@@ -4,9 +4,6 @@ java_library(
     exports = [
         "//external:jar/org/codehaus/mojo/animal_sniffer_annotations"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//3rdparty/jvm:__subpackages__"
     ]

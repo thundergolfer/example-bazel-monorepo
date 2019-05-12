@@ -8,9 +8,6 @@ java_library(
         "//3rdparty/jvm/org/codehaus/mojo:animal_sniffer_annotations",
         "//external:jar/com/google/guava/guava"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//visibility:public"
     ]

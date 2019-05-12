@@ -21,7 +21,7 @@ options:
   buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")" ]
   languages: ["java", "scala:2.11.12"]
    # Don't use licenses it doesn't work. Related to: https://github.com/johnynek/bazel-deps/issues/192
-  licenses: [notice]
+#  licenses: [notice]
   resolvers:
     - {id: mavencentral, url: "https://repo.maven.apache.org/maven2/" }
     - {id: jcenter, type: default, url: "https://jcenter.bintray.com/"}

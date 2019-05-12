@@ -4,9 +4,6 @@ java_library(
     exports = [
         "//external:jar/com/google/errorprone/error_prone_annotations"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//3rdparty/jvm:__subpackages__"
     ]

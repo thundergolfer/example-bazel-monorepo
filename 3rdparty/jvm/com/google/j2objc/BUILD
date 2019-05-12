@@ -4,9 +4,6 @@ java_library(
     exports = [
         "//external:jar/com/google/j2objc/j2objc_annotations"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//3rdparty/jvm:__subpackages__"
     ]

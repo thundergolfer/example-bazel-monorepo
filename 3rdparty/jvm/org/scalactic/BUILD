@@ -8,9 +8,6 @@ scala_import(
     jars = [
         "//external:jar/org/scalactic/scalactic_2_11"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//visibility:public"
     ]

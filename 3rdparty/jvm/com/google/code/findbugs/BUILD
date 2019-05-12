@@ -4,9 +4,6 @@ java_library(
     exports = [
         "//external:jar/com/google/code/findbugs/jsr305"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//3rdparty/jvm:__subpackages__"
     ]

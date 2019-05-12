@@ -10,9 +10,6 @@ scala_import(
     jars = [
         "//external:jar/org/scalatest/scalatest_2_11"
     ],
-    licenses = [
-        "notice"
-    ],
     visibility = [
         "//visibility:public"
     ]

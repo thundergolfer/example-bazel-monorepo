@@ -10,6 +10,10 @@ scala_binary(
 
 TEST_SRCS = glob(["src/test/scala/com/fruit/sorting/*.scala"])
 
+TEST_DEPS = [
+    "//3rdparty/jvm/org/scalatest:scalatest",
+]
+
 scala_test(
     name = "test",
     srcs = TEST_SRCS,
