@@ -55,3 +55,10 @@ is used to for third-party `pip` packaging.
 
 In order to add new third-party packages for Python, add them to [`tools/dependencies/python_requirements.txt`](/tools/dependencies/python_requirements.txt).
 
+## Development
+
+### Continuous Integration (CI)
+
+This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to build Bazel monorepos, 
+as well as being used by the Bazel open-source project itself.  
+
