@@ -60,5 +60,5 @@ In order to add new third-party packages for Python, add them to [`tools/depende
 ### Continuous Integration (CI)
 
 This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to build Bazel monorepos, 
-as well as being used by the Bazel open-source project itself.  
+as well as being [used by the Bazel open-source project itself](https://buildkite.com/bazel).  
 
