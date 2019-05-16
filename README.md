@@ -1,4 +1,4 @@
-# The One True ~~Morty~~ Monorepo
+# The One True ~~Morty~~ Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
 
 Example Bazel-ified monorepo, supporting Java, Scala + Python. 
 
