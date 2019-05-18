@@ -1,0 +1,3 @@
+steps:
+  - command: "bazel test //..."
+    label: ":bazel: Build + Test"
