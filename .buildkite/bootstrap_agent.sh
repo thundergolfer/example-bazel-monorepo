@@ -10,7 +10,7 @@
 # Upload Cmd: aws --profile aws-2019-admin s3 cp --sse aws:kms .buildkite/bootstrap_agent.sh "s3://buildkite-agent-scripts/boostrap_agent.sh"
 
 
-BAZEL_VERSION="0.25.0"
+BAZEL_VERSION="0.25.2"
 sudo apt-get install -y pkg-config zip g++ zlib1g-dev unzip
 curl -sSL -O \
   "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"

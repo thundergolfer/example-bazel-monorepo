@@ -1,5 +1,7 @@
 # The One True ~~Morty~~ Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
 
+> *Note:* Currently supporting Bazel version [0.25.2](https://github.com/bazelbuild/bazel/releases/tag/0.25.2) 
+
 Example Bazel-ified monorepo, supporting Java, Scala + Python. 
 
 I use this project to explore how Bazel works with different languages and
