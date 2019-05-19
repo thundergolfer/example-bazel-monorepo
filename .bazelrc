@@ -1,10 +1,14 @@
-##########
-Python
-##########
+############
+# Python   #
+############
 build --python_path="/usr/local/bin/python3"
 
-##########
-Scala
-##########
+############
+# Java     #
+############
+
+############
+# Scala    #
+############
 build --strategy=Scalac=worker
 test --strategy=Scalac=worker
