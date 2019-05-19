@@ -14,7 +14,8 @@ echo "Starting Buildkite agent bootstrap..."
 
 BAZEL_VERSION="0.25.2"
 # NOTE: Amazon Linux 2 uses 'yum' not 'apt-get'
-sudo yum install -y pkg-config zip g++ zlib1g-dev unzip python
+sudo yum groupinstall "Development Tools"
+sudo yum install -y zip unzip python
 curl -sSL -O \
   "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
 chmod +x "bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
