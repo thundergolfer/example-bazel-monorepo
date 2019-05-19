@@ -7,7 +7,7 @@
 # stack parameter to run a bash script on instance boot.
 # Currently `BootstrapScriptUrl` is set to:  s3://buildkite-agent-scripts/bootstrap_agent.sh
 #
-# Upload Cmd: aws --profile aws-2019-admin s3 cp --sse aws:kms .buildkite/bootstrap_agent.sh "s3://buildkite-agent-scripts/boostrap_agent.sh"
+# Upload Cmd: aws --profile aws-2019-admin s3 cp --sse aws:kms .buildkite/bootstrap_agent.sh "s3://buildkite-agent-scripts/bootstrap_agent.sh"
 
 echo "Starting Buildkite agent bootstrap..."
 
