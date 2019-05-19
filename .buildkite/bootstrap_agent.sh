@@ -18,7 +18,7 @@ BAZEL_VERSION="0.24.1"
 # NOTE: Amazon Linux 2 uses 'yum' not 'apt-get'
 sudo yum groupinstall -y "Development Tools"
 sudo yum install -y zip unzip python
-sudo yum install -y java-1.8.0-openjdk
+sudo yum install -y java-1.8.0-openjdk-devel
 curl -sSL -O \
   "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
 chmod +x "bazel-${BAZEL_VERSION}-installer-linux-x86_64.sh"
