@@ -9,7 +9,7 @@ developer tools, and keep a record of best-practices I've learnt.
 Others can use it to check out the Bazel way of doing things and use parts
 as a reference implementation.
 
-The project's code uses the contrived scenario of a fruit shop rather than the typical To-Do list.
+Rather than the typical To-Do list, this project's code uses the contrived scenario of a fruit shop. 🍌🍎 🍍 🍑 🍓
 
 ## Getting Started
 
