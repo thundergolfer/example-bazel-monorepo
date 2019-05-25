@@ -36,38 +36,42 @@ Adam Jacob, former CTO of [Chef](https://www.chef.io/)
 
 ## Project Structure
 
-### Java Support
+### *Golang* Support
+
+`coming soon` :slightly-smiling-face:
+
+### *Java* Support
 
 There's Java code contained in [`/storage`](/storage).
- 
-##### Dependency Management 
- 
+
+##### Dependency Management
+
 Its third-party dependencies are managed by [`rules_jvm_external`](https://blog.bazel.build/2019/03/31/rules-jvm-external-maven.html) in the [`WORKSPACE`](/WORKSPACE) (See the `# JAVA SUPPORT` section).
 
 
-### Scala Support
+### *Scala* Support
 
 There's Scala code contained in [`scala-fruit-sorting`](/scala-fruit-sorting).
- 
+
 ##### Dependency Management
 
 Its third-party dependencies are managed
 by [`johnynek/bazel-deps`](https://github.com/johnynek/bazel-deps). The usage of that tool is wrapped up in a script
-as [`tools/update_jvm_dependencies.sh`](tools/update_jvm_dependencies.sh). 
+as [`tools/update_jvm_dependencies.sh`](tools/update_jvm_dependencies.sh).
 
-To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/dependencies/jvm_dependencies.yaml) and then run the script.  
+To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/dependencies/jvm_dependencies.yaml) and then run the script.
 
 
-### Python Support
+### *Python* Support
 
 There's Python code in the [`/fruit_sorting`](/fruit_sorting) package.
- 
+
 Bazel has native support for Python, but [`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python)
 is used to for third-party `pip` packaging.
 
 ##### Dependency Management
 
-> ⚠️ **Note:** [`rules_python`](https://github.com/bazelbuild/rules_python) is currently designated as "ALPHA" software. The UX of managing third-party dependencies is pretty bad.  
+> ⚠️ **Note:** [`rules_python`](https://github.com/bazelbuild/rules_python) is currently designated as "ALPHA" software. The UX of managing third-party dependencies is pretty bad.
 
 In order to add new third-party packages for Python, add them to [`tools/dependencies/python_requirements.txt`](/tools/dependencies/python_requirements.txt).
 
@@ -75,6 +79,6 @@ In order to add new third-party packages for Python, add them to [`tools/depende
 
 ### Continuous Integration (CI)
 
-This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to manage Bazel monorepos, 
-as well as being [used by the Bazel open-source project itself](https://buildkite.com/bazel).  
+This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to manage Bazel monorepos,
+as well as being [used by the Bazel open-source project itself](https://buildkite.com/bazel).
 
