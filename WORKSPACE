@@ -4,6 +4,47 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 ######################
+# GOLANG SUPPORT
+######################
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "io_bazel_rules_go",
+    urls = ["https://github.com/bazelbuild/rules_go/releases/download/0.18.5/rules_go-0.18.5.tar.gz"],
+    sha256 = "a82a352bffae6bee4e95f68a8d80a70e87f42c4741e6a448bec11998fcc82329",
+)
+load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+go_rules_dependencies()
+go_register_toolchains()
+
+#######################
+# JAVA SUPPORT
+#######################
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "rules_jvm_external",
+    strip_prefix = "rules_jvm_external-1.2",
+    sha256 = "e5c68b87f750309a79f59c2b69ead5c3221ffa54ff9496306937bfa1c9c8c86b",
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/1.2.zip"
+)
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+maven_install(
+    name = "maven",
+    artifacts = [
+        "com.google.guava:guava:27.1",
+    ],
+    repositories = [
+        "https://maven.google.com",
+        "https://repo1.maven.org/maven2",
+    ],
+    fetch_sources = True,   # Fetch source jars. Defaults to False.
+)
+
+######################
 # PYTHON SUPPORT
 ######################
 rules_python_version = "115e3a0dab4291184fdcb0d4e564a0328364571a"
@@ -57,30 +98,3 @@ scala_register_toolchains()
 load("//3rdparty:jvm_workspace.bzl", "maven_dependencies")
 
 maven_dependencies()
-
-#######################
-# JAVA SUPPORT
-#######################
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "rules_jvm_external",
-    strip_prefix = "rules_jvm_external-1.2",
-    sha256 = "e5c68b87f750309a79f59c2b69ead5c3221ffa54ff9496306937bfa1c9c8c86b",
-    url = "https://github.com/bazelbuild/rules_jvm_external/archive/1.2.zip"
-)
-
-load("@rules_jvm_external//:defs.bzl", "maven_install")
-
-maven_install(
-    name = "maven",
-    artifacts = [
-        "com.google.guava:guava:27.1",
-    ],
-    repositories = [
-        "https://maven.google.com",
-        "https://repo1.maven.org/maven2",
-    ],
-    fetch_sources = True,   # Fetch source jars. Defaults to False.
-)
