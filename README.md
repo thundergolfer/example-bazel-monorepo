@@ -20,6 +20,20 @@ The project's code uses the contrived scenario of a fruit shop rather than the t
 
 Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`.  
 
+## Why use a Monorepo?
+
+The following few articles together provide a good overview of the
+motivations behind maintaining a Monorepo. For heaps more information,
+[korfuri/awesome-monorepo](https://github.com/korfuri/awesome-monorepo)
+is a good place to go. 
+
+* [*Why Google Stores Billions of Lines in a Single
+  Repository*](http://delivery.acm.org/10.1145/2860000/2854146/p78-potvin.pdf?ip=60.240.50.147&id=2854146&acc=OA&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E5945DC2EABF3343C&__acm__=1558760299_19ae56a814d1fe05de26b4844a658e52)
+* [*Monorepos, please
+  do!*](https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70), by
+Adam Jacob, former CTO of [Chef](https://www.chef.io/)
+* [*Advantages of Monorepos*](https://danluu.com/monorepo/), by Dan Luu
+
 ## Project Structure
 
 ### Java Support
