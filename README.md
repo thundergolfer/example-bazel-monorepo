@@ -38,7 +38,7 @@ Adam Jacob, former CTO of [Chef](https://www.chef.io/)
 
 ### *Golang* Support
 
-`coming soon` :slightly-smiling-face:
+`coming soon` 🙂
 
 ### *Java* Support
 
