@@ -38,7 +38,11 @@ Adam Jacob, former CTO of [Chef](https://www.chef.io/)
 
 ### *Golang* Support
 
-`coming soon` 🙂
+There's Golang code in [`/cli`](/cli). It implements a simple CLI for building Smoothies.
+
+##### Dependency Management
+
+Third-party dependencies are managed in [`3rdparty/go_workspace.bzl`](/3rdparty/go_workspace.bzl).  
 
 ### *Java* Support
 
