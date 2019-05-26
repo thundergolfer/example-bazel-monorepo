@@ -1,9 +1,10 @@
+load("@pip_dependencies//:requirements.bzl", "requirement")
 
 MAIN_SRCS = glob(["*.py"])
 
-MAIN_DATA = []
-
-MAIN_DEPS = []
+MAIN_DEPS = [
+    requirement("click"),
+]
 
 py_binary(
   name = "main",
@@ -12,5 +13,5 @@ py_binary(
   imports = [""],
   main = "main.py",
   srcs_version= "PY3",
-  deps = []
+  deps = MAIN_DEPS
 )
