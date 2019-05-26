@@ -46,7 +46,7 @@ Third-party dependencies are managed in [`3rdparty/go_workspace.bzl`](/3rdparty/
 
 ### *Java* Support
 
-There's Java code contained in [`/storage`](/storage).
+There's Java code contained in [`/store/layoutsolver`](/store/layoutsolver) and [`/storage`](/storage).
 
 ##### Dependency Management
 
