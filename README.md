@@ -2,7 +2,7 @@
 
 > *Note:* Currently supporting Bazel version [0.25.2](https://github.com/bazelbuild/bazel/releases/tag/0.25.2) 
 
-Example Bazel-ified monorepo, supporting Java, Scala + Python. 
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Scala* + *Python*. 
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt.
