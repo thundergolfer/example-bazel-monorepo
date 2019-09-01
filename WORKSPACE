@@ -113,3 +113,35 @@ scala_register_toolchains()
 load("//3rdparty:jvm_workspace.bzl", "maven_dependencies")
 
 maven_dependencies()
+
+######################
+# DOCKER SUPPORT
+######################
+
+rules_docker_version = "0.9.0"
+
+http_archive(
+    name = "io_bazel_rules_docker",
+    strip_prefix = "rules_docker-{version}".format(version = rules_docker_version),
+    url = "https://github.com/bazelbuild/rules_docker/archive/v{version}.tar.gz".format(version = rules_docker_version),
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_pull",
+)
+
+container_pull(
+    name = "awscli",
+    registry = "docker.io",
+    repository = "atlassian/pipelines-awscli",
+    tag = "latest",
+)
+
