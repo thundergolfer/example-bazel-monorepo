@@ -77,6 +77,8 @@ is used to for third-party `pip` packaging.
 
 > ⚠️ **Note:** [`rules_python`](https://github.com/bazelbuild/rules_python) is currently designated as "ALPHA" software. The UX of managing third-party dependencies is pretty bad.
 
+> ⚠️ **Further Warning:** [`rules_python`](https://github.com/bazelbuild/rules_python) is a living nightmare. It is _not_ production ready in my opinion. Here be 🐉s.
+
 In order to add new third-party packages for Python, add them to [`tools/dependencies/python_requirements.txt`](/tools/dependencies/python_requirements.txt).
 
 ## Development
