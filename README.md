@@ -1,6 +1,6 @@
 # The One True ~~Morty~~ Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
 
-> *Note:* Currently supporting Bazel version [0.25.2](https://github.com/bazelbuild/bazel/releases/tag/0.25.2) 
+> *Note:* Currently supporting the latest Bazel version as at late September 2019, [0.29.1](https://github.com/bazelbuild/bazel/releases/tag/0.29.1) 
 
 Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Scala* + *Python*. 
 
@@ -15,7 +15,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 
 **Prerequisites:**
  
-- [Install Bazel](https://docs.bazel.build/versions/master/install.html)
+- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Should be >= `0.29.1`)
 - Python 3.7
 
 Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`.  
