@@ -108,8 +108,7 @@ load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
 
-# TODO(Jonathon): Find if it's possible to not have the function called 'maven_dependencies'
 # Load dependencies managed by bazel-deps
-load("//3rdparty:jvm_workspace.bzl", "maven_dependencies")
+load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
 
-maven_dependencies()
+scala_deps()
