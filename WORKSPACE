@@ -80,19 +80,18 @@ http_archive(
     url = "https://github.com/uri-canva/rules_python/archive/{}.tar.gz".format(rules_python_version),
 )
 
-load("@io_bazel_rules_python//python:pip.bzl", "pip_import", "pip_repositories")
+# Note we're not using rules_python's 'stock' pip_import functionality.
 
-pip_repositories()
-
-pip_import(
-    name = "pip_dependencies",
-    requirements = "//tools/dependencies:python_requirements.txt",
+# Third-Party Python packages
+git_repository(
+    name = "rules_pygen",
+    commit = "28835b7d278744916890f1ab3d974e7f5d75836c",
+    remote = "https://github.com/tubular/rules_pygen.git",
 )
 
-# Load the pip_install symbol for my_deps, and create the dependencies repositories.
-load("@pip_dependencies//:requirements.bzl", "pip_install")
+load("@//3rdparty/python:requirements.bzl", pypi_deps = "pypi_archives")
 
-pip_install()
+pypi_deps()
 
 ######################
 # SCALA SUPPORT

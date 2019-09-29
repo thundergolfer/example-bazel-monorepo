@@ -1,9 +1,7 @@
-load("@pip_dependencies//:requirements.bzl", "requirement")
-
 MAIN_SRCS = glob(["*.py"])
 
 MAIN_DEPS = [
-    requirement("click"),
+    "//3rdparty/python:click"
 ]
 
 py_binary(
