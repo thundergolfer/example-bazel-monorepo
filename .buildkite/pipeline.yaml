@@ -2,4 +2,4 @@ steps:
   - command: "bazel test //..."
     label: ":bazel: Build + Test"
   - command: "./tools/build/bazel_lint.sh"
-      label: ":bazel: Lint Check"
+    label: ":bazel: Lint Check"

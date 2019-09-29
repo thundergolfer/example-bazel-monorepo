@@ -5,7 +5,7 @@
 Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Scala* + *Python*. 
 
 I use this project to explore how Bazel works with different languages and
-developer tools, and keep a record of best-practices I've learnt.
+developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
 Others can use it to check out the Bazel way of doing things and use parts
 as a reference implementation.
 
