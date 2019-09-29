@@ -5,9 +5,9 @@ go_binary(
     srcs = glob([
         "*.go",
     ]),
+    importpath = "github.com/thundergoler/the-one-true-bazel-monorepo/cli",
+    visibility = ["//visibility:public"],
     deps = [
         "@com_github_urfave_cli//:go_default_library",
     ],
-    importpath = "github.com/thundergoler/the-one-true-bazel-monorepo/cli",
-    visibility = ["//visibility:public"],
 )

@@ -7,11 +7,11 @@ MAIN_DEPS = [
 ]
 
 py_binary(
-  name = "main",
-  srcs = ["main.py"],
-  python_version = "PY3",
-  imports = [""],
-  main = "main.py",
-  srcs_version= "PY3",
-  deps = MAIN_DEPS
+    name = "main",
+    srcs = ["main.py"],
+    imports = [""],
+    main = "main.py",
+    python_version = "PY3",
+    srcs_version = "PY3",
+    deps = MAIN_DEPS,
 )

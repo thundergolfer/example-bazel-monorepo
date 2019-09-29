@@ -1,4 +1,3 @@
-
 SRCS = glob(["src/main/scala/com/fruit/sorting/*.scala"])
 
 scala_binary(
@@ -17,5 +16,5 @@ TEST_DEPS = [
 scala_test(
     name = "test",
     srcs = TEST_SRCS,
-    deps = []
+    deps = [],
 )
