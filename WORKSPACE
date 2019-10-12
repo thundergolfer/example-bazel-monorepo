@@ -99,11 +99,11 @@ pip_install()
 ######################
 
 # Note: commit before https://github.com/bazelbuild/rules_scala/issues/726 was introduced
-rules_scala_version = "7ffc700e32cc72d13be91dab366dd960c17a4c48"
+rules_scala_version = "f985e5e0d6364970be8d6f15d262c8b0e0973d1b"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "abfa560cb089f95bf87b5f6b2b9e4b1fbfd80fd16a60bfd576cc392983cab2bb",
+    sha256 = "2b5d595e04cc7f65e5de6d4efe022b3c52bf7aec42ff559011eb70cd1b300ba8",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
