@@ -4,6 +4,33 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 ######################
+# DOCKER SUPPORT
+######################
+
+# TODO(Jonathon): Upgrade to latest
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "aed1c249d4ec8f703edddf35cbe9dfaca0b5f5ea6e4cd9e83e99f3b0d1136c3d",
+    strip_prefix = "rules_docker-0.7.0",
+    urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.7.0.tar.gz"],
+)
+
+# Instantiate the "repositories" Bazel rule in rules_docker as "container_repositories"
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//java:image.bzl",
+    _java_image_repos = "repositories",
+)
+
+_java_image_repos()
+
+######################
 # GOLANG SUPPORT
 ######################
 
@@ -48,9 +75,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = "e5c68b87f750309a79f59c2b69ead5c3221ffa54ff9496306937bfa1c9c8c86b",
-    strip_prefix = "rules_jvm_external-1.2",
-    url = "https://github.com/bazelbuild/rules_jvm_external/archive/1.2.zip",
+    sha256 = "79c9850690d7614ecdb72d68394f994fef7534b292c4867ce5e7dec0aa7bdfad",
+    strip_prefix = "rules_jvm_external-2.8",
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/2.8.zip",
 )
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
@@ -60,12 +87,16 @@ maven_install(
     artifacts = [
         "com.google.guava:guava:27.1-jre",
         "junit:junit:4.12",
+        "org.springframework:spring-web:5.1.10.RELEASE",
+        "org.springframework.boot:spring-boot-starter-test:2.1.9.RELEASE",
+        "org.springframework.boot:spring-boot-starter-web:2.1.9.RELEASE",
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
     repositories = [
         "https://maven.google.com",
         "https://repo1.maven.org/maven2",
     ],
+    strict_visibility = True
 )
 
 ######################

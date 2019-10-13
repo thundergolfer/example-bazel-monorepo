@@ -1,0 +1,55 @@
+# Copyright 2018 Google LLC
+# Modifications copyright (C) 2019 Jonathon I Belotti
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+java_test(
+    name = "DemoTest",
+    srcs = ["DemoTest.java"],
+    deps = [
+        "//shopping-list-web:demo",
+	    "@maven//:junit_junit",
+    ],
+)
+
+#java_test(
+#    name = "TodoControllerTest",
+#    srcs = ["TodoControllerTest.java"],
+#    deps = [
+#        "//shopping-list-web:todo",
+#        "//shopping-list-web:todo_controller",
+#	"@commons_logging_commons_logging//jar",
+#	"@junit_junit//jar",
+#        "@org_apache_tomcat_embed_tomcat_embed_core//jar",
+#        "@org_apache_tomcat_embed_tomcat_embed_el//jar",
+#        "@org_apache_tomcat_embed_tomcat_embed_websocket//jar",
+#
+#	"@org_springframework_spring_aop//jar",
+#	"@org_springframework_spring_beans//jar",
+#	"@org_springframework_spring_context//jar",
+#	"@org_springframework_spring_expression//jar",
+#	"@org_springframework_spring_core//jar",
+#	"@org_springframework_spring_web//jar",
+#	"@org_springframework_spring_webmvc//jar",
+#
+#        "@org_springframework_spring_test//jar",
+#        "@org_springframework_boot_spring_boot_starter_test//jar",
+#        "@org_springframework_boot_spring_boot_test//jar",
+#        "@org_springframework_boot_spring_boot_test_autoconfigure//jar",
+#
+#	"@org_springframework_boot_spring_boot//jar",
+#	"@org_springframework_boot_spring_boot_autoconfigure//jar",
+#	"@org_springframework_boot_spring_boot_starter//jar",
+#	"@org_springframework_boot_spring_boot_starter_web//jar",
+#    ],
+#)

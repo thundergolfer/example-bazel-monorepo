@@ -1,0 +1,25 @@
+# Copyright 2018 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# The package rule declares this directory as a Bazel package
+# which scopes targets defined in this Build file under this package.
+# The visibility parameter declares which packages can call targets
+# in this package. In this case, we're saying anyone can call these targets.
+# See https://docs.bazel.build/versions/master/be/functions.html#package
+package(default_visibility = ["//visibility:public"])
+
+# We want to export the 'deployment.yaml' file as a Bazel target
+# so we can call it as the K8s deployment file
+# in the 'template' argument in shopping-list-web/BUILD.bazel
+exports_files(["deployment.yaml", "ingress.yaml"])
