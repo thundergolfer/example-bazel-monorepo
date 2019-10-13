@@ -1,0 +1,1 @@
+node_machine_type="g1-small"

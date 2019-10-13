@@ -6,13 +6,15 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 ######################
 # DOCKER SUPPORT
 ######################
+rules_docker_version = "0.12.0"
 
-# TODO(Jonathon): Upgrade to latest
 http_archive(
     name = "io_bazel_rules_docker",
-    sha256 = "aed1c249d4ec8f703edddf35cbe9dfaca0b5f5ea6e4cd9e83e99f3b0d1136c3d",
-    strip_prefix = "rules_docker-0.7.0",
-    urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.7.0.tar.gz"],
+    sha256 = "413bb1ec0895a8d3249a01edf24b82fd06af3c8633c9fb833a0cb1d4b234d46d",
+    strip_prefix = "rules_docker-{version}".format(version = rules_docker_version),
+    urls = [
+        "https://github.com/bazelbuild/rules_docker/archive/v{version}.tar.gz".format(version = rules_docker_version)
+    ],
 )
 
 # Instantiate the "repositories" Bazel rule in rules_docker as "container_repositories"
@@ -156,6 +158,52 @@ scala_register_toolchains()
 load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
 
 scala_deps()
+
+######################
+# INFRASTRUCTURE
+######################
+
+rules_k8s_version = "0.2"
+# This requires rules_docker to be fully instantiated before
+# it is pulled in.
+http_archive(
+    name = "io_bazel_rules_k8s",
+    sha256 = "649a851538f863410fd78147b78334bc7f47008d77712a4ee2f76d6aade704e7",
+    strip_prefix = "rules_k8s-{version}".format(version = rules_k8s_version),
+    urls = [
+        "https://github.com/bazelbuild/rules_k8s/releases/download/v{version}/rules_k8s-v{version}.tar.gz".format(version = rules_k8s_version)
+    ],
+)
+
+load("@io_bazel_rules_k8s//k8s:k8s.bzl", "k8s_repositories")
+
+k8s_repositories()
+
+load("@io_bazel_rules_k8s//k8s:k8s_go_deps.bzl", k8s_go_deps = "deps")
+
+k8s_go_deps()
+
+load("@io_bazel_rules_k8s//k8s:k8s.bzl", "k8s_defaults")
+
+# Set up some default attributes when the K8s rule "k8s_object" is called later
+# This only applies to "k8s_object" called with kind = "deployment"
+# This also exposes a Bazel rule called "k8s_deploy"
+# which we use in java-spring-boot/BUILD.bazel and js-client/BUILD.bazel.
+# See https://github.com/bazelbuild/rules_k8s#k8s_defaults
+k8s_defaults(
+    name = "k8s_deploy",
+    kind = "deployment"
+#        namespace = "default"
+)
+
+# Set up some default attributes when the K8s rule "k8s_object" is called later
+# This only applies to "k8s_object" called with kind = "service"
+# See https://github.com/bazelbuild/rules_k8s#k8s_defaults
+k8s_defaults(
+    name = "k8s_service",
+    kind = "service"
+#        namespace = "default"
+)
 
 ######################
 # *OTHER*
