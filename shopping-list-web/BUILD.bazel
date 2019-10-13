@@ -38,7 +38,6 @@ java_library(
     name = "todo_not_found_exception",
     srcs = ["src/main/java/com/example/TodoNotFoundException.java"],
     deps = [
-#      "@org_springframework_spring_web//jar",
         "@maven//:org_springframework_spring_web",
         "@maven//:org_springframework_boot_spring_boot_starter_web",
     ],
@@ -53,9 +52,6 @@ java_library(
         "@maven//:org_springframework_spring_web",
         "@maven//:org_springframework_boot_spring_boot_starter_test",
         "@maven//:org_springframework_boot_spring_boot_starter_web",
-#      "@org_springframework_spring_web//jar",
-#      "@org_springframework_boot_spring_boot_starter//jar",
-#      "@org_springframework_boot_spring_boot_starter_web//jar"
     ],
 )
 
@@ -64,94 +60,44 @@ java_library(
 # It essentially does `java_binary` and then creates an image containing it.
 # See https://docs.bazel.build/versions/master/be/java.html#java_binary
 # See https://github.com/bazelbuild/rules_docker#java_image
-#java_image(
-#    # name of the target that we use below in `container_image`
-#    name = "java_spring_boot_image",
-#    # the source file we need to compile
-#    srcs = ["src/main/java/com/example/Application.java"],
-#    # the main class the Java binary runs
-#    main_class = "com.example.Application",
-#    # the dependencies the Java binary needs
-#    # Dependencies are other Bazel targets.
-#    # The first 2 are Bazel targets to compile Java sources
-#    # that we define above. They're run before this target.
-#    # The rest are Bazel targets that `maven_jar` exposed
-#    # in the WORKSPACE
-#    deps = [
-#      ":todo",
-#      ":todo_controller",
-#      "@commons_logging_commons_logging//jar",
-#      "@org_springframework_spring_aop//jar",
-#      "@org_springframework_spring_beans//jar",
-#      "@org_springframework_spring_context//jar",
-#      "@org_springframework_spring_core//jar",
-#      "@org_springframework_spring_expression//jar",
-#      "@ch_qos_logback_logback_classic//jar",
-#      "@ch_qos_logback_logback_core//jar",
-#      "@com_fasterxml_classmate//jar",
-#      "@com_fasterxml_jackson_core_jackson_annotations//jar",
-#      "@com_fasterxml_jackson_core_jackson_core//jar",
-#      "@com_fasterxml_jackson_core_jackson_databind//jar",
-#      "@com_fasterxml_jackson_datatype_jackson_datatype_jdk8//jar",
-#      "@com_fasterxml_jackson_datatype_jackson_datatype_jsr310//jar",
-#      "@com_fasterxml_jackson_module_jackson_module_parameter_names//jar",
-#      "@com_jayway_jsonpath_json_path//jar",
-#      "@com_vaadin_external_google_android_json//jar",
-#      "@javax_annotation_javax_annotation_api//jar",
-#      "@javax_validation_validation_api//jar",
-#      "@junit_junit//jar",
-#      "@net_bytebuddy_byte_buddy//jar",
-#      "@net_bytebuddy_byte_buddy_agent//jar",
-#      "@net_minidev_accessors_smart//jar",
-#      "@net_minidev_json_smart//jar",
-#      "@org_apache_logging_log4j_log4j_api//jar",
-#      "@org_apache_logging_log4j_log4j_to_slf4j//jar",
-#      "@org_apache_tomcat_embed_tomcat_embed_core//jar",
-#      "@org_apache_tomcat_embed_tomcat_embed_el//jar",
-#      "@org_apache_tomcat_embed_tomcat_embed_websocket//jar",
-#      "@org_assertj_assertj_core//jar",
-#      "@org_hamcrest_hamcrest_core//jar",
-#      "@org_hamcrest_hamcrest_library//jar",
-#      "@org_hibernate_validator_hibernate_validator//jar",
-#      "@org_jboss_logging_jboss_logging//jar",
-#      "@org_mockito_mockito_core//jar",
-#      "@org_objenesis_objenesis//jar",
-#      "@org_ow2_asm_asm//jar",
-#      "@org_skyscreamer_jsonassert//jar",
-#      "@org_slf4j_jul_to_slf4j//jar",
-#      "@org_slf4j_slf4j_api//jar",
-#      "@org_springframework_boot_spring_boot//jar",
-#      "@org_springframework_boot_spring_boot_autoconfigure//jar",
-#      "@org_springframework_boot_spring_boot_starter//jar",
-#      "@org_springframework_boot_spring_boot_starter_json//jar",
-#      "@org_springframework_boot_spring_boot_starter_logging//jar",
-#      "@org_springframework_boot_spring_boot_starter_test//jar",
-#      "@org_springframework_boot_spring_boot_starter_tomcat//jar",
-#      "@org_springframework_boot_spring_boot_starter_web//jar",
-#      "@org_springframework_boot_spring_boot_test//jar",
-#      "@org_springframework_boot_spring_boot_test_autoconfigure//jar",
-#      "@org_springframework_spring_jcl//jar",
-#      "@org_springframework_spring_test//jar",
-#      "@org_springframework_spring_web//jar",
-#      "@org_springframework_spring_webmvc//jar",
-#      "@org_xmlunit_xmlunit_core//jar",
-#      "@org_yaml_snakeyaml//jar",
-#    ],
-#)
+java_image(
+    # name of the target that we use below in `container_image`
+    name = "java_spring_boot_image",
+    # the source file we need to compile
+    srcs = ["src/main/java/com/example/Application.java"],
+    # the main class the Java binary runs
+    main_class = "com.example.Application",
+    # the dependencies the Java binary needs
+    # Dependencies are other Bazel targets.
+    # The first 2 are Bazel targets to compile Java sources
+    # that we define above. They're run before this target.
+    # The rest are Bazel targets that `maven_jar` exposed
+    # in the WORKSPACE
+    deps = [
+        ":todo",
+        ":todo_controller",
+        "@maven//:org_springframework_spring_webmvc",
+        "@maven//:org_springframework_spring_context",
+        "@maven//:org_springframework_boot_spring_boot",
+        "@maven//:org_springframework_boot_spring_boot_autoconfigure",
+        "@maven//:org_springframework_spring_web",
+        "@maven//:org_springframework_boot_spring_boot_starter_test",
+        "@maven//:org_springframework_boot_spring_boot_starter_web",
+    ],
+)
 
 # create a container image with our java_image in it
 # See https://github.com/bazelbuild/rules_docker#container_image-1
-#container_image(
-#    name = "app_image",
-#    # the base image for this image, which is a Bazel target defined above
-#    base = ":java_spring_boot_image",
-#    # expose the 8080 port, which is what our Java app runs on
-#    ports = ["8080"],
-#    # The directory in which to expand the base image files
-#    directory = "/app",
-#    # Initial working directory when running the image
-#    workdir = "/app",
-#)
+container_image(
+    name = "app_image",
+    base = ":java_spring_boot_image",
+    # expose the 8080 port, which is what our Java app runs on
+    ports = ["8080"],
+    # The directory in which to expand the base image files
+    directory = "/app",
+    # Initial working directory when running the image
+    workdir = "/app",
+)
 
 # Configure the K8s deployment for the Java API
 # This is how we're able to call `bazel run //shopping-list-web:k8s.apply`
