@@ -34,12 +34,7 @@ variable "node_machine_type" {
 }
 
 provider "google" {
-  version = "2.10.0"
-  project = var.project
-}
-
-provider "google-beta" {
-  version = "2.12.0"
+  version = ">= 2.17.0"
   project = var.project
 }
 
