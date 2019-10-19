@@ -15,7 +15,7 @@
 
 load("@io_bazel_rules_docker//java:image.bzl", "java_image")
 load("@io_bazel_rules_docker//container:container.bzl", "container_image")
-#load("@k8s_deploy//:defaults.bzl", "k8s_deploy")
+load("@k8s_deploy//:defaults.bzl", "k8s_deploy")
 
 # The package rule declares this directory as a Bazel package
 # which scopes targets defined in this Build file under this package.
@@ -104,35 +104,35 @@ container_image(
 # in scripts/create.sh
 # `k8s_deploy` is a rule we created with `k8s_defaults` in the WORKSPACE
 # See https://github.com/bazelbuild/rules_k8s
-#k8s_deploy(
-#    # the name of our Bazel target we call in the create script
-#    name = "k8s",
-#    # the define bazel cli flag is used for cluster, context and image_chroot
-#    # the name of our GKE cluster to deploy to
-#    # this is read from a variable we set in the create script
-#    cluster = "$(cluster)",
-#    # the name of the kubectl context to use for authentication
-#    # this is read from a variable we set in the create script
-#    context = "$(cluster)",
-#    # the name of our GCR image repo to push the image to
-#    # this is read from a variable we set in the create script
-#    image_chroot = "$(repo)",
-#    # what images to build, push to the registry, and deploy to k8s
-#    images = {
-#        # the image pushed to our "image_chroot" called "java_spring_boot"
-#        # with a label of "do_not_delete". You can set whatever label you'd like.
-#        # "do_not_delete" is a common string to prevent people from accidentally
-#        # deleting the image in the container registry.
-#        # ":app_image" is the Bazel target to be called to generate the image
-#        # see the above rule where we define the "app_image" target.
-#        "java_spring_boot:do_not_delete": ":app_image",
-#    },
-#    # what YAML template should we use for the k8s deployment
-#    # See shopping-list-web/manifests/BUILD.bazel for how
-#    # we tell Bazel to export a file as a Bazel rule
-#    # This is called "template" because Bazel will generate the actual
-#    # deployment.yaml that includes the full path to the image we asked
-#    # Bazel to build and push to our registry. The path will be a specific
-#    # SHA for the image as well.
-#    template = "//shopping-list-web/manifests:deployment.yaml",
-#)
+k8s_deploy(
+    # the name of our Bazel target we call in the create script
+    name = "k8s",
+    # the define bazel cli flag is used for cluster, context and image_chroot
+    # the name of our GKE cluster to deploy to
+    # this is read from a variable we set in the create script
+    cluster = "$(cluster)",
+    # the name of the kubectl context to use for authentication
+    # this is read from a variable we set in the create script
+    context = "$(cluster)",
+    # the name of our GCR image repo to push the image to
+    # this is read from a variable we set in the create script
+    image_chroot = "$(repo)",
+    # what images to build, push to the registry, and deploy to k8s
+    images = {
+        # the image pushed to our "image_chroot" called "java_spring_boot"
+        # with a label of "do_not_delete". You can set whatever label you'd like.
+        # "do_not_delete" is a common string to prevent people from accidentally
+        # deleting the image in the container registry.
+        # ":app_image" is the Bazel target to be called to generate the image
+        # see the above rule where we define the "app_image" target.
+        "java_spring_boot:do_not_delete": ":app_image",
+    },
+    # what YAML template should we use for the k8s deployment
+    # See shopping-list-web/manifests/BUILD.bazel for how
+    # we tell Bazel to export a file as a Bazel rule
+    # This is called "template" because Bazel will generate the actual
+    # deployment.yaml that includes the full path to the image we asked
+    # Bazel to build and push to our registry. The path will be a specific
+    # SHA for the image as well.
+    template = "//shopping-list-web/manifests:deployment.yaml",
+)

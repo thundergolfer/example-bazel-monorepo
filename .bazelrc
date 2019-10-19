@@ -12,3 +12,6 @@ build --python_path="/usr/local/bin/python3"
 ############
 build --strategy=Scalac=worker
 test --strategy=Scalac=worker
+
+# Conditional config import for Google Kubernetes Engine deployment
+try-import %workspace%/gke.bazelrc

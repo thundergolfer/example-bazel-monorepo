@@ -192,8 +192,8 @@ load("@io_bazel_rules_k8s//k8s:k8s.bzl", "k8s_defaults")
 # See https://github.com/bazelbuild/rules_k8s#k8s_defaults
 k8s_defaults(
     name = "k8s_deploy",
-    kind = "deployment"
-#        namespace = "default"
+    kind = "deployment",
+    namespace = "default"
 )
 
 # Set up some default attributes when the K8s rule "k8s_object" is called later
@@ -201,8 +201,8 @@ k8s_defaults(
 # See https://github.com/bazelbuild/rules_k8s#k8s_defaults
 k8s_defaults(
     name = "k8s_service",
-    kind = "service"
-#        namespace = "default"
+    kind = "service",
+    namespace = "default"
 )
 
 ######################
