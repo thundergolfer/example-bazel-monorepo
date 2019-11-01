@@ -145,3 +145,8 @@ http_archive(
     strip_prefix = "buildtools-master",
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
+
+local_repository(
+    name = "linting_rules",
+    path = "/Users/jonathonbelotti/Code/thundergolfer/bazel-linting-rules",
+)
