@@ -150,6 +150,7 @@ http_archive(
 # ⚠️ Currently in ALPHA as at 2019/11/12
 http_archive(
     name = "linting_system",
-    sha256 = "",
+    strip_prefix = "bazel-linting-system-master",
+    sha256 = "77851784bc85258d7a4ec76dafa0dc65adae2dab46fb97ad153eb5f4d9db4ab1",
     url = "https://github.com/thundergolfer/bazel-linting-system/archive/master.zip",
 )
