@@ -146,7 +146,10 @@ http_archive(
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
 
-local_repository(
-    name = "linting_rules",
-    path = "/Users/jonathonbelotti/Code/thundergolfer/bazel-linting-rules",
+# source code linting system
+# ⚠️ Currently in ALPHA as at 2019/11/12
+http_archive(
+    name = "linting_system",
+    sha256 = "",
+    url = "https://github.com/thundergolfer/bazel-linting-system/archive/master.zip",
 )

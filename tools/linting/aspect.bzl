@@ -1,4 +1,4 @@
-load("@linting_rules//:generator.bzl", "linting_aspect_generator")
+load("@linting_system//:generator.bzl", "linting_aspect_generator")
 
 lint = linting_aspect_generator(
     name = "lint",
