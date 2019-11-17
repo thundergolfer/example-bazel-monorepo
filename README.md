@@ -88,3 +88,7 @@ In order to add new third-party packages for Python, add them to [`tools/depende
 This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to manage Bazel monorepos,
 as well as being [used by the Bazel open-source project itself](https://buildkite.com/bazel).
 
+### Linting
+
+[`./tools/linting/lint.sh`](tools/linting/lint.sh) will lint all source-code in the repo _and_ all Bazel files.
+
