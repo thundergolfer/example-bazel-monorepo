@@ -4,5 +4,5 @@ lint = linting_aspect_generator(
     name = "lint",
     linters = [
         "@//tools/linting:python",
-    ]
+    ],
 )

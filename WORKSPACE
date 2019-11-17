@@ -51,8 +51,8 @@ rules_jvm_external_version = "2.8"
 http_archive(
     name = "rules_jvm_external",
     sha256 = "79c9850690d7614ecdb72d68394f994fef7534b292c4867ce5e7dec0aa7bdfad",
-    strip_prefix = "rules_jvm_external-{version}".format(version=rules_jvm_external_version),
-    url = "https://github.com/bazelbuild/rules_jvm_external/archive/{version}.zip".format(version=rules_jvm_external_version),
+    strip_prefix = "rules_jvm_external-{version}".format(version = rules_jvm_external_version),
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/{version}.zip".format(version = rules_jvm_external_version),
 )
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
@@ -150,7 +150,7 @@ http_archive(
 # ⚠️ Currently in ALPHA as at 2019/11/12
 http_archive(
     name = "linting_system",
-    strip_prefix = "bazel-linting-system-master",
     sha256 = "77851784bc85258d7a4ec76dafa0dc65adae2dab46fb97ad153eb5f4d9db4ab1",
+    strip_prefix = "bazel-linting-system-master",
     url = "https://github.com/thundergolfer/bazel-linting-system/archive/master.zip",
 )
