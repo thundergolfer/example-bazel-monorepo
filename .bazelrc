@@ -12,3 +12,10 @@ build --python_path="/usr/local/bin/python3"
 ############
 build --strategy=Scalac=worker
 test --strategy=Scalac=worker
+
+############
+# Other    #
+############
+# Linting - See https://github.com/thundergolfer/bazel-linting-system
+build --aspects //tools/linting:aspect.bzl%lint
+build --output_groups=+report
