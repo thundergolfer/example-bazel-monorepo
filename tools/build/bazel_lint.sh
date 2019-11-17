@@ -6,6 +6,6 @@ bazel run //:buildifier
 git checkout -- 3rdparty
 
 if [[ -n $(git status -s) ]]; then
-  echo "Need to run buildifier to lint BUILD files + WORKSPACE"
+  echo "Bazel linting errors found. Run $(basename ${BASH_SOURCE})  to lint BUILD files + WORKSPACE"
   exit 1
 fi
