@@ -70,6 +70,31 @@ maven_install(
     ],
 )
 
+####################################################################################################
+# JSONNET_SUPPORT
+####################################################################################################
+
+rules_jsonnet_version = "0.2.0"
+
+http_archive(
+    name = "io_bazel_rules_jsonnet",
+    sha256 = "68b5bcb0779599065da1056fc8df60d970cffe8e6832caf13819bb4d6e832459",
+    strip_prefix = "rules_jsonnet-{version}".format(version = rules_jsonnet_version),
+    urls = ["https://github.com/bazelbuild/rules_jsonnet/archive/{version}.tar.gz".format(version = rules_jsonnet_version)],
+)
+
+load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_repositories")
+
+jsonnet_repositories()
+
+load("@jsonnet_go//bazel:repositories.bzl", "jsonnet_go_repositories")
+
+jsonnet_go_repositories()
+
+load("@jsonnet_go//bazel:deps.bzl", "jsonnet_go_dependencies")
+
+jsonnet_go_dependencies()
+
 ######################
 # PYTHON SUPPORT
 ######################
