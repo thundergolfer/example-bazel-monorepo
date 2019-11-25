@@ -146,11 +146,13 @@ http_archive(
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
 
+linting_system_version = "0.2.1"
+
 # source code linting system
 # ⚠️ Currently in ALPHA as at 2019/11/12
 http_archive(
     name = "linting_system",
-    sha256 = "77851784bc85258d7a4ec76dafa0dc65adae2dab46fb97ad153eb5f4d9db4ab1",
-    strip_prefix = "bazel-linting-system-master",
-    url = "https://github.com/thundergolfer/bazel-linting-system/archive/master.zip",
+    sha256 = "8da0fedcfd5ebad2ff204caf62abfe5304f32280542128cccc044f56f0d7138d",
+    strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
+    url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
 )
