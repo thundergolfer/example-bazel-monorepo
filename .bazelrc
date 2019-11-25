@@ -20,5 +20,5 @@ test --strategy=Scalac=worker
 build --aspects //tools/linting:aspect.bzl%lint
 build --output_groups=+report
 
-# Include git version info
-build --workspace_status_command tools/build/bazel_workspace_status.sh
+# Intellij Plugin
+build --incompatible_depset_is_not_iterable=false

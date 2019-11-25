@@ -70,34 +70,6 @@ maven_install(
     ],
 )
 
-
-
-####################################################################################################
-# JSONNET SUPPORT 
-####################################################################################################
-
-rules_jsonnet_version = "0.2.0"
-
-http_archive(
-    name = "io_bazel_rules_jsonnet",
-    sha256 = "68b5bcb0779599065da1056fc8df60d970cffe8e6832caf13819bb4d6e832459",
-    strip_prefix = "rules_jsonnet-{version}".format(version = rules_jsonnet_version),
-    urls = ["https://github.com/bazelbuild/rules_jsonnet/archive/{version}.tar.gz".format(version = rules_jsonnet_version)],
-)
-
-
-load("@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_repositories")
-
-jsonnet_repositories()
-
-load("@jsonnet_go//bazel:repositories.bzl", "jsonnet_go_repositories")
-
-jsonnet_go_repositories()
-
-load("@jsonnet_go//bazel:deps.bzl", "jsonnet_go_dependencies")
-
-jsonnet_go_dependencies()
-
 ######################
 # PYTHON SUPPORT
 ######################
@@ -174,13 +146,13 @@ http_archive(
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
 
-linting_system_version = "0.2"
+linting_system_version = "0.2.1"
 
 # source code linting system
 # ⚠️ Currently in ALPHA as at 2019/11/12
 http_archive(
     name = "linting_system",
-    sha256 = "efe29b78dc4ff0e890d37a96d9080e08afb8aba7de852d85ab6a1e543de44449",
+    sha256 = "8da0fedcfd5ebad2ff204caf62abfe5304f32280542128cccc044f56f0d7138d",
     strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
     url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
 )
