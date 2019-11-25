@@ -19,3 +19,6 @@ test --strategy=Scalac=worker
 # Linting - See https://github.com/thundergolfer/bazel-linting-system
 build --aspects //tools/linting:aspect.bzl%lint
 build --output_groups=+report
+
+# Intellij Plugin
+build --incompatible_depset_is_not_iterable=false
