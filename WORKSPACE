@@ -46,11 +46,11 @@ go_dependencies()
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-rules_jvm_external_version = "2.8"
+rules_jvm_external_version = "2.10"
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = "79c9850690d7614ecdb72d68394f994fef7534b292c4867ce5e7dec0aa7bdfad",
+    sha256 = "1bbf2e48d07686707dd85357e9a94da775e1dbd7c464272b3664283c9c716d26",
     strip_prefix = "rules_jvm_external-{version}".format(version = rules_jvm_external_version),
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/{version}.zip".format(version = rules_jvm_external_version),
 )
