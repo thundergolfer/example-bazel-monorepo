@@ -13,7 +13,7 @@ echo "Starting Buildkite agent bootstrap..."
 
 # Can't upgrade to 0.25.2. Breaks rules_scala:
 # https://github.com/bazelbuild/bazel/issues/7498#issuecomment-489286392
-BAZEL_VERSION="0.24.1"
+BAZEL_VERSION="0.28.1"
 
 ## Install Bazel's and Project's dependencies
 
