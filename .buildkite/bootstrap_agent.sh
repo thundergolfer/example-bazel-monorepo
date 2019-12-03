@@ -11,7 +11,7 @@
 
 echo "Starting Buildkite agent bootstrap..."
 
-BAZEL_VERSION="0.28.1"
+BAZEL_VERSION="1.0.0"
 
 ## Install Bazel's and Project's dependencies
 
