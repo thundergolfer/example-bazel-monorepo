@@ -86,14 +86,35 @@ load("@io_bazel_rules_python//python:pip.bzl", "pip_import", "pip_repositories")
 
 pip_repositories()
 
-pip_import(
-    name = "pip_dependencies",
-    requirements = "//tools/dependencies:python_requirements.txt",
+#pip_import(
+#    name = "pip_dependencies",
+#    requirements = "//tools/dependencies:python_requirements.txt",
+#)
+#
+## Load the pip_install symbol for my_deps, and create the dependencies repositories.
+#load("@pip_dependencies//:requirements.bzl", "pip_install")
+#
+#pip_install()
+
+## rules_pip
+
+http_archive(
+    name = "com_github_ali5h_rules_pip",
+    strip_prefix = "rules_pip-0.5.0",
+    urls = ["https://github.com/ali5h/rules_pip/archive/0.5.0.tar.gz"],
 )
 
-# Load the pip_install symbol for my_deps, and create the dependencies repositories.
-load("@pip_dependencies//:requirements.bzl", "pip_install")
+load("@com_github_ali5h_rules_pip//:defs.bzl", "pip_import", "repositories")
 
+repositories()
+
+pip_import(
+   name = "rules_pip_deps",
+   requirements = "//tools/dependencies:python_requirements.txt",
+   python_version="3",
+)
+
+load("@rules_pip_deps//:requirements.bzl", "pip_install")
 pip_install()
 
 ######################
