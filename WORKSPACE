@@ -97,11 +97,11 @@ load("@pip_dependencies//:requirements.bzl", "pip_install")
 pip_install()
 
 # MYPY SUPPORT
-mypy_integration_version = "0.0.2"
+mypy_integration_version = "0.0.3"
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "503dda15de665d65ca7978b4b8da897576e54945638d87183c43dfbc1a025729",
+    sha256 = "09be39c3f353012271f1595fe2d661903fed9d8e950850445c278cd58d30d710",
     strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
     url = "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.zip".format(
         version = mypy_integration_version
