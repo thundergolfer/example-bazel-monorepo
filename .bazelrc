@@ -18,5 +18,3 @@ test --strategy=Scalac=worker
 ############
 try-import %workspace%/linting.bazelrc
 
-# Intellij Plugin
-build --incompatible_depset_is_not_iterable=false
