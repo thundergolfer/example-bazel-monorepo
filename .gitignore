@@ -12,3 +12,8 @@ linting.bazelrc
 # Intellij
 ##################
 .idea
+
+##################
+# Terraform
+##################
+infrastructure/**/.terraform/**
