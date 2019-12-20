@@ -96,6 +96,36 @@ load("@pip_dependencies//:requirements.bzl", "pip_install")
 
 pip_install()
 
+# MYPY SUPPORT
+mypy_integration_version = "0.0.4"
+
+http_archive(
+    name = "mypy_integration",
+    sha256 = "dd785f62716058de884e15a9aaee027ec7782ba15a066cf3a00e9470f84a51d0",
+    strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
+    url = "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(
+        version = mypy_integration_version
+    ),
+)
+
+load(
+    "@mypy_integration//repositories:repositories.bzl",
+    mypy_integration_repositories = "repositories",
+)
+mypy_integration_repositories()
+
+load("@mypy_integration//:config.bzl", "mypy_configuration")
+
+mypy_configuration("//tools/typing:mypy.ini")
+
+load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
+
+mypy_integration_deps("//tools/typing:mypy_version.txt")
+
+load("@mypy_integration//repositories:pip_repositories.bzl", mypy_integration_pip_deps = "pip_deps")
+
+mypy_integration_pip_deps()
+
 ######################
 # SCALA SUPPORT
 ######################
