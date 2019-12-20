@@ -127,6 +127,52 @@ load("@mypy_integration//repositories:pip_repositories.bzl", mypy_integration_pi
 mypy_integration_pip_deps()
 
 ######################
+# RUBY SUPPORT
+######################
+
+git_repository(
+    name = "bazelruby_ruby_rules",
+    branch = "develop",
+    remote = "https://github.com/bazelruby/rules_ruby.git",
+)
+
+rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
+
+http_archive(
+    name = "bazelruby_ruby_rules",
+    sha256 = "",
+    strip_prefix = "rules_ruby-{version}".format(version = rules_ruby_version),
+    url = "https://github.com/bazelbuild/rules_ruby/archive/{version}.zip".format(version = rules_ruby_version),
+)
+
+load(
+    "@bazelruby_ruby_rules//ruby:deps.bzl",
+    "ruby_register_toolchains",
+    "ruby_rules_dependencies",
+)
+
+ruby_rules_dependencies()
+
+ruby_register_toolchains()
+
+load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
+
+bundle_install(
+    name = "bundle.hello-world-gem",
+    gemfile = "//ruby/gems/hello_world:Gemfile",
+    gemfile_lock = "//ruby/gems/hello_world:Gemfile.lock",
+    #gemspec = "//ruby/gems/hello_world:hello_world.gemspec",
+    visibility = ["//visibility:public"],
+)
+
+bundle_install(
+    name = "bundle.hello-world-web",
+    gemfile = "//ruby/apps/hello-world-web:Gemfile",
+    gemfile_lock = "//ruby/apps/hello-world-web:Gemfile.lock",
+    visibility = ["//visibility:public"],
+)
+
+######################
 # SCALA SUPPORT
 ######################
 
