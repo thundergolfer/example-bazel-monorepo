@@ -1,0 +1,176 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+lib_path = File.expand_path('../../../gems/hello_world/lib', __dir__)
+puts lib_path
+$LOAD_PATH << lib_path if File.exist?(lib_path) && !$LOAD_PATH.include?(lib_path)
+
+require 'optparse'
+require 'rubygems'
+
+env = ENV['RACK_ENV'] || 'development'
+host = ENV['HOST'] || '127.0.0.1'
+port = ENV['PORT'] || 9393
+mount_path = '/'
+browse = false
+server = nil
+public_dir = 'public' if File.directory?('public')
+options = { Port: port, Host: host, AccessLog: [] }
+
+# rubocop: disable Metrics/BlockLength
+# rubocop: disable Lint/ShadowingOuterLocalVariable
+opts = OptionParser.new('', 24, '  ') do |opts|
+  opts.banner = 'Usage: shotgun [ruby options] [rack options] [rackup config]'
+
+  opts.separator ''
+  opts.separator 'Ruby options:'
+
+  opts.on('-d', '--debug', 'set debugging flags (set $DEBUG to true)') do
+    $DEBUG = true
+  end
+  opts.on('-w', '--warn', 'turn warnings on for your script') do
+    $-w = true
+  end
+
+  opts.on('-I', '--include PATH',
+          'specify $LOAD_PATH (may be used more than once)') do |path|
+    $LOAD_PATH.unshift(*path.split(':'))
+  end
+
+  opts.on('-r', '--require LIBRARY',
+          'require the library, before executing your script') do |library|
+    require library
+  end
+
+  opts.separator ''
+  opts.separator 'Rack options:'
+  opts.on('-s', '--server SERVER', 'server (webrick, mongrel, thin, etc.)') do |s|
+    server = s
+  end
+
+  opts.on('-o', '--host HOST', 'listen on HOST (default: 127.0.0.1)') do |host|
+    options[:Host] = host
+  end
+
+  opts.on('-p', '--port PORT', 'use PORT (default: 9393)') do |port|
+    options[:Port] = port
+  end
+
+  opts.on('-E', '--env ENVIRONMENT', 'use ENVIRONMENT for defaults (default: development)') do |e|
+    env = e
+  end
+
+  opts.separator ''
+  opts.separator 'Shotgun options:'
+
+  opts.on('-O', '--browse', 'open browser immediately after starting') do
+    browse = true
+  end
+
+  opts.on('-u', '--url URL', "specify url path (default: #{mount_path})") do |url|
+    mount_path = url
+  end
+
+  opts.on('-P', '--public PATH', 'serve static files under PATH') do |path|
+    public_dir = path
+  end
+
+  opts.on_tail('-h', '--help', 'show this message') do
+    puts opts
+    exit
+  end
+
+  opts.on_tail('--version', 'show version') do
+    require 'rack'
+    puts "Rack #{Rack.version}"
+    exit
+  end
+
+  opts.parse! ARGV
+end
+
+config = [ARGV[0], 'config.ru', '../config.ru'].compact.detect do |file|
+  File.exist?(File.expand_path(file, __dir__))
+end
+
+config = File.expand_path(config, __dir__) if config
+
+abort "configuration #{config} not found" unless File.exist?(config)
+
+# extract additional arguments from first #\ line in config file.
+opts.parse! Regexp.last_match(1).split(/\s+/) if File.read(config)[/^#\\(.*)/]
+
+# use the BROWSER environment variable or fall back to a more or less standard
+# set of commands
+ENV['BROWSER'] ||=
+  %w[open xdg-open x-www-browser firefox opera mozilla netscape].find do |comm|
+    next if comm == 'open' && `uname` !~ /Darwin/
+
+    ENV['PATH'].split(':').any? { |dir| File.executable?("#{dir}/#{comm}") }
+  end
+ENV['RACK_ENV'] = env
+
+require 'rack'
+
+require 'shotgun'
+
+require 'thin' if server.to_s.downcase == 'thin'
+server = Rack::Handler.get(server) || Rack::Handler.default
+
+app =
+  Rack::Builder.new do
+    map(mount_path) do
+      # these middleware run in the master process.
+      use Shotgun::Static, public_dir if public_dir
+      use Shotgun::SkipFavicon
+
+      # loader forks the child and runs the embedded config followed by the
+      # application config.
+      run Shotgun::Loader.new(config) {
+        case env
+        when 'development'
+          use Rack::CommonLogger, STDERR unless server.name =~ /CGI/
+          use Rack::ShowExceptions
+          use Rack::Lint
+        when 'deployment', 'production'
+          use Rack::CommonLogger, STDERR unless server.name =~ /CGI/
+        end
+      }
+    end
+  end
+
+Shotgun.enable_copy_on_write
+
+# trap exit signals
+downward = false
+%w[INT TERM QUIT].each do |signal|
+  trap(signal) do
+    exit! if downward
+    downward = true
+    server.shutdown if server.respond_to?(:shutdown)
+    begin
+      Process.wait
+    rescue StandardError
+      nil
+    end
+    exit!
+  end
+end
+
+# load shotgun.rb in current working directory if it exists
+Shotgun.preload
+
+base_url = "http://#{options[:Host]}:#{options[:Port]}#{mount_path}"
+puts "== Shotgun/#{server.to_s.sub(/Rack::Handler::/, '')} on #{base_url}"
+server.run app, options do |_inst|
+  if browse
+    if ENV['BROWSER']
+      system "#{ENV['BROWSER']} '#{base_url}'"
+    else
+      abort 'BROWSER environment variable not set and no browser detected'
+    end
+  end
+end
+
+# rubocop: enable Metrics/BlockLength
+# rubocop: enable Lint/ShadowingOuterLocalVariable

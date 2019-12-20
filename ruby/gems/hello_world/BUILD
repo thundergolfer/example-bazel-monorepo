@@ -17,7 +17,7 @@ ruby_binary(
     main = "exe/hello-world",
     deps = [
         ":lib",
-        "@bundle.hello-world-gem//:libs",
+        "@bundle-hello-world-gem//:libs",
     ],
     visibility = ["//visibility:public"],
 )
@@ -31,6 +31,6 @@ ruby_test(
     rubyopt = ["-rrspec/autorun"],
     deps = [
         ":lib",
-        "@bundle.hello-world-gem//:libs",
+        "@bundle-hello-world-gem//:libs",
     ],
 )

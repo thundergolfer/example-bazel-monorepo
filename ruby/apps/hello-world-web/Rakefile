@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+require 'rake'
+require 'shotgun'
+require 'sinatra'
+require 'rack'
+require 'shotgun'
+
+namespace :bundle do
+  desc 'Start App via bundle exec'
+  task :boot do
+    system 'bundle exec bin/shotgun'
+  end
+end
+
+desc 'Boot Sinatra App Without Bundler'
+task :boot do
+  system('bin/shotgun')
+end
