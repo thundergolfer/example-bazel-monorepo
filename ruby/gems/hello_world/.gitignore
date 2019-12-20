@@ -1,0 +1,13 @@
+**/.DS_Store
+.ruby-version
+/*.enc
+/.bundle/
+/.idea/
+/.yardoc
+/coverage/
+/pkg/
+/spec/coverage/
+/tmp/
+temp/
+.idea/
+vendor/

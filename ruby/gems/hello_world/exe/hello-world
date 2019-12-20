@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+lib_path = File.expand_path("#{__dir__}/../lib")
+if File.exist?(lib_path) && !$LOAD_PATH.include?(lib_path)
+  $LOAD_PATH << lib_path
+end
+
+require 'hello_world/cli'
+require 'colored2'
+
+code = 0
+
+begin
+  puts ::HelloWorld::CLI.new(ARGV).execute!
+rescue StandardError => e
+  warn e.message.bold.red
+  code = 1
+ensure
+  exit code
+end

@@ -1,0 +1,39 @@
+# frozen_string_literal: true
+
+require 'bundler/gem_tasks'
+require 'rspec/core/rake_task'
+require 'timeout'
+
+def shell(*args)
+  puts "running: #{args.join(' ')}"
+  system(args.join(' '))
+end
+
+task :clean do
+  shell('rm -rf pkg/ tmp/ coverage/ doc/ ' )
+end
+
+task gem: %i(build) do
+  shell('gem install pkg/*')
+end
+
+task permissions: [:clean] do
+  shell('chmod -v o+r,g+r * */* */*/* */*/*/* */*/*/*/* */*/*/*/*/* 2>/dev/null' )
+  shell('find . -type d -exec chmod o+x,g+x {} \\;')
+end
+
+task build: :permissions
+
+RSpec::Core::RakeTask.new(:spec)
+
+task default: :spec
+
+desc 'Run HelloWorld via Rake'
+task :speak, [:lang] do |_t, args|
+  lib_path = File.expand_path("#{__dir__}/lib")
+  if File.exist?(lib_path) && !$LOAD_PATH.include?(lib_path)
+    $LOAD_PATH << lib_path
+  end
+  require 'hello_world/cli'
+  puts HelloWorld::CLI.new(Array(args[:lang])).execute!
+end

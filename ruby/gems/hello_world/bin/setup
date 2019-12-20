@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# 
+# Setup Dependencies
+#
+
+[[ -d ~/.bashmatic ]]    || curl -fsSL https://bit.ly/bashmatic | /usr/bin/env bash
+
+[[ -f ~/.bashmatic/lib/Loader.bash ]] && source ~/.bashmatic/lib/Loader.bash
+
+[[ -n $(which brew) ]]   || lib::brew::install
+[[ -n $(which direnv) ]] || lib::brew::install::package direnv
+
+grep -q 'direnv hook' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+
+eval "$(direnv hook bash)"
+direnv allow .

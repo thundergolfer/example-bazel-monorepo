@@ -1,0 +1,10 @@
+inherit_gem:
+  relaxed-rubocop: .rubocop.yml
+
+AllCops:
+  Exclude:
+    - spec/**/**_spec.rb
+
+Naming/FileName:
+  Exclude:
+    - lib/cb-hello_world.rb

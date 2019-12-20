@@ -1,0 +1,24 @@
+jobs:
+  tests:
+    docker:
+      - image: circleci/ruby:2.6.2
+    steps:
+      - checkout
+      - run: gem install bundler
+      - run: bundle install
+      - run: bundle exec rubocop
+      - run: bundle exec rspec
+  salus:
+    machine: true
+    steps:
+      - checkout # fetch source code
+      - run: eval $SALUS_COMMAND # run all the Salus things
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - salus:
+          context: salus-engineering
+      - tests:
+          context: salus-engineering
