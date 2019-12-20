@@ -122,9 +122,9 @@ load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
 
 mypy_integration_deps("//tools/typing:mypy_version.txt")
 
-load("@mypy_integration//repositories:pip_repositories.bzl", "pip_deps")
+load("@mypy_integration//repositories:pip_repositories.bzl", mypy_integration_pip_deps = "pip_deps")
 
-pip_deps()
+mypy_integration_pip_deps()
 
 ######################
 # SCALA SUPPORT
