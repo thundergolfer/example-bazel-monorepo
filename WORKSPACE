@@ -104,7 +104,7 @@ http_archive(
     sha256 = "dd785f62716058de884e15a9aaee027ec7782ba15a066cf3a00e9470f84a51d0",
     strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
     url = "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(
-        version = mypy_integration_version
+        version = mypy_integration_version,
     ),
 )
 
@@ -112,6 +112,7 @@ load(
     "@mypy_integration//repositories:repositories.bzl",
     mypy_integration_repositories = "repositories",
 )
+
 mypy_integration_repositories()
 
 load("@mypy_integration//:config.bzl", "mypy_configuration")
@@ -149,7 +150,6 @@ ruby_rules_dependencies()
 ruby_register_toolchains()
 
 load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
-
 
 bundle_install(
     name = "bundle",

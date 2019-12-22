@@ -16,11 +16,11 @@ ruby_binary(
     name = "cli",
     srcs = ["exe/hello-world"],
     main = "exe/hello-world",
+    visibility = ["//visibility:public"],
     deps = [
         ":lib",
         "@bundle//:colored2",
     ],
-    visibility = ["//visibility:public"],
 )
 
 ruby_test(
