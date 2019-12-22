@@ -9,6 +9,7 @@ exports_files([
 ruby_library(
     name = "lib",
     srcs = glob(["lib/**/*.rb"]),
+    visibility = ["//visibility:public"],
 )
 
 ruby_binary(
@@ -17,7 +18,7 @@ ruby_binary(
     main = "exe/hello-world",
     deps = [
         ":lib",
-        "@bundle-hello-world-gem//:colored2",
+        "@bundle//:colored2",
     ],
     visibility = ["//visibility:public"],
 )
@@ -31,6 +32,6 @@ ruby_test(
     rubyopt = ["-rrspec/autorun"],
     deps = [
         ":lib",
-        "@bundle-hello-world-gem//:colored2",
+        "@bundle//:colored2",
     ],
 )

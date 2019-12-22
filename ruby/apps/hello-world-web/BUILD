@@ -18,8 +18,12 @@ ruby_binary(
     main = "bin/shotgun",
     deps = [
         "//ruby/gems/hello_world:lib",
-        "@bundle-hello-world-web//:libs",
-        "@bundle-hello-world-gem//:libs",
+        "@bundle//:awesome_print",
+        "@bundle//:colored2",
+        "@bundle//:puma",
+        "@bundle//:rake",
+        "@bundle//:shotgun",
+        "@bundle//:sinatra",
     ],
 )
 

@@ -1,0 +1,85 @@
+
+GIT
+  remote: https://github.com/sickill/rainbow.git
+  revision: 7984c7c7850ae79ecc26ea9e62c3f8170202c28b
+  specs:
+    rainbow (3.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.0)
+    awesome_print (1.8.0)
+    colored2 (3.1.2)
+    diff-lcs (1.3)
+    jaro_winkler (1.5.4)
+    mustermann (1.0.3)
+    nio4r (2.5.2)
+    parallel (1.19.1)
+    parser (2.6.5.0)
+      ast (~> 2.4.0)
+    puma (4.3.1)
+      nio4r (~> 2.0)
+    rack (2.0.7)
+    rack-protection (2.0.7)
+      rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
+    rake (13.0.1)
+    relaxed-rubocop (2.4)
+    rspec (3.9.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+    rspec-core (3.9.0)
+      rspec-support (~> 3.9.0)
+    rspec-expectations (3.9.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-its (1.3.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
+    rspec-mocks (3.9.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.0)
+    rubocop (0.77.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.6)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-performance (1.5.1)
+      rubocop (>= 0.71.0)
+    ruby-progressbar (1.10.1)
+    shotgun (0.9.2)
+      rack (>= 1.0)
+    sinatra (2.0.7)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.7)
+      tilt (~> 2.0)
+    tilt (2.0.10)
+    unicode-display_width (1.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  colored2
+  puma
+  rack-test
+  rainbow!
+  rake
+  relaxed-rubocop
+  rspec
+  rspec-its
+  rubocop
+  rubocop-performance
+  shotgun
+  sinatra
+
+BUNDLED WITH
+   2.1.0
