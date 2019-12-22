@@ -17,7 +17,9 @@ BAZEL_VERSION="1.0.0"
 
 # NOTE: Amazon Linux 2 uses 'yum' not 'apt-get'
 sudo yum groupinstall -y "Development Tools"
-sudo yum install -y zip unzip python
+sudo yum install -y zip unzip
+# Copied from https://github.com/buildkite/elastic-ci-stack-for-aws/pull/583/files
+sudo yum install -y python3-pip python3 python3-setuptool
 sudo yum install -y java-1.8.0-openjdk-devel
 
 ## Install Bazel from source
