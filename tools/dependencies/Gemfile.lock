@@ -1,4 +1,3 @@
-
 GIT
   remote: https://github.com/sickill/rainbow.git
   revision: 7984c7c7850ae79ecc26ea9e62c3f8170202c28b
@@ -20,7 +19,7 @@ GEM
       ast (~> 2.4.0)
     puma (4.3.1)
       nio4r (~> 2.0)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-protection (2.0.7)
       rack
     rack-test (1.1.0)
