@@ -53,6 +53,19 @@ There's Java code contained in [`/store/layoutsolver`](/store/layoutsolver) and 
 Its third-party dependencies are managed by [`rules_jvm_external`](https://blog.bazel.build/2019/03/31/rules-jvm-external-maven.html) in the [`WORKSPACE`](/WORKSPACE) (See the `# JAVA SUPPORT` section).
 
 
+### *Ruby* Support
+
+> ⚠️ **Note:** [`rules_ruby`](https://github.com/bazelruby/rules_ruby) is, as of January 2020, actively developed but not yet production ready.
+
+There's Ruby code contained in [`ruby`](/ruby).
+
+##### Dependency Management
+
+Third-party Ruby dependencies are managed by `rules_ruby`, which accepts a `Gemfile`, located at [`tools/dependencies/Gemfile`](tools/dependencies/Gemfile).
+
+A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
+
+
 ### *Scala* Support
 
 There's Scala code contained in [`scala-fruit-sorting`](/scala-fruit-sorting).
