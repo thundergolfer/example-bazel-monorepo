@@ -33,5 +33,6 @@ ruby_test(
     deps = [
         ":lib",
         "@bundle//:colored2",
+        "@bundle//:rspec",
     ],
 )
