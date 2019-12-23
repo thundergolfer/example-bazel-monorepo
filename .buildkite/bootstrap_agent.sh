@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 # This script is used to set up a buildkite-agent EC2 instance so that
 # it can run all steps in the C.I pipeline.
 #
