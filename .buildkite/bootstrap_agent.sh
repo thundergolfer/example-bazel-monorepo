@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -o errexit
-set -o nounset
 set -o pipefail
 
 # This script is used to set up a buildkite-agent EC2 instance so that
@@ -30,7 +29,7 @@ sudo yum install -y java-1.8.0-openjdk-devel
 sudo yum install -y curl gpg gcc gcc-c++ make
 sudo gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 sudo curl -sSL https://get.rvm.io | bash -s stable
-source /etc/profile
+source /etc/profile.d/rvm.sh
 rvm install "ruby-2.6.3"
 rvm use 2.6.3 --default
 
