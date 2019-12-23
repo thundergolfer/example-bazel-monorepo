@@ -18,3 +18,4 @@ test --strategy=Scalac=worker
 ############
 try-import %workspace%/linting.bazelrc
 
+test --test_output=all
