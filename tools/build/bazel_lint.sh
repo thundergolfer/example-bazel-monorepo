@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 bazel run //:buildifier
 
 # TODO(Jonathon): Shouldn't buildifier support '--exclude' functionality?
