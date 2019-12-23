@@ -22,6 +22,14 @@ sudo yum install -y zip unzip
 sudo yum install -y python3-pip python3 python3-setuptool
 sudo yum install -y java-1.8.0-openjdk-devel
 
+# Ruby
+sudo yum install -y curl gpg gcc gcc-c++ make
+sudo gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+sudo curl -sSL https://get.rvm.io | bash -s stable
+sudo source /etc/profile
+sudo rvm install "ruby-2.6.3"
+sudo rvm use 2.6.3 --default
+
 ## Install Bazel from source
 
 curl -sSL -O \
