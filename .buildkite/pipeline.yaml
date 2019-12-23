@@ -1,6 +1,5 @@
 steps:
-  # TODO(Jonathon): Revert to //... pattern when https://github.com/bazelruby/rules_ruby/issues/54 is addressed.
-  - command: "bazel test -- //... -//ruby/..."
+  - command: "bazel test //..."
     label: ":bazel: Build + Test"
   - command: "./tools/build/bazel_lint.sh"
     label: ":bazel: Lint Check"
