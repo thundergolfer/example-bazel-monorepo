@@ -89,6 +89,7 @@ is used to for third-party `pip` packaging.
 ##### Dependency Management
 
 > ⚠️ **Note:** [`rules_python`](https://github.com/bazelbuild/rules_python) is currently designated as "ALPHA" software. The UX of managing third-party dependencies is pretty bad.
+> For managing third-party dependencies, I'd recommend you try https://github.com/dillon-giacoppo/rules_python_external.
 
 In order to add new third-party packages for Python, add them to [`tools/dependencies/python_requirements.txt`](/tools/dependencies/python_requirements.txt).
 
