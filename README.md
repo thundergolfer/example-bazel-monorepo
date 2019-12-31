@@ -9,7 +9,7 @@ developer tools, and keep a record of best-practices I've learnt. So it is a wor
 Others can use it to check out the Bazel way of doing things and use parts
 as a reference implementation.
 
-Rather than the typical To-Do list, this project's code uses the contrived scenario of a fruit shop. 🍌🍎 🍍 🍑 🍓
+Rather than the typical To-Do list, this project's code uses the contrived scenario of a book shop. 📗📕📒📚
 
 ## Getting Started
 
@@ -68,7 +68,7 @@ A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
 
 ### *Scala* Support
 
-There's Scala code contained in [`scala-fruit-sorting`](/scala-fruit-sorting).
+There's Scala code contained in [`scala-book-sorting`](/scala-book-sorting).
 
 ##### Dependency Management
 
@@ -81,7 +81,7 @@ To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/depende
 
 ### *Python* Support
 
-There's Python code in the [`/fruit_sorting`](/fruit_sorting) package.
+There's Python code in the [`/book_sorting`](/book_sorting) package.
 
 Bazel has native support for Python, but [`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python)
 is used to for third-party `pip` packaging.
