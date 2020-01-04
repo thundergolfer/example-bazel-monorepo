@@ -1,4 +1,4 @@
-package com.fruitstore.layoutsolver;
+package com.bookstore.layoutsolver;
 
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -7,17 +7,17 @@ import java.util.Map;
 
 /**
  * StoreLayoutSolver currently attempts to optimise the placement of different
- * kinds of fruit in storefront trays according to the expected revenue per-item
- * of each fruit type.
+ * kinds of book in storefront trays according to the expected revenue per-item
+ * of each book type.
  * <p>
- * Our hypothetical fruit-store can then make more money 😊.
+ * Our hypothetical book-store can then make more money 😊.
  */
 public class StoreLayoutSolver {
     static PrintStream out = System.out;
 
     private static List<StockTray> solve(
             Map<String, Integer> stockCounts,
-            Map<String, Float> expectedRevenuePerFruit,
+            Map<String, Float> expectedRevenuePerBookCategory,
             List<StockTray> stockTrays
     ) {
         // TODO(Jonathon): Implement this
@@ -31,8 +31,8 @@ public class StoreLayoutSolver {
 
     /**
      * In this simplified scenario, trays can hold the same number of items regardless of
-     * the size of the items. eg. If it can hold X watermelons it can hold X apples, even
-     * though watermelons are at least 15-20 times the volume on an apple.
+     * the size of the items. eg. If it can hold X crime books it can hold X textbooks, even
+     * though textbooks are at usually 2-4 times the volume of a crime novel.
      */
     private class StockTray {
         private int size;
