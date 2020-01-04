@@ -64,6 +64,7 @@ maven_install(
         "junit:junit:4.12",
         "org.hamcrest:hamcrest-library:1.3",
         "org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE",
+        "org.springframework.boot:spring-boot-loader:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-test-autoconfigure:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-test:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot:2.1.3.RELEASE",

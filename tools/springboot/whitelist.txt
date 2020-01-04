@@ -1,0 +1,38 @@
+#
+# Copyright (c) 2019, salesforce.com, inc.
+# All rights reserved.
+# Licensed under the BSD 3-Clause license.
+# For full license text, see LICENSE.txt file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
+#
+
+# note that when comparing against entries from this list, we only look at the
+# file name, not the full path - the full path is included here for context only
+
+
+external/io_grpc_grpc_context/jar/grpc-context-1.24.0.jar
+external/io_grpc_grpc_core/jar/grpc-core-1.24.0.jar
+external/io_grpc_grpc_core/jar/grpc-api-1.24.0.jar
+external/io_grpc_grpc_stub/jar/grpc-stub-1.24.0.jar
+external/io_grpc_grpc_protobuf/jar/grpc-protobuf-1.24.0.jar
+external/com_google_protobuf_protobuf_java/jar/protobuf-java-3.5.1.jar
+external/com_google_protobuf_protobuf_java_util/jar/protobuf-java-util-3.5.1.jar
+external/io_grpc_grpc_protobuf_lite/jar/grpc-protobuf-lite-1.24.0.jar
+external/com_google_protobuf_protobuf_java/jar/protobuf-java-3.9.0.jar
+external/com_google_protobuf_protobuf_java_util/jar/protobuf-java-util-3.9.0.jar
+bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/core/libcore.jar
+bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/api/libapi.jar
+bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/stub/libstub.jar
+bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/context/libcontext.jar
+bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/protobuf/libprotobuf.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libprotobuf_java.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libtimestamp_proto-speed.jar
+bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/protobuf-lite/libprotobuf-lite.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libempty_proto-speed.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libduration_proto-speed.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libprotobuf_java_util.jar
+
+# the following 2 jars have conflicting classes
+# (what is this speed jar? There are more speed jars listed above, however
+# this is not a jar we reference explicitly anywhere)
+external/com_google_api_grpc_proto_google_common_protos/jar/proto-google-common-protos-1.12.0.jar
+bazel-out/darwin-fastbuild/bin/projects/protos/gater/librpc_protos-speed.jar
