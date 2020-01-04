@@ -19,3 +19,4 @@ test --strategy=Scalac=worker
 try-import %workspace%/linting.bazelrc
 
 test --test_output=all
+build --incompatible_depset_union=false
