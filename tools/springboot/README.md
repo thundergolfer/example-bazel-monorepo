@@ -1,5 +1,8 @@
 ## SpringBoot Rule
 
+> ⚠️ **NOTE**: This has been slightly modified from the original source at https://github.com/salesforce/bazel-springboot-rule/commit/8f5e8709fddce2499a2a060c15969aac90c31327
+> See https://github.com/salesforce/bazel-springboot-rule/issues/13 for details.
+
 This implements a Bazel rule for packaging a Spring Boot application as an executable jar file.
 The output of this rule is a jar file that can be copied to production environments and run.
 
