@@ -1,4 +1,4 @@
-package com.fruit.sorting
+package com.book.sorting
 
 import org.scalatest._
 

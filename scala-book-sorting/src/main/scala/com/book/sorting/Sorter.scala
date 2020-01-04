@@ -1,4 +1,4 @@
-package com.fruit.sorting
+package com.book.sorting
 
 object Sorter {
   def main(args: Array[String]): Unit = {

@@ -1,4 +1,4 @@
-package com.fruitstore.layoutsolver;
+package com.bookstore.layoutsolver;
 
 import static org.junit.Assert.assertEquals;
 

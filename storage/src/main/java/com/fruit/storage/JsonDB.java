@@ -1,4 +1,4 @@
-package com.fruit.storage;
+package com.book.storage;
 
 class JsonDB {
 

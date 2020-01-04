@@ -4,17 +4,18 @@ import (
 	"fmt"
 	"github.com/urfave/cli"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 )
 
 var app = cli.NewApp()
 
-var smoothie = []string{"Enjoy your smoothie with some delicious"}
+var prefix = []string{"Your 'Blind Date With A Book' is"}
 
 func info() {
-	app.Name = "The fruit store's smoothieCLI"
-	app.Usage = "An example CLI for ordering smoothies"
+	app.Name = "Blind Date With A Book"
+	app.Usage = "An example CLI"
 	app.Author = "thundergolfer"
 	app.Version = "0.1.1"
 }
@@ -22,35 +23,46 @@ func info() {
 func commands() {
 	app.Commands = []cli.Command{
 		{
-			Name:    "banana",
+			Name:    "mystery",
 			Aliases: []string{"p"},
-			Usage:   "Add banana to your smoothie",
+			Usage:   "Choose from the Mystery category",
 			Action: func(c *cli.Context) {
-				pe := "banana"
-				peppers := append(smoothie , pe)
-				m := strings.Join(peppers, " ")
+				options := []string{
+					"The Maltese Falcon - Dashiell Hammett",
+					"The Girl with the Dragon Tattoo - Stieg Larsson",
+				}
+				result := append(prefix, options[rand.Intn(len(options))])
+				m := strings.Join(result, " ")
 				fmt.Println(m)
 			},
 		},
 		{
-			Name:    "pineapple",
+			Name:    "action",
 			Aliases: []string{"pa"},
-			Usage:   "Add pineapple to your smoothie",
+			Usage:   "Choose from the Action category",
 			Action: func(c *cli.Context) {
-				pa := "pineapple"
-				pineapple := append(smoothie, pa)
-				m := strings.Join(pineapple, " ")
+				options := []string{
+					"The Count of Monte Cristo - Alexandre Dumas",
+					"The Princess Bride - William Golding",
+					"The Bourne Identity - Robert Ludlum",
+				}
+				result := append(prefix, options[rand.Intn(len(options))])
+				m := strings.Join(result, " ")
 				fmt.Println(m)
 			},
 		},
 		{
-			Name:    "mango",
+			Name:    "crime",
 			Aliases: []string{"c"},
-			Usage:   "Add mango to your smoothie",
+			Usage:   "Choose from the Crime category",
 			Action: func(c *cli.Context) {
-				ch := "mango"
-				cheese := append(smoothie, ch)
-				m := strings.Join(cheese, " ")
+				options := []string{
+					"In Cold Blood - Truman Capote",
+					"Murder On The Orient Express - Agatha Christie",
+					"L.A. Confidential - James Ellroy",
+				}
+				result := append(prefix, options[rand.Intn(len(options))])
+				m := strings.Join(result, " ")
 				fmt.Println(m)
 			},
 		},
