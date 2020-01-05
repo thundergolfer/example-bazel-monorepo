@@ -1,4 +1,4 @@
-load("@pip_dependencies//:requirements.bzl", "requirement")
+load("@py_deps//:requirements.bzl", "requirement")
 
 MAIN_SRCS = glob(["*.py"])
 
