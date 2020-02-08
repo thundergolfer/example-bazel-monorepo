@@ -87,7 +87,7 @@ rules_python_external_version = "12bfbdffc57bbaf9a3de31e6a7acdc415eb9de72"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "", # Fill in with correct sha256 of your COMMIT_SHA version
+    sha256 = "31c1199d66241114c6974eafcb5578924a106f3fc62bcfcda6930159279098e0",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
     url = "https://github.com/dillon-giacoppo/rules_python_external/archive/{version}.zip".format(version = rules_python_external_version),
 )
@@ -103,11 +103,11 @@ pip_install(
 )
 
 # MYPY SUPPORT
-mypy_integration_version = "0.0.5"
+mypy_integration_version = "0.0.7"
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "c3fe4287e7c898dcb040af30a489bd6403f18d3bb1b44ed78a8c1668276d840e",
+    sha256 = "32b0d56827288931ed3b93f047f18bd417a98fbf25fb34f6a8d9ed8d35cdaa55",
     strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
     url = "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(
         version = mypy_integration_version,
