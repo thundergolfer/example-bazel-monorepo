@@ -10,4 +10,11 @@
 
 # See the README.md file for detailed usage instructions.
 
-exports_files(["springboot.bzl", "springboot_pkg.sh", "verify_conflict.py", "write_gitinfo_properties.sh", "write_manifest.sh", "whitelist.txt"])
+exports_files([
+    "springboot.bzl",
+    "springboot_pkg.sh",
+    "verify_conflict.py",
+    "write_gitinfo_properties.sh",
+    "write_manifest.sh",
+    "whitelist.txt",
+])

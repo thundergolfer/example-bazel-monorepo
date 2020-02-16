@@ -61,14 +61,20 @@ maven_install(
     name = "maven",
     artifacts = [
         "com.google.guava:guava:27.1-jre",
+#        "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final",
         "junit:junit:4.12",
         "org.hamcrest:hamcrest-library:1.3",
+#        "org.hibernate:hibernate-agroal:5.4.12.Final",
+#        "org.hibernate:hibernate-annotations:3.5.6-Final",
+        "org.postgresql:postgresql:42.2.10",
+#        "org.springframework.data:spring-data-jpa:2.2.4.RELEASE",
         "org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-loader:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-test-autoconfigure:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-test:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-starter-web:2.1.3.RELEASE",
+        "org.springframework.boot:spring-boot-starter-data-jpa:2.1.3.RELEASE",
         "org.springframework:spring-beans:5.1.5.RELEASE",
         "org.springframework:spring-context:5.1.5.RELEASE",
         "org.springframework:spring-test:5.1.5.RELEASE",
@@ -105,9 +111,11 @@ http_archive(
 
 # Install the rule dependencies
 load("@rules_python_external//:repositories.bzl", "rules_python_external_dependencies")
+
 rules_python_external_dependencies()
 
 load("@rules_python_external//:defs.bzl", "pip_install")
+
 pip_install(
     name = "py_deps",
     requirements = "//tools/dependencies:python_requirements.txt",
