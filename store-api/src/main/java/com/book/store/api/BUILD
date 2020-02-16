@@ -1,11 +1,5 @@
 load("//tools/springboot:springboot.bzl", "springboot")
 
-#springboot_deps = [
-#  "//tools/springboot/import_bundles:springboot_required_deps",
-#  "//tools/springboot/import_bundles:springboot_jetty_starter_deps",
-#  "//tools/springboot/import_bundles:springboot_web_starter_deps",
-#]
-
 DEPS = [
    "@maven//:org_springframework_boot_spring_boot",
    "@maven//:org_springframework_boot_spring_boot_loader",
@@ -35,6 +29,5 @@ springboot(
     name = "deployable",
     boot_app_class = "com.book.store.api.Application",
     java_library = ":lib",
-#    deps = springboot_deps,
     deps = DEPS,
 )
