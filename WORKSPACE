@@ -93,26 +93,32 @@ http_archive(
     url = "https://github.com/uri-canva/rules_python/archive/{}.tar.gz".format(rules_python_version),
 )
 
-load("@io_bazel_rules_python//python:pip.bzl", "pip_import", "pip_repositories")
+# Third-Party packaging support
+rules_python_external_version = "12bfbdffc57bbaf9a3de31e6a7acdc415eb9de72"
 
-pip_repositories()
+http_archive(
+    name = "rules_python_external",
+    sha256 = "31c1199d66241114c6974eafcb5578924a106f3fc62bcfcda6930159279098e0",
+    strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
+    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/{version}.zip".format(version = rules_python_external_version),
+)
 
-pip_import(
-    name = "pip_dependencies",
+# Install the rule dependencies
+load("@rules_python_external//:repositories.bzl", "rules_python_external_dependencies")
+rules_python_external_dependencies()
+
+load("@rules_python_external//:defs.bzl", "pip_install")
+pip_install(
+    name = "py_deps",
     requirements = "//tools/dependencies:python_requirements.txt",
 )
 
-# Load the pip_install symbol for my_deps, and create the dependencies repositories.
-load("@pip_dependencies//:requirements.bzl", "pip_install")
-
-pip_install()
-
 # MYPY SUPPORT
-mypy_integration_version = "0.0.4"
+mypy_integration_version = "0.0.7"
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "dd785f62716058de884e15a9aaee027ec7782ba15a066cf3a00e9470f84a51d0",
+    sha256 = "32b0d56827288931ed3b93f047f18bd417a98fbf25fb34f6a8d9ed8d35cdaa55",
     strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
     url = "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(
         version = mypy_integration_version,
