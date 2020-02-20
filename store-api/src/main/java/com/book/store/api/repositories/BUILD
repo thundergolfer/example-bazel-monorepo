@@ -7,7 +7,7 @@ java_library(
     deps = [
         "//store-api/src/main/java/com/book/store/api/models",
         "@maven//:org_springframework_boot_spring_boot_starter_data_jpa",
-#        "@maven//:org_hibernate_hibernate_agroal",
+        #        "@maven//:org_hibernate_hibernate_agroal",
         "@maven//:org_springframework_data_spring_data_jpa",
         "@maven//:org_springframework_spring_context",
     ],

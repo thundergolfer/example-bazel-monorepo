@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan({"com.book.store.api.services"})
+@ComponentScan({"com.book.store.api", "com.book.store.api.services"})
 @EntityScan("com.book.store.api.models")
 @EnableJpaRepositories("com.book.store.api.repositories")
 public class Application {

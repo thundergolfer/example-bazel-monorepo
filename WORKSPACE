@@ -61,13 +61,9 @@ maven_install(
     name = "maven",
     artifacts = [
         "com.google.guava:guava:27.1-jre",
-#        "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final",
         "junit:junit:4.12",
         "org.hamcrest:hamcrest-library:1.3",
-#        "org.hibernate:hibernate-agroal:5.4.12.Final",
-#        "org.hibernate:hibernate-annotations:3.5.6-Final",
         "org.postgresql:postgresql:42.2.10",
-#        "org.springframework.data:spring-data-jpa:2.2.4.RELEASE",
         "org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-loader:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-test-autoconfigure:2.1.3.RELEASE",

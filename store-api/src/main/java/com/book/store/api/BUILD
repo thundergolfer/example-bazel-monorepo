@@ -9,6 +9,7 @@ DEPS = [
     "@maven//:org_springframework_spring_beans",
     "@maven//:org_springframework_spring_context",
     "@maven//:org_springframework_spring_web",
+    "@maven//:org_postgresql_postgresql",
     "//store-api/src/main/java/com/book/store/api/models",
     "//store-api/src/main/java/com/book/store/api/repositories",
     "//store-api/src/main/java/com/book/store/api/services",
@@ -17,6 +18,9 @@ DEPS = [
 java_library(
     name = "lib",
     srcs = glob(["*.java"]),
+    resources = [
+        "//store-api/src/main/resources:properties",
+    ],
     visibility = ["//src/test:__subpackages__"],
     deps = DEPS,
 )
@@ -24,12 +28,8 @@ java_library(
 java_binary(
     name = "app",
     main_class = "com.book.store.api.Application",
-    resources = [
-        "//store-api/src/main/resources:properties",
-    ],
     runtime_deps = [
         ":lib",
-        "@maven//:org_postgresql_postgresql",
     ],
 )
 
