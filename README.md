@@ -46,12 +46,11 @@ Third-party dependencies are managed in [`3rdparty/go_workspace.bzl`](/3rdparty/
 
 ### *Java* Support
 
-There's Java code contained in [`/store/layoutsolver`](/store/layoutsolver) and [`/storage`](/storage).
+There's a [Spring Boot](https://spring.io/projects/spring-boot) (with PostGres) application in [`/store-api`](/store-api) and some other Java code in [`/store/layoutsolver`](/store/layoutsolver).
 
 ##### Dependency Management
 
 Its third-party dependencies are managed by [`rules_jvm_external`](https://blog.bazel.build/2019/03/31/rules-jvm-external-maven.html) in the [`WORKSPACE`](/WORKSPACE) (See the `# JAVA SUPPORT` section).
-
 
 ### *Ruby* Support
 
