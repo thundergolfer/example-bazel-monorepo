@@ -180,6 +180,30 @@ bundle_install(
 )
 
 ######################
+# RUST SUPPORT
+######################
+
+http_archive(
+    name = "io_bazel_rules_rust",
+    sha256 = "b6da34e057a31b8a85e343c732de4af92a762f804fc36b0baa6c001423a70ebc",
+    strip_prefix = "rules_rust-55f77017a7f5b08e525ebeab6e11d8896a4499d2",
+    urls = [
+        # Master branch as of 2019-10-07
+        "https://github.com/bazelbuild/rules_rust/archive/55f77017a7f5b08e525ebeab6e11d8896a4499d2.tar.gz",
+    ],
+)
+
+load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+rust_repositories()
+
+load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+bazel_version(name = "bazel_version")
+
+load("//3rdparty/cargo:crates.bzl", "raze_fetch_remote_crates")
+
+raze_fetch_remote_crates()
+
+######################
 # SCALA SUPPORT
 ######################
 

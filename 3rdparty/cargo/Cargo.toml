@@ -1,0 +1,28 @@
+[package]
+name = "compile_with_bazel"
+version = "0.0.0"
+
+# Mandatory (or Cargo tooling is unhappy)
+[lib]
+path = "fake_lib.rs"
+
+[raze]
+workspace_path = "//3rdparty/cargo"
+genmode = "Remote"
+
+[dependencies]
+base64 = "0.10.1"
+config = "0.9.3"
+dirs = "2.0.1"
+oauth1 = { git = "https://github.com/mehcode/oauth1-rs", branch = "master" }
+oauth-client = "0.3"
+rand = "0.7.0"
+regex = "1"
+reqwest = "0.9.18"
+roxmltree = "0.6.1"
+serde = "1.0.94"
+simple-error = "0.2.1"
+structopt = "0.2.10"
+termcolor = "1"
+toml = "0.5.1"
+url = "1.7.2"

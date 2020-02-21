@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GoodreadsResponse>
+    <Request>
+        <authentication>true</authentication>
+        <key><![CDATA[1FeI6oRKmxVZb6LhqB9bhQ]]></key>
+        <method><![CDATA[review_list]]></method>
+    </Request>
+
+    <shelf exclusive='true' id='286736097' name='currently-reading' sortable='false'></shelf>
+
+    <reviews start="1" end="9" total="9">
+        <review>
+            <id>2851519290</id>
+            <book>
+                <id type="integer">28676</id>
+                <isbn>0679735771</isbn>
+                <isbn13>9780679735779</isbn13>
+                <text_reviews_count type="integer">7630</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.ZWcQQhSJeG0DaNRM5Oo4WA</uri>
+                <title>American Psycho</title>
+                <title_without_series>American Psycho</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1436934349i/28676._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1436934349i/28676._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/28676.American_Psycho</link>
+                <num_pages>399</num_pages>
+                <format>Paperback</format>
+                <edition_information/>
+                <publisher>Vintage Contemporaries / Random House</publisher>
+                <publication_day/>
+                <publication_year>1991</publication_year>
+                <publication_month>3</publication_month>
+                <average_rating>3.82</average_rating>
+                <ratings_count>209737</ratings_count>
+                <description>Patrick Bateman is twenty-six and he works on Wall Street, he is handsome, sophisticated, charming and intelligent. He is also a psychopath. Taking us to head-on collision with America's greatest dream—and its worst nightmare—&lt;em&gt;American Psycho&lt;/em&gt; is bleak, bitter, black comedy about a world we all recognise but do not wish to confront.</description>
+                <authors>
+                    <author>
+                        <id>2751</id>
+                        <name>Bret Easton Ellis</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1405340867p5/2751.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1405340867p2/2751.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/2751.Bret_Easton_Ellis]]></link>
+                        <average_rating>3.69</average_rating>
+                        <ratings_count>386261</ratings_count>
+                        <text_reviews_count>16948</text_reviews_count>
+                    </author>
+                </authors>
+                <published>1991</published>
+                <work>  <id>2270060</id>
+                    <uri>kca://work/amzn1.gr.work.v1.s5dUErPqIRy6Sq0uxgqnUQ</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2498114580' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Sat Jun 08 23:38:10 -0700 2019</started_at>
+            <read_at></read_at>
+            <date_added>Sat Jun 08 23:38:10 -0700 2019</date_added>
+            <date_updated>Sat Jun 08 23:38:10 -0700 2019</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2851519290]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2851519290]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2818106857</id>
+            <book>
+                <id type="integer">45771</id>
+                <isbn>0880015357</isbn>
+                <isbn13>9780880015356</isbn13>
+                <text_reviews_count type="integer">64</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.VqK7fLIV_karHZ02-xewnw</uri>
+                <title>Signifying Rappers: Rap and Race in the Urban Present</title>
+                <title_without_series>Signifying Rappers: Rap and Race in the Urban Present</title_without_series>
+                <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+                <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/45771.Signifying_Rappers</link>
+                <num_pages>140</num_pages>
+                <format>Paperback</format>
+                <edition_information/>
+                <publisher>Ecco Press</publisher>
+                <publication_day>16</publication_day>
+                <publication_year>2012</publication_year>
+                <publication_month>3</publication_month>
+                <average_rating>3.31</average_rating>
+                <ratings_count>885</ratings_count>
+                <description>The author of "Infinite Jest" and his co-writer discuss rap and popular culture, power, money, racial politics, and language in the first book to seriously consider rap and its position as a vital force in American culture. "Brilliantly written . . . (with) great wit, insight, and in-your-face energy".--"Review of Contemporary Fiction".</description>
+                <authors>
+                    <author>
+                        <id>4339</id>
+                        <name>David Foster Wallace</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1466019433p5/4339.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1466019433p2/4339.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/4339.David_Foster_Wallace]]></link>
+                        <average_rating>4.14</average_rating>
+                        <ratings_count>264520</ratings_count>
+                        <text_reviews_count>25217</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2012</published>
+                <work>  <id>44936</id>
+                    <uri>kca://work/amzn1.gr.work.v1.bfltx6d4TwHBmg8U-8cSMA</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2464292481' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Sun May 12 02:07:35 -0700 2019</started_at>
+            <read_at></read_at>
+            <date_added>Sun May 12 02:07:35 -0700 2019</date_added>
+            <date_updated>Sun May 12 02:07:35 -0700 2019</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2818106857]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2818106857]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2816716569</id>
+            <book>
+                <id type="integer">7144</id>
+                <isbn>0143058142</isbn>
+                <isbn13>9780143058144</isbn13>
+                <text_reviews_count type="integer">9628</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.PduOaUyKDt1zhmvGomhhhQ</uri>
+                <title>Crime and Punishment</title>
+                <title_without_series>Crime and Punishment</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/7144.Crime_and_Punishment</link>
+                <num_pages>671</num_pages>
+                <format>Paperback</format>
+                <edition_information>Penguin Classics</edition_information>
+                <publisher>Penguin</publisher>
+                <publication_day>31</publication_day>
+                <publication_year>2002</publication_year>
+                <publication_month>12</publication_month>
+                <average_rating>4.20</average_rating>
+                <ratings_count>540076</ratings_count>
+                <description>Raskolnikov, an impoverished student living in the St. Petersburg of the tsars, is determined to overreach his humanity and assert his untrammeled individual will. When he commits an act of murder and theft, he sets into motion a story that, for its excruciating suspense, its atmospheric vividness, and its depth of characterization and vision is almost unequaled in the literatures of the world. The best known of Dostoevsky’s masterpieces, Crime and Punishment can bear any amount of rereading without losing a drop of its power over our imaginations.&lt;br /&gt;&lt;br /&gt;Dostoevsky’s drama of sin, guilt, and redemption transforms the sordid story of an old woman’s murder into the nineteenth century’s profoundest and most compelling philosophical novel.&lt;br /&gt;&lt;br /&gt;Award-winning translators Richard Pevear and Larissa Volokhonsky render this elusive and wildly innovative novel with an energy, suppleness, and range of voice that do full justice to the genius of its creator.</description>
+                <authors>
+                    <author>
+                        <id>3137322</id>
+                        <name>Fyodor Dostoyevsky</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1506003555p5/3137322.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1506003555p2/3137322.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/3137322.Fyodor_Dostoyevsky]]></link>
+                        <average_rating>4.17</average_rating>
+                        <ratings_count>1279844</ratings_count>
+                        <text_reviews_count>55224</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2002</published>
+                <work>  <id>3393917</id>
+                    <uri>kca://work/amzn1.gr.work.v1.HoTVuZnWQOUr1DMlENNEsg</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2462889463' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Fri May 10 18:29:06 -0700 2019</started_at>
+            <read_at></read_at>
+            <date_added>Fri May 10 18:29:05 -0700 2019</date_added>
+            <date_updated>Fri May 10 18:29:06 -0700 2019</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2816716569]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2816716569]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2815976851</id>
+            <book>
+                <id type="integer">17690</id>
+                <isbn>0099428644</isbn>
+                <isbn13>9780099428640</isbn13>
+                <text_reviews_count type="integer">3490</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.4XT3uMAFY2OUcyvcyayhhw</uri>
+                <title>The Trial</title>
+                <title_without_series>The Trial</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320399438i/17690._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320399438i/17690._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/17690.The_Trial</link>
+                <num_pages>255</num_pages>
+                <format>Paperback</format>
+                <edition_information/>
+                <publisher>Vintage Classics</publisher>
+                <publication_day>9</publication_day>
+                <publication_year>2001</publication_year>
+                <publication_month>4</publication_month>
+                <average_rating>3.98</average_rating>
+                <ratings_count>198235</ratings_count>
+                <description>Written in 1914 but not published until 1925, a year after Kafka’s death, &lt;i&gt;The Trial &lt;/i&gt;is the terrifying tale of Josef K., a respectable bank officer who is suddenly and inexplicably arrested and must defend himself against a charge about which he can get no information. Whether read as an existential tale, a parable, or a prophecy of the excesses of modern bureaucracy wedded to the madness of totalitarianism, &lt;i&gt;The Trial &lt;/i&gt;has resonated with chilling truth for generations of readers.</description>
+                <authors>
+                    <author>
+                        <id>5223</id>
+                        <name>Franz Kafka</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1495464914p5/5223.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1495464914p2/5223.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/5223.Franz_Kafka]]></link>
+                        <average_rating>3.88</average_rating>
+                        <ratings_count>995151</ratings_count>
+                        <text_reviews_count>32256</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2001</published>
+                <work>  <id>2965832</id>
+                    <uri>kca://work/amzn1.gr.work.v1.9vHUFtjSqkrH0TTHT7cEzw</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2462133239' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Fri May 10 04:21:29 -0700 2019</started_at>
+            <read_at></read_at>
+            <date_added>Fri May 10 04:21:29 -0700 2019</date_added>
+            <date_updated>Fri May 10 04:21:29 -0700 2019</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2815976851]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2815976851]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2799154396</id>
+            <book>
+                <id type="integer">415</id>
+                <isbn>0143039946</isbn>
+                <isbn13>9780143039945</isbn13>
+                <text_reviews_count type="integer">2071</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.SY_9LU6idb6A7_iSetJfSg</uri>
+                <title>Gravity's Rainbow</title>
+                <title_without_series>Gravity's Rainbow</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414969925i/415._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414969925i/415._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/415.Gravity_s_Rainbow</link>
+                <num_pages>776</num_pages>
+                <format>Paperback</format>
+                <edition_information>Penguin Classics Deluxe Edition</edition_information>
+                <publisher>Penguin Books</publisher>
+                <publication_day>31</publication_day>
+                <publication_year>2006</publication_year>
+                <publication_month>10</publication_month>
+                <average_rating>4.01</average_rating>
+                <ratings_count>32502</ratings_count>
+                <description>Winner of the 1973 National Book Award, Gravity's Rainbow is a postmodern epic, a work as exhaustively significant to the second half of the 20th century as Joyce's Ulysses was to the first. Its sprawling, encyclopedic narrative, and penetrating analysis of the impact of technology on society make it an intellectual tour de force.</description>
+                <authors>
+                    <author>
+                        <id>235</id>
+                        <name>Thomas Pynchon</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1465361157p5/235.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1465361157p2/235.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/235.Thomas_Pynchon]]></link>
+                        <average_rating>3.85</average_rating>
+                        <ratings_count>195511</ratings_count>
+                        <text_reviews_count>15636</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2006</published>
+                <work>  <id>866393</id>
+                    <uri>kca://work/amzn1.gr.work.v1.h407Wk5Jlo7Noj9WeMKomw</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2445165501' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Thu Apr 25 17:24:26 -0700 2019</started_at>
+            <read_at></read_at>
+            <date_added>Thu Apr 25 17:24:26 -0700 2019</date_added>
+            <date_updated>Thu Apr 25 17:24:26 -0700 2019</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2799154396]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2799154396]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2593466230</id>
+            <book>
+                <id type="integer">129237</id>
+                <isbn>0674017722</isbn>
+                <isbn13>9780674017726</isbn13>
+                <text_reviews_count type="integer">149</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.iRNXgo5mx0xXbWIHlkhHQg</uri>
+                <title>A Theory of Justice</title>
+                <title_without_series>A Theory of Justice</title_without_series>
+                <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+                <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/129237.A_Theory_of_Justice</link>
+                <num_pages>824</num_pages>
+                <format>Paperback</format>
+                <edition_information>Original Edition</edition_information>
+                <publisher>Belknap Press</publisher>
+                <publication_day>31</publication_day>
+                <publication_year>2005</publication_year>
+                <publication_month>3</publication_month>
+                <average_rating>3.93</average_rating>
+                <ratings_count>10284</ratings_count>
+                <description>Since it appeared in 1971, John Rawls's A Theory of Justice has become a classic. The author has now revised the original edition to clear up a number of difficulties he and others have found in the original book.&lt;br /&gt;&lt;br /&gt;Rawls aims to express an essential part of the common core of the democratic tradition - justice as fairness - and to provide an alternative to utilitarianism, which had dominated the Anglo-Saxon tradition of political thought since the nineteenth century. Rawls substitutes the ideal of the social contract as a more satisfactory account of the basic rights and liberties of citizens as free and equal persons. "Each person," writes Rawls, "possesses an inviolability founded on justice that even the welfare of society as a whole cannot override." Advancing the ideas of Rousseau, Kant, Emerson, and Lincoln, Rawls's theory is as powerful today as it was when first published.</description>
+                <authors>
+                    <author>
+                        <id>74263</id>
+                        <name>John Rawls</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1257280760p5/74263.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1257280760p2/74263.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/74263.John_Rawls]]></link>
+                        <average_rating>3.91</average_rating>
+                        <ratings_count>13466</ratings_count>
+                        <text_reviews_count>349</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2005</published>
+                <work>  <id>1383130</id>
+                    <uri>kca://work/amzn1.gr.work.v1.MFVMZepkrxLQ6mOXcnG0Vw</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2238303037' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Tue Nov 13 16:28:15 -0800 2018</started_at>
+            <read_at></read_at>
+            <date_added>Tue Nov 13 16:28:15 -0800 2018</date_added>
+            <date_updated>Tue Nov 13 16:28:15 -0800 2018</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2593466230]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2593466230]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2592721079</id>
+            <book>
+                <id type="integer">168668</id>
+                <isbn>0684833395</isbn>
+                <isbn13>9780684833392</isbn13>
+                <text_reviews_count type="integer">13963</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.bnDiMekj5pk1csnAkoPABw</uri>
+                <title>Catch-22 (Catch-22, #1)</title>
+                <title_without_series>Catch-22</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463157317i/168668._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463157317i/168668._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/168668.Catch_22</link>
+                <num_pages>453</num_pages>
+                <format>Paperback</format>
+                <edition_information/>
+                <publisher>Simon &amp; Schuster </publisher>
+                <publication_day>4</publication_day>
+                <publication_year>2004</publication_year>
+                <publication_month>9</publication_month>
+                <average_rating>3.98</average_rating>
+                <ratings_count>663392</ratings_count>
+                <description>The novel is set during World War II, from 1942 to 1944. It mainly follows the life of Captain John Yossarian, a U.S. Army Air Forces B-25 bombardier. Most of the events in the book occur while the fictional 256th Squadron is based on the island of Pianosa, in the Mediterranean Sea, west of Italy. The novel looks into the experiences of Yossarian and the other airmen in the camp, who attempt to maintain their sanity while fulfilling their service requirements so that they may return home.</description>
+                <authors>
+                    <author>
+                        <id>3167</id>
+                        <name>Joseph Heller</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1197308614p5/3167.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1197308614p2/3167.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/3167.Joseph_Heller]]></link>
+                        <average_rating>3.96</average_rating>
+                        <ratings_count>684550</ratings_count>
+                        <text_reviews_count>17602</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2004</published>
+                <work>  <id>814330</id>
+                    <uri>kca://work/amzn1.gr.work.v1.TGfOLXjds8UOkVpgIJnfFg</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2237545497' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Tue Nov 13 01:00:18 -0800 2018</started_at>
+            <read_at></read_at>
+            <date_added>Tue Nov 13 01:00:18 -0800 2018</date_added>
+            <date_updated>Tue Nov 13 01:00:18 -0800 2018</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2592721079]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2592721079]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2584042010</id>
+            <book>
+                <id type="integer">629</id>
+                <isbn>0060589469</isbn>
+                <isbn13>9780060589462</isbn13>
+                <text_reviews_count type="integer">6152</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.yhHRJMoaAZRFjoC58xJaBQ</uri>
+                <title>Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</title>
+                <title_without_series>Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1410136019i/629._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1410136019i/629._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/629.Zen_and_the_Art_of_Motorcycle_Maintenance</link>
+                <num_pages>540</num_pages>
+                <format>Mass Market Paperback</format>
+                <edition_information/>
+                <publisher>HarperTorch</publisher>
+                <publication_day>25</publication_day>
+                <publication_year>2006</publication_year>
+                <publication_month>4</publication_month>
+                <average_rating>3.77</average_rating>
+                <ratings_count>176700</ratings_count>
+                <description>Robert M. Pirsig's &lt;i&gt;Zen &amp;amp; the Art of Motorcycle Maintenance&lt;/i&gt; is anexamination of how we live, a meditation on how to live better set around the narration of a summer motorcycle trip across America's Northwest, undertaken by a father &amp;amp; his young son.</description>
+                <authors>
+                    <author>
+                        <id>401</id>
+                        <name>Robert M. Pirsig</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1440106738p5/401.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1440106738p2/401.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/401.Robert_M_Pirsig]]></link>
+                        <average_rating>3.77</average_rating>
+                        <ratings_count>182502</ratings_count>
+                        <text_reviews_count>8085</text_reviews_count>
+                    </author>
+                </authors>
+                <published>2006</published>
+                <work>  <id>175720</id>
+                    <uri>kca://work/amzn1.gr.work.v1.ydM2grgaQCW8URuYS-6jkQ</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2228699490' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Sun Nov 04 17:51:07 -0800 2018</started_at>
+            <read_at></read_at>
+            <date_added>Sun Nov 04 17:51:07 -0800 2018</date_added>
+            <date_updated>Sun Nov 04 17:51:07 -0800 2018</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2584042010]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2584042010]]></link>
+            <owned>0</owned>
+        </review>
+
+        <review>
+            <id>2584041112</id>
+            <book>
+                <id type="integer">7478167</id>
+                <isbn nil="true"/>
+                <isbn13>2940005929365</isbn13>
+                <text_reviews_count type="integer">0</text_reviews_count>
+                <uri>kca://book/amzn1.gr.book.v1.727F9PccZUrdy03bES8RSg</uri>
+                <title>Robinson Kruso</title>
+                <title_without_series>Robinson Kruso</title_without_series>
+                <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1287521439i/7478167._SX98_.jpg</image_url>
+                <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1287521439i/7478167._SY75_.jpg</small_image_url>
+                <large_image_url/>
+                <link>https://www.goodreads.com/book/show/7478167-robinson-kruso</link>
+                <num_pages></num_pages>
+                <format></format>
+                <edition_information/>
+                <publisher></publisher>
+                <publication_day></publication_day>
+                <publication_year></publication_year>
+                <publication_month></publication_month>
+                <average_rating>3.67</average_rating>
+                <ratings_count>223662</ratings_count>
+                <description>Daniel Defoe relates the tale of an English sailor marooned on a desert island for nearly three decades. An ordinary man struggling to survive in extraordinary circumstances, Robinson Crusoe wrestles with fate and the nature of God. This edition features maps.</description>
+                <authors>
+                    <author>
+                        <id>2007</id>
+                        <name>Daniel Defoe</name>
+                        <role></role>
+                        <image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1202587497p5/2007.jpg]]>
+                        </image_url>
+                        <small_image_url nophoto='false'>
+                            <![CDATA[https://images.gr-assets.com/authors/1202587497p2/2007.jpg]]>
+                        </small_image_url>
+                        <link><![CDATA[https://www.goodreads.com/author/show/2007.Daniel_Defoe]]></link>
+                        <average_rating>3.65</average_rating>
+                        <ratings_count>284900</ratings_count>
+                        <text_reviews_count>8471</text_reviews_count>
+                    </author>
+                </authors>
+                <published></published>
+                <work>  <id>604666</id>
+                    <uri>kca://work/amzn1.gr.work.v1.dESh9KTJ3p2_tfQB8R49qA</uri>
+                </work></book>
+
+
+            <rating>0</rating>
+            <votes>0</votes>
+            <spoiler_flag>false</spoiler_flag>
+            <spoilers_state>none</spoilers_state>
+
+
+            <shelves>
+
+                <shelf exclusive='true' id='286736097' name='currently-reading' review_shelf_id='2228698510' sortable='false'></shelf>
+
+            </shelves>
+
+            <recommended_for></recommended_for>
+            <recommended_by></recommended_by>
+            <started_at>Sun Nov 04 17:50:06 -0800 2018</started_at>
+            <read_at></read_at>
+            <date_added>Sun Nov 04 17:50:05 -0800 2018</date_added>
+            <date_updated>Sun Nov 04 17:50:06 -0800 2018</date_updated>
+            <read_count>1</read_count>
+            <body>
+            </body>
+
+
+
+            <comments_count>0</comments_count>
+            <url><![CDATA[https://www.goodreads.com/review/show/2584041112]]></url>
+            <link><![CDATA[https://www.goodreads.com/review/show/2584041112]]></link>
+            <owned>0</owned>
+        </review>
+
+    </reviews>
+
+</GoodreadsResponse>
