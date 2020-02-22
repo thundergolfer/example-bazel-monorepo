@@ -8,6 +8,8 @@ bazel-*
 # TODO(Jonathon): Remove when I add the linters on CI instances
 linting.bazelrc
 
+3rdparty/typescript/node_modules/
+
 ##################
 # Intellij
 ##################

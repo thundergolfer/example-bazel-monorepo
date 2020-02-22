@@ -1,0 +1,36 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
+
+ts_library(
+    name = "ts_demo",
+    srcs = [
+        "App.tsx",
+        "index.ts",
+    ],
+    tsconfig = "//frontend:tsconfig.json",
+    deps = [
+        "//frontend/src/demo/components/Snackbar:snackbar_demo",
+        "@npm//@types",
+        "@npm//react",
+        "@npm//react-dom",
+    ],
+)
+
+ts_devserver(
+    name = "devserver",
+    entry_module = "examples/frontend/src/demo/index",
+    port = 3000,
+    scripts = [
+        "//frontend/src/demo:bootstrap.js",
+    ],
+    serving_path = "/bundle.min.js",
+    static_files = [
+        "index.html",
+    ],
+    deps = [
+        ":ts_demo",
+        "@npm//react:react__umd",
+        "@npm//react-dom:react-dom__umd",
+    ],
+)
