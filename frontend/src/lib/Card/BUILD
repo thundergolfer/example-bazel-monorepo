@@ -7,10 +7,10 @@ ts_library(
     srcs = [
         "Card.tsx",
     ],
+    tsconfig = "//frontend:tsconfig.json",
     deps = [
         "@npm//@types",  # this component does not depend on lodash but it needs the type definition, dont know why
         "@npm//react",
         "@npm//react-dom",
     ],
-    tsconfig = "//frontend:tsconfig.json"
 )

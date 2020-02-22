@@ -8,13 +8,13 @@ ts_library(
         "App.tsx",
         "index.ts",
     ],
+    tsconfig = "//frontend:tsconfig.json",
     deps = [
         "//frontend/src/demo/components/Snackbar:snackbar_demo",
         "@npm//@types",
         "@npm//react",
         "@npm//react-dom",
     ],
-    tsconfig = "//frontend:tsconfig.json"
 )
 
 ts_devserver(

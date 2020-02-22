@@ -7,11 +7,11 @@ ts_library(
     srcs = [
         "Snackbar.tsx",
     ],
+    tsconfig = "//frontend:tsconfig.json",
     deps = [
         "//frontend/src/lib/Snackbar:snackbar",
         "@npm//@types",
         "@npm//react",
         "@npm//react-dom",
     ],
-    tsconfig = "//frontend:tsconfig.json"
 )

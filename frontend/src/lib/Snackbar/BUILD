@@ -7,10 +7,10 @@ ts_library(
     srcs = [
         "Snackbar.tsx",
     ],
+    tsconfig = "//frontend:tsconfig.json",
     deps = [
         "@npm//@types",  # this component does not dependent lodash but it needs the type definition, dont know why
         "@npm//react",
         "@npm//react-dom",
     ],
-    tsconfig = "//frontend:tsconfig.json"
 )
