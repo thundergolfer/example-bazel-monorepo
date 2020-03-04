@@ -2,7 +2,7 @@
 
 > *Note:* Currently supporting the latest Bazel version as at mid December 2019, [2.0.0](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) 
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Scala* + *Python*. 
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
