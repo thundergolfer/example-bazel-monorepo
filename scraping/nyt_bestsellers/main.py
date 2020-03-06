@@ -16,7 +16,7 @@ class Book:
 def run():
     target_url = "https://www.nytimes.com/books/best-sellers/"
     response = requests.get(target_url)
-    soup = bs4.BeautifulSoup(response.text, 'html.parser')
+    soup = bs4.BeautifulSoup(response.text, "html.parser")
 
     books = []
 
@@ -28,7 +28,7 @@ def run():
             else:
                 continue
 
-            maybe_author = li.find_all(attrs={"itemprop" : "author"})
+            maybe_author = li.find_all(attrs={"itemprop": "author"})
             if maybe_author:
                 author = maybe_author[0].text.replace("by ", "")
             else:
