@@ -12,7 +12,10 @@ set -o pipefail
 main() {
   cd "${REPO_ROOT}"
 
-  ./tools/build/bazel_lint.sh
+  bazel run //:buildifier
+
+  # TODO(Jonathon): Shouldn't buildifier support '--exclude' functionality?
+  git checkout -- 3rdparty
 
   bazel build //... \
     --aspects //tools/linting:aspect.bzl%lint \
