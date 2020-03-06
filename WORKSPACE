@@ -1,4 +1,4 @@
-workspace(name = "the_one_true_bazel_monorepo")
+workspace(name = "example_bazel_monorepo")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")

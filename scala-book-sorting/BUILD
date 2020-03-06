@@ -3,7 +3,7 @@ SRCS = glob(["src/main/scala/com/book/sorting/*.scala"])
 scala_binary(
     name = "scala-book-sorting",
     srcs = SRCS,
-    main_class = "Sorter",
+    main_class = "com.book.sorting.Sorter",
     deps = [],
 )
 

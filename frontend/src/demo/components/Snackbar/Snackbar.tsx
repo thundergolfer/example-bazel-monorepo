@@ -1,5 +1,5 @@
 import React from "react";
-import Snackbar from "the_one_true_bazel_monorepo/frontend/src/lib/Snackbar/Snackbar";
+import Snackbar from "example_bazel_monorepo/frontend/src/lib/Snackbar/Snackbar";
 
 interface ISnackbarDemoState {
   showSnackbar: boolean;
