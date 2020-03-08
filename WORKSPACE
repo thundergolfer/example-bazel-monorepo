@@ -153,31 +153,33 @@ mypy_integration_pip_deps()
 ######################
 rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
 
-http_archive(
-    name = "bazelruby_ruby_rules",
-    sha256 = "",
-    strip_prefix = "rules_ruby-{version}".format(version = rules_ruby_version),
-    url = "https://github.com/bazelruby/rules_ruby/archive/{version}.zip".format(version = rules_ruby_version),
-)
-
-load(
-    "@bazelruby_ruby_rules//ruby:deps.bzl",
-    "ruby_register_toolchains",
-    "ruby_rules_dependencies",
-)
-
-ruby_rules_dependencies()
-
-ruby_register_toolchains()
-
-load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
-
-bundle_install(
-    name = "bundle",
-    gemfile = "//tools/dependencies:Gemfile",
-    gemfile_lock = "//tools/dependencies:Gemfile.lock",
-    visibility = ["//visibility:public"],
-)
+# TODO(Jonathon): Reinstate this when it isn't breaking CI
+# Ref: https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo/builds/162#7a972413-1ff2-43a9-8385-a1a871acf358
+#http_archive(
+#    name = "bazelruby_ruby_rules",
+#    sha256 = "",
+#    strip_prefix = "rules_ruby-{version}".format(version = rules_ruby_version),
+#    url = "https://github.com/bazelruby/rules_ruby/archive/{version}.zip".format(version = rules_ruby_version),
+#)
+#
+#load(
+#    "@bazelruby_ruby_rules//ruby:deps.bzl",
+#    "ruby_register_toolchains",
+#    "ruby_rules_dependencies",
+#)
+#
+#ruby_rules_dependencies()
+#
+#ruby_register_toolchains()
+#
+#load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
+#
+#bundle_install(
+#    name = "bundle",
+#    gemfile = "//tools/dependencies:Gemfile",
+#    gemfile_lock = "//tools/dependencies:Gemfile.lock",
+#    visibility = ["//visibility:public"],
+#)
 
 ######################
 # SCALA SUPPORT
