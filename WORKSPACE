@@ -185,12 +185,11 @@ rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
 # SCALA SUPPORT
 ######################
 
-# Note: commit before https://github.com/bazelbuild/rules_scala/issues/726 was introduced
-rules_scala_version = "f985e5e0d6364970be8d6f15d262c8b0e0973d1b"
+rules_scala_version = "e83df505ad87a2a5bdadd6b1230a1db579791b09"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "2b5d595e04cc7f65e5de6d4efe022b3c52bf7aec42ff559011eb70cd1b300ba8",
+    sha256 = "6a69c9a9f6928920755ac634046f32f851c290e43e7ebf199e651970e823e8a1",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
