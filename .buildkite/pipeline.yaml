@@ -1,5 +1,9 @@
 steps:
   - command: "bazel test //..."
     label: ":bazel: Build + Test"
+    plugins:
+      - docker#v3.2.0:
+          image: "l.gcr.io/google/bazel:latest"
+          workdir: /app
   - command: "./tools/build/bazel_lint.sh"
     label: ":bazel: Lint Check"
