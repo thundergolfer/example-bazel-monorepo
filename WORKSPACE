@@ -96,11 +96,11 @@ http_archive(
 )
 
 # Third-Party packaging support
-rules_python_external_version = "caaa8780457058b7b8cbd232a76585343e5c1ce6"
+rules_python_external_version = "12bfbdffc57bbaf9a3de31e6a7acdc415eb9de72"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "ac059eee0dfe3617d2496fb49c777f51666b2d233dce24e0b9c36adf0bed3f2c",
+    sha256 = "31c1199d66241114c6974eafcb5578924a106f3fc62bcfcda6930159279098e0",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
     url = "https://github.com/dillon-giacoppo/rules_python_external/archive/{version}.zip".format(version = rules_python_external_version),
 )
