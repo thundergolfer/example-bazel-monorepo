@@ -14,6 +14,10 @@ EOF
   cat >> .bazelignore <<EOF
 frontend/
 EOF
+
+  cat >> .gitignore <<EOF
+.bazelignore
+EOF
 }
 
 main() {
