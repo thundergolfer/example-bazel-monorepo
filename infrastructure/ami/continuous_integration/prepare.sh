@@ -17,6 +17,12 @@ sudo yum install -y java-1.8.0-openjdk-devel
 # Ruby
 sudo amazon-linux-extras install ruby2.6
 
+# Node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+# shellcheck disable=SC1090
+. ~/.nvm/nvm.sh
+nvm install node
+
 ## Install Bazel from source
 
 curl -sSL -O \
