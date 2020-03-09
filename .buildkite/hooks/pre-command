@@ -6,7 +6,7 @@ set -o pipefail
 
 export TERM="linux"
 
-setup_bazelrc() {
+setup() {
   cat > buildkite.bazelrc <<EOF
 build --worker_verbose --verbose_failures
 EOF
@@ -21,7 +21,7 @@ EOF
 }
 
 main() {
-  setup_bazelrc
+  setup
 }
 
 main "$@"
