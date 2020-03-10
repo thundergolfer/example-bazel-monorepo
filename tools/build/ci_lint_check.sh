@@ -6,7 +6,7 @@ set -o pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
-./"${REPO_ROOT}"/tools/linting/lint.sh
+."${REPO_ROOT}"/tools/linting/lint.sh
 
 if git diff --name-only | grep -vq "bazelignore";
 then
