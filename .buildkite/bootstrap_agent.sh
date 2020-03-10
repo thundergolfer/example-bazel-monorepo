@@ -14,5 +14,7 @@ set -o pipefail
 
 echo "Starting Buildkite agent bootstrap..."
 
+# TODO(Jonathon): Remove this when bazel-linting-system can work with labels rather than hardcoded paths
+pip3 install black==19.10b0
 
 echo "Finished Buildkite agent bootstrap..."
