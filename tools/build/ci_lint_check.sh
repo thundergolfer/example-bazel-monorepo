@@ -4,10 +4,9 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-bazel run //:buildifier
+REPO_ROOT="$(git rev-parse --show-toplevel)"
 
-# TODO(Jonathon): Shouldn't buildifier support '--exclude' functionality?
-git checkout -- 3rdparty
+./"${REPO_ROOT}"/tools/linting/lint.sh
 
 if git diff --name-only | grep -vq "bazelignore";
 then
