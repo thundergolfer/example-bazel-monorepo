@@ -80,10 +80,9 @@ To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/depende
 
 ### *Python* Support
 
-There's Python code in the [`/book_sorting`](/book_sorting) package.
+There's Python code in the [`/book_sorting`](/book_sorting] and [`/scraping`](/scraping).
 
-Bazel has native support for Python, but [`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python)
-is used to for third-party `pip` packaging.
+[`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used to for the core `py_*` rules.
 
 ##### Dependency Management
 
