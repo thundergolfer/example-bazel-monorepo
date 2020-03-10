@@ -16,7 +16,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 **Prerequisites:**
  
 - [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `2.0.0`)
-- Python 3.7
+- Python 3.6+
 
 Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`.  
 
