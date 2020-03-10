@@ -10,10 +10,6 @@ setup() {
   cat > buildkite.bazelrc <<EOF
 build --worker_verbose --verbose_failures
 EOF
-
-  cat >> .bazelignore <<EOF
-frontend/
-EOF
 }
 
 main() {
