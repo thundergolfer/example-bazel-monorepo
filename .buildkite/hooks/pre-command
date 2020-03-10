@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+export TERM="linux"
+
+setup() {
+  cat > buildkite.bazelrc <<EOF
+build --worker_verbose --verbose_failures
+EOF
+
+  cat >> .bazelignore <<EOF
+frontend/
+EOF
+}
+
+main() {
+  setup
+}
+
+main "$@"

@@ -1,5 +1,5 @@
 steps:
   - command: "bazel test //..."
     label: ":bazel: Build + Test"
-  - command: "./tools/build/bazel_lint.sh"
-    label: ":bazel: Lint Check"
+  - command: "./tools/build/ci_lint_check.sh"
+    label: ":lint-roller: Lint Check"

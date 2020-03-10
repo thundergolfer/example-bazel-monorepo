@@ -3,6 +3,11 @@
 ############
 build --python_path="/usr/local/bin/python3"
 
+# MyPy Aspect
+###############
+build --aspects @mypy_integration//:mypy.bzl%mypy_aspect
+build --output_groups=+mypy
+
 ############
 # Java     #
 ############
@@ -20,3 +25,8 @@ try-import %workspace%/linting.bazelrc
 
 test --test_output=all
 build --incompatible_depset_union=false
+
+# Restrict workers from reading files that aren't declared as inputs
+# Note that this uses a different sandboxing mechanism than the action spawn:
+# https://github.com/bazelbuild/bazel/issues/6111
+build --worker_sandboxing
