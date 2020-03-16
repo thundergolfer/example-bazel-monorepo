@@ -30,3 +30,7 @@ build --incompatible_depset_union=false
 # Note that this uses a different sandboxing mechanism than the action spawn:
 # https://github.com/bazelbuild/bazel/issues/6111
 build --worker_sandboxing
+
+# BuildBuddy - https://buildbuddy.io/
+build --bes_results_url=https://app.buildbuddy.io/invocation/
+build --bes_backend=grpc://events.buildbuddy.io:1985
