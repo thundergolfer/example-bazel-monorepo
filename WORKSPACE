@@ -96,13 +96,13 @@ http_archive(
 )
 
 # Third-Party packaging support
-rules_python_external_version = "12bfbdffc57bbaf9a3de31e6a7acdc415eb9de72"
+rules_python_external_version = "0.1.2"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "31c1199d66241114c6974eafcb5578924a106f3fc62bcfcda6930159279098e0",
+    sha256 = "b7be9a09ec019b0be3bcdf9ac616b1e49131d82de88f48cfb5fc8d93c58aaf26",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
-    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/{version}.zip".format(version = rules_python_external_version),
+    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/v{version}.zip".format(version = rules_python_external_version),
 )
 
 # Install the rule dependencies
