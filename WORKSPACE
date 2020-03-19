@@ -206,6 +206,10 @@ scala_register_toolchains()
 # Load dependencies managed by bazel-deps
 load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
 
+load("//3rdparty:target_file.bzl", "build_external_workspace")
+
+build_external_workspace(name = "3rdparty_jvm")
+
 scala_deps()
 
 #######################################
