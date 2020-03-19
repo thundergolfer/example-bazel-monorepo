@@ -81,7 +81,7 @@ To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/depende
 
 ### *Python* Support
 
-There's Python code in the [`/book_sorting`](/book_sorting] and [`/scraping`](/scraping).
+There's Python code in the [`/book_sorting`](/book_sorting) and [`/scraping`](/scraping).
 
 [`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used to for the core `py_*` rules.
 
