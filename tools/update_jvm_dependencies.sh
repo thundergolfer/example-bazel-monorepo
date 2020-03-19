@@ -20,6 +20,7 @@ else
 fi
 
 WORKSPACE_FILEPATH="./3rdparty/jvm_workspace.bzl"
+TARGET_FILE_FILEPATH="3rdparty/target_file.bzl"
 DEPS_YAML_FILEPATH="./tools/dependencies/jvm_dependencies.yaml"
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
@@ -55,7 +56,9 @@ main() {
   $BAZEL_DEPS_PATH generate \
     -r "${REPO_ROOT}" \
     -s "${WORKSPACE_FILEPATH}" \
-    -d "${DEPS_YAML_FILEPATH}"
+    -d "${DEPS_YAML_FILEPATH}" \
+    --target-file "${TARGET_FILE_FILEPATH}" \
+    --disable-3rdparty-in-repo
 }
 
 main "$@"
