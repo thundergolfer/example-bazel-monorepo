@@ -1,8 +1,20 @@
+options:
+  buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")" ]
+  languages: [ "java", "scala:2.11.12" ]
+  resolvers:
+    - id: "mavencentral"
+      type: "default"
+      url: https://repo.maven.apache.org/maven2/
+    - id: "jcenter"
+      type: "default"
+      url: https://jcenter.bintray.com/
+  thirdPartyDirectory: ""
+
 dependencies:
   com.google.guava:
     guava:
       lang: java
-      version: '23.0'
+      version: "23.0"
 
   org.scalactic:
     scalactic:
@@ -15,20 +27,6 @@ dependencies:
         - "org.scalactic:scalactic"
       lang: scala
       version: "3.0.5"
-
-options:
-  # Required to avoid "name 'scala_import' is not defined (did you mean 'java_import'?)" error
-  buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")" ]
-  languages: ["java", "scala:2.11.12"]
-   # Don't use licenses it doesn't work. Related to: https://github.com/johnynek/bazel-deps/issues/192
-#  licenses: [notice]
-  resolvers:
-    - {id: mavencentral, url: "https://repo.maven.apache.org/maven2/" }
-    - {id: jcenter, type: default, url: "https://jcenter.bintray.com/"}
-  # NOTE: third_party/jvm would be preferred, but causes problems with Bazel wanting license declared.
-  #       See https://github.com/bazelbuild/rules_scala/issues/353.
-  thirdPartyDirectory: 3rdparty/jvm
-
 
 replacements:
   org.scala-lang:

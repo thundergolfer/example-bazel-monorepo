@@ -1,4 +1,4 @@
-workspace(name = "the_one_true_bazel_monorepo")
+workspace(name = "example_bazel_monorepo")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
@@ -96,13 +96,13 @@ http_archive(
 )
 
 # Third-Party packaging support
-rules_python_external_version = "12bfbdffc57bbaf9a3de31e6a7acdc415eb9de72"
+rules_python_external_version = "0.1.2"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "31c1199d66241114c6974eafcb5578924a106f3fc62bcfcda6930159279098e0",
+    sha256 = "b7be9a09ec019b0be3bcdf9ac616b1e49131d82de88f48cfb5fc8d93c58aaf26",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
-    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/{version}.zip".format(version = rules_python_external_version),
+    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/v{version}.zip".format(version = rules_python_external_version),
 )
 
 # Install the rule dependencies
@@ -153,31 +153,33 @@ mypy_integration_pip_deps()
 ######################
 rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
 
-http_archive(
-    name = "bazelruby_ruby_rules",
-    sha256 = "",
-    strip_prefix = "rules_ruby-{version}".format(version = rules_ruby_version),
-    url = "https://github.com/bazelruby/rules_ruby/archive/{version}.zip".format(version = rules_ruby_version),
-)
-
-load(
-    "@bazelruby_ruby_rules//ruby:deps.bzl",
-    "ruby_register_toolchains",
-    "ruby_rules_dependencies",
-)
-
-ruby_rules_dependencies()
-
-ruby_register_toolchains()
-
-load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
-
-bundle_install(
-    name = "bundle",
-    gemfile = "//tools/dependencies:Gemfile",
-    gemfile_lock = "//tools/dependencies:Gemfile.lock",
-    visibility = ["//visibility:public"],
-)
+# TODO(Jonathon): Reinstate this when it isn't breaking CI
+# Ref: https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo/builds/162#7a972413-1ff2-43a9-8385-a1a871acf358
+#http_archive(
+#    name = "bazelruby_ruby_rules",
+#    sha256 = "",
+#    strip_prefix = "rules_ruby-{version}".format(version = rules_ruby_version),
+#    url = "https://github.com/bazelruby/rules_ruby/archive/{version}.zip".format(version = rules_ruby_version),
+#)
+#
+#load(
+#    "@bazelruby_ruby_rules//ruby:deps.bzl",
+#    "ruby_register_toolchains",
+#    "ruby_rules_dependencies",
+#)
+#
+#ruby_rules_dependencies()
+#
+#ruby_register_toolchains()
+#
+#load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
+#
+#bundle_install(
+#    name = "bundle",
+#    gemfile = "//tools/dependencies:Gemfile",
+#    gemfile_lock = "//tools/dependencies:Gemfile.lock",
+#    visibility = ["//visibility:public"],
+#)
 
 ######################
 # RUST SUPPORT
@@ -207,12 +209,11 @@ raze_fetch_remote_crates()
 # SCALA SUPPORT
 ######################
 
-# Note: commit before https://github.com/bazelbuild/rules_scala/issues/726 was introduced
-rules_scala_version = "f985e5e0d6364970be8d6f15d262c8b0e0973d1b"
+rules_scala_version = "e83df505ad87a2a5bdadd6b1230a1db579791b09"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "2b5d595e04cc7f65e5de6d4efe022b3c52bf7aec42ff559011eb70cd1b300ba8",
+    sha256 = "6a69c9a9f6928920755ac634046f32f851c290e43e7ebf199e651970e823e8a1",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
@@ -228,8 +229,46 @@ scala_register_toolchains()
 
 # Load dependencies managed by bazel-deps
 load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
+load("//3rdparty:target_file.bzl", "build_external_workspace")
+
+build_external_workspace(name = "3rdparty_jvm")
 
 scala_deps()
+
+#######################################
+# TYPESCRIPT / NODE-JS
+#######################################
+
+rules_nodejs_version = "1.0.1"
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "e1a0d6eb40ec89f61a13a028e7113aa3630247253bcb1406281b627e44395145",
+    urls = [
+        "https://github.com/bazelbuild/rules_nodejs/releases/download/{version}/rules_nodejs-{version}.tar.gz".format(
+            version = rules_nodejs_version,
+        ),
+    ],
+)
+
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
+
+yarn_install(
+    name = "npm",
+    package_json = "//3rdparty/typescript:package.json",
+    yarn_lock = "//3rdparty/typescript:yarn.lock",
+)
+
+load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
+
+install_bazel_dependencies()
+
+# Set up TypeScript toolchain
+load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
+
+ts_setup_workspace()
 
 ######################
 # *OTHER*
@@ -253,13 +292,21 @@ http_archive(
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
 
-linting_system_version = "0.2.1"
+linting_system_version = "0.3.0"
 
 # source code linting system
-# ⚠️ Currently in ALPHA as at 2019/11/12
+# ⚠️ Currently in ALPHA as at 2020/03/10
 http_archive(
     name = "linting_system",
-    sha256 = "8da0fedcfd5ebad2ff204caf62abfe5304f32280542128cccc044f56f0d7138d",
+    sha256 = "1175101c17edba1d37ada53c7737ac4991292daa908d0898916f807972e13df4",
     strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
     url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
 )
+
+load("@linting_system//repositories:repositories.bzl", "repositories")
+
+repositories()
+
+load("@linting_system//repositories:go_repositories.bzl", "go_deps")
+
+go_deps()

@@ -1,0 +1,23 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "region": "us-east-2"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "us-east-2",
+    "source_ami": "ami-05512b79a46f1fabb",
+    "instance_type": "t2.small",
+    "ssh_username": "ec2-user",
+    "ami_name": "continuous-integration {{timestamp}}"
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "./prepare.sh"
+    }
+  ]
+}

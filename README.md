@@ -1,8 +1,8 @@
-# The One True ~~Morty~~ Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
+# Example Bazel Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
 
 > *Note:* Currently supporting the latest Bazel version as at mid December 2019, [2.0.0](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) 
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Scala* + *Python*. 
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
@@ -16,9 +16,10 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 **Prerequisites:**
  
 - [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `2.0.0`)
-- Python 3.7
+- Python 3.6+
+- [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
 
-Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`.  
+Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
 
 ## Why use a Monorepo?
 
@@ -80,10 +81,9 @@ To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/depende
 
 ### *Python* Support
 
-There's Python code in the [`/book_sorting`](/book_sorting) package.
+There's Python code in the [`/book_sorting`](/book_sorting) and [`/scraping`](/scraping).
 
-Bazel has native support for Python, but [`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python)
-is used to for third-party `pip` packaging.
+[`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used to for the core `py_*` rules.
 
 ##### Dependency Management
 
@@ -102,6 +102,10 @@ In order to add new third-party packages for Python, add them to [`tools/depende
 
 This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to manage Bazel monorepos,
 as well as being [used by the Bazel open-source project itself](https://buildkite.com/bazel).
+
+### Build Observability + Analysis
+
+This project is using [Buildbuddy.IO](https://buildbuddy.io/). Every build run locally or in CI get its own `https://app.buildbuddy.io/invocation/xyz123...` URL which analyses and records the build's information.
 
 ### Linting
 
