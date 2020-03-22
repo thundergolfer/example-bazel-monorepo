@@ -240,7 +240,7 @@ build_external_workspace(name = "3rdparty_jvm")
 scala_deps()
 
 #######################################
-# TYPESCRIPT / NODE-JS SUPPORT
+# TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
 rules_nodejs_version = "1.0.1"
@@ -275,7 +275,7 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 ts_setup_workspace()
 
 ######################
-# *OTHER*
+# OTHER
 ######################
 
 # requirement of 'com_github_bazelbuild_buildtools'
