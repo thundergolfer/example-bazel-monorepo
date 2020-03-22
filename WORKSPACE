@@ -151,7 +151,7 @@ mypy_integration_pip_deps()
 ######################
 # RUBY SUPPORT
 ######################
-rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
+#rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
 
 # TODO(Jonathon): Reinstate this when it isn't breaking CI
 # Ref: https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo/builds/162#7a972413-1ff2-43a9-8385-a1a871acf358
@@ -240,7 +240,7 @@ build_external_workspace(name = "3rdparty_jvm")
 scala_deps()
 
 #######################################
-# TYPESCRIPT / NODE-JS
+# TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
 rules_nodejs_version = "1.0.1"
@@ -275,7 +275,7 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 ts_setup_workspace()
 
 ######################
-# *OTHER*
+# OTHER
 ######################
 
 # requirement of 'com_github_bazelbuild_buildtools'
