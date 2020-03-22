@@ -18,6 +18,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 - [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `2.0.0`)
 - Python 3.6+
 - [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
+- [`rustc`, `cargo`, and `rustup`](https://www.rust-lang.org/tools/install) for the Rust code.
 
 Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
 
@@ -64,6 +65,17 @@ There's Ruby code contained in [`ruby`](/ruby).
 Third-party Ruby dependencies are managed by `rules_ruby`, which accepts a `Gemfile`, located at [`tools/dependencies/Gemfile`](tools/dependencies/Gemfile).
 
 A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
+
+### *Rust* Support
+
+There's 'hello world' code contained in [`rust/hello_world`](/rust/hello_world).
+
+##### Dependency Management
+
+Its third-party dependencies are managed by [`google/cargo-raze`](https://github.com/google/cargo-raze). The usage of that tool is wrapped up in a script
+as [`tools/update_rust_dependencies.sh`](tools/update_rust_dependencies.sh).
+
+To use it, you update the `Cargo.toml` file in [`3rdparty/cargo`](3rdparty/cargo) and then run the script.
 
 
 ### *Scala* Support
