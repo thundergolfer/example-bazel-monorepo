@@ -36,8 +36,8 @@ rust_library(
     srcs = glob(["**/*.rs"]),
     deps = [
         "@raze__getrandom__0_1_14//:getrandom",
-        "@raze__libc__0_2_67//:libc",
-        "@raze__rand_chacha__0_2_1//:rand_chacha",
+        "@raze__libc__0_2_68//:libc",
+        "@raze__rand_chacha__0_2_2//:rand_chacha",
         "@raze__rand_core__0_5_1//:rand_core",
     ],
     rustc_flags = [

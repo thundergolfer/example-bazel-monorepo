@@ -12,7 +12,7 @@ package(default_visibility = [
 ])
 
 licenses([
-  "notice", # "MIT"
+  "restricted", # "MIT OR Apache-2.0"
 ])
 
 load(
@@ -23,24 +23,23 @@ load(
 )
 
 
-# Unsupported target "throughput" with type "bench" omitted
 
 rust_library(
-    name = "want",
+    name = "rand_chacha",
     crate_root = "src/lib.rs",
     crate_type = "lib",
-    edition = "2015",
+    edition = "2018",
     srcs = glob(["**/*.rs"]),
     deps = [
-        "@raze__futures__0_1_29//:futures",
-        "@raze__log__0_4_8//:log",
-        "@raze__try_lock__0_2_2//:try_lock",
+        "@raze__ppv_lite86__0_2_6//:ppv_lite86",
+        "@raze__rand_core__0_5_1//:rand_core",
     ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.2.0",
+    version = "0.2.2",
     crate_features = [
+        "std",
     ],
 )
 

@@ -10,30 +10,16 @@ path = "fake_lib.rs"
 workspace_path = "//3rdparty/cargo"
 genmode = "Remote"
 
-[raze.crates.proc-macro2.'1.0.8']
-additional_flags = [
-    "--cfg=use_proc_macro",
-]
-
-
-[raze.crates.proc-macro2.'0.4.30']
-additional_flags = [
-    "--cfg=use_proc_macro",
-]
+#[raze.crates.proc-macro2.'1.0.8']
+#additional_flags = [
+#    "--cfg=use_proc_macro",
+#]
+#
+#
+#[raze.crates.proc-macro2.'0.4.30']
+#additional_flags = [
+#    "--cfg=use_proc_macro",
+#]
 
 [dependencies]
-base64 = "0.10.1"
-config = "0.9.3"
-dirs = "2.0.1"
-oauth1 = { git = "https://github.com/mehcode/oauth1-rs", branch = "master" }
-oauth-client = "0.3"
 rand = "0.7.0"
-regex = "1"
-reqwest = "0.9.18"
-roxmltree = "0.6.1"
-serde = "1.0.94"
-simple-error = "0.2.1"
-structopt = "0.2.10"
-termcolor = "1"
-toml = "0.5.1"
-url = "1.7.2"
