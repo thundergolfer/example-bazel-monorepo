@@ -1,6 +1,8 @@
 package com.book.store.api;
 
+import com.book.store.api.models.Author;
 import com.book.store.api.models.Book;
+import com.book.store.api.services.AuthorService;
 import com.book.store.api.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,9 @@ public class ApiController {
 
     @Autowired
     BookService bookService;
+    @Autowired
+    AuthorService authorService;
+
 
     @RequestMapping("/")
     public String index() {
@@ -21,8 +26,13 @@ public class ApiController {
     }
 
     @GetMapping("/books")
-    List<Book> all() {
+    List<Book> allBooks() {
         return bookService.list();
+    }
+
+    @GetMapping("/authors")
+    List<Author> allAuthors() {
+        return authorService.list();
     }
 }
 
