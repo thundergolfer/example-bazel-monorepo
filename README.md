@@ -2,7 +2,7 @@
 
 > *Note:* Currently supporting the latest Bazel version as at mid December 2019, [2.0.0](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) 
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Ruby* and *Rust* support is in-progress . 
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
@@ -95,7 +95,7 @@ To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/depende
 
 There's Python code in the [`/book_sorting`](/book_sorting) and [`/scraping`](/scraping).
 
-[`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used to for the core `py_*` rules.
+[`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used for the core `py_*` rules.
 
 ##### Dependency Management
 
