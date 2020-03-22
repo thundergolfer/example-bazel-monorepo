@@ -19,7 +19,7 @@ java_library(
     name = "lib",
     srcs = glob(["*.java"]),
     resources = [
-        "//store-api/src/main/resources:properties",
+        "//store-api/src/main/resources",
     ],
     visibility = ["//src/test:__subpackages__"],
     deps = DEPS,
