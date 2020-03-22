@@ -43,6 +43,7 @@ BAZELIGNORE_LINES = {
 
 def display_instructions(bazel_workspace_file, target_lang, p):
     print(f"{BColors.OKGREEN}1. Add the following lines to {pathlib.Path(REPO_ROOT, '.bazelignore')}{BColors.ENDC}")
+    print(f"{BColors.OKGREEN}   Alternatively, remove the folders.{BColors.ENDC}")
     print(BColors.OKGREEN + ("-" * 50) + BColors.ENDC)
     print("\n".join(BAZELIGNORE_LINES[target_lang]))
     print()
@@ -67,7 +68,6 @@ def main(target_lang):
     pttrn = re.compile(r"#{10,50}\n# [\w\/\s]+\n#{10,50}")
     parts = pttrn.split(workspace_contents)
 
-    # clean parts
     for p in parts:
         if target_lang in p:
             display_instructions(
