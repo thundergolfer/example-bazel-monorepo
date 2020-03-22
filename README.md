@@ -65,6 +65,17 @@ Third-party Ruby dependencies are managed by `rules_ruby`, which accepts a `Gemf
 
 A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
 
+### *Rust* Support
+
+There's 'hello world' code contained in [`rust/hello_world`](/rust/hello_world).
+
+##### Dependency Management
+
+Its third-party dependencies are managed by [`google/cargo-raze`](https://github.com/google/cargo-raze). The usage of that tool is wrapped up in a script
+as [`tools/update_rust_dependencies.sh`](tools/update_rust_dependencies.sh).
+
+To use it, you update the `Cargo.toml` file in [`3rdparty/cargo`](3rdparty/cargo) and then run the script.
+
 
 ### *Scala* Support
 
