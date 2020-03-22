@@ -10,16 +10,5 @@ path = "fake_lib.rs"
 workspace_path = "//3rdparty/cargo"
 genmode = "Remote"
 
-#[raze.crates.proc-macro2.'1.0.8']
-#additional_flags = [
-#    "--cfg=use_proc_macro",
-#]
-#
-#
-#[raze.crates.proc-macro2.'0.4.30']
-#additional_flags = [
-#    "--cfg=use_proc_macro",
-#]
-
 [dependencies]
 rand = "0.7.0"
