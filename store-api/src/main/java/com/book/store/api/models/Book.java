@@ -15,4 +15,7 @@ public class Book {
     // standard constructors
 
     // standard getters and setters
+    public String getName() {
+        return this.name;
+    }
 }
