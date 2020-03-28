@@ -24,11 +24,6 @@ public class UserBookTag implements Serializable {
     @JoinColumn
     private Tag tag;
 
-    public UserBookTag(User user, Tag tag) {
-        this.user = user;
-        this.tag = tag;
-    }
-
     public UserBookTag() {}
 
     public Book getBook() {
