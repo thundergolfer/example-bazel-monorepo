@@ -20,6 +20,7 @@ public class Book {
     // standard constructors
 
     // standard getters and setters
+    public Long getId() { return this.id; }
     public String getName() {
         return this.name;
     }

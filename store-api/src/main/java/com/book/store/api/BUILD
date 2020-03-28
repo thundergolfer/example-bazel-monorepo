@@ -9,6 +9,7 @@ DEPS = [
     "@maven//:org_springframework_spring_beans",
     "@maven//:org_springframework_spring_context",
     "@maven//:org_springframework_spring_web",
+    "@maven//:org_springframework_spring_webmvc",
     "@maven//:org_postgresql_postgresql",
     "//store-api/src/main/java/com/book/store/api/models",
     "//store-api/src/main/java/com/book/store/api/repositories",
