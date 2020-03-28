@@ -1,9 +1,9 @@
 package com.book.store.api.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -17,7 +17,8 @@ public class Book {
     private LocalDate publishDate;
     private float rating;
 
-    // standard constructors
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private Set<UserBookTag> bookTags = new HashSet<>();
 
     // standard getters and setters
     public Long getId() { return this.id; }
