@@ -9,7 +9,7 @@ developer tools, and keep a record of best-practices I've learnt. So it is a wor
 Others can use it to check out the Bazel way of doing things and use parts
 as a reference implementation.
 
-Rather than the typical To-Do list, this project's code uses the contrived scenario of a book shop. 📗📕📒📚
+Rather than the typical To-Do list, this project's code uses the contrived scenario of a book shop and reading cataloging website, called *Antilibrary*. 📗📕📒📚
 
 ## Getting Started
 
