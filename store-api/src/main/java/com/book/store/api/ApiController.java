@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class ApiController {
@@ -77,11 +78,47 @@ public class ApiController {
         return userService.list();
     }
 
+    /**
+     * POST
+     * {
+     * 	"username": "XX"
+     * }
+     */
+    @PostMapping("/users")
+    public ResponseEntity<Object> addUser(@RequestBody User u) {
+        User savedUser = userService.add(u);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedUser.getId()).toUri();
+        return ResponseEntity.created(location).build();
+    }
+
     @GetMapping("/users/{id}/currently_reading")
     public ResponseEntity<Object> currentlyReading(@PathVariable long id) {
         Optional<Set<UserBookTag>> result = userService.userCurrentlyReading(id);
         if (result.isPresent()) {
-            return ResponseEntity.ok(result.get());
+            Set<Book> currentlyReading = result.get()
+                    .stream()
+                    .map(ubt -> ubt.getBook())
+                    .collect(Collectors.toSet());
+            return ResponseEntity.ok(currentlyReading);
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("ID DOES NOT EXIST"); // TODO(Jonathon): Improve err msg
+        }
+    }
+
+    @GetMapping("/users/{id}/read")
+    public ResponseEntity<Object> read(@PathVariable long id) {
+        Optional<Set<UserBookTag>> result = userService.userRead(id);
+        if (result.isPresent()) {
+            Set<Book> currentlyReading = result.get()
+                    .stream()
+                    .map(ubt -> ubt.getBook())
+                    .collect(Collectors.toSet());
+            return ResponseEntity.ok(currentlyReading);
         } else {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
