@@ -75,6 +75,7 @@ maven_install(
         "org.springframework:spring-context:5.1.5.RELEASE",
         "org.springframework:spring-test:5.1.5.RELEASE",
         "org.springframework:spring-web:5.1.5.RELEASE",
+        "org.springframework:spring-webmvc:5.1.5.RELEASE",
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
     repositories = [
