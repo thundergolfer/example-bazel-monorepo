@@ -25,10 +25,16 @@ locals {
 #!/bin/bash
 # This should be copied into the store-api.tf locals after updating.
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
+RELEASE_BUCKET="s3://example-bazel-monorepo-artifacts"
+
 # Install Java Runtime Environment (JRE 11)
-sudo apt install default-jdk
+sudo apt-get -y install default-jdk
 # Install Postgres
-sudo apt-get install postgresql postgresql-contrib
+sudo apt-get -y install postgresql postgresql-contrib
 # Setup DB
 sudo su - postgres
 createuser -s ubuntu
@@ -43,6 +49,12 @@ sed -i 's/host    all             all             127.0.0.1\/32            md5/h
 sudo service postgresql reload
 
 su - ubuntu
+
+aws s3 cp "$RELEASE_BUCKET/4f2f87949d9ce6f40617268d25dd6ed6d9a8f417/store-api/src/main/java/com/book/store/api/deployable.jar" "$HOME"
+
+java -jar "$HOME/deployable.jar"
+# The API will be available @ something like http://{EC2 Public DNS}:8080, eg. http://ec2-3-15-180-230.us-east-2.compute.amazonaws.com:8080
+
 EOF
 }
 
@@ -64,10 +76,35 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+resource "aws_iam_role" "store_api" {
+  name = "store_api"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_instance_profile" "store_api" {
+  name = "store_api"
+  role = aws_iam_role.store_api.name
+}
+
 // TODO(Jonathon): Set up security group for this so that I can connect over SSH
 resource "aws_instance" "store_api" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.nano"
+  iam_instance_profile = "store_api"
   key_name = "store-api" // Note: Created outside of Terraform using AWS Console
 
   user_data_base64 = base64encode(local.instance-userdata)

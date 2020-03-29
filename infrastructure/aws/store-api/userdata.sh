@@ -1,10 +1,16 @@
 #!/bin/bash
 # This should be copied into the store-api.tf locals after updating.
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
+RELEASE_BUCKET="s3://example-bazel-monorepo-artifacts"
+
 # Install Java Runtime Environment (JRE 11)
-sudo apt install default-jdk
+sudo apt-get -y install default-jdk
 # Install Postgres
-sudo apt-get install postgresql postgresql-contrib
+sudo apt-get -y install postgresql postgresql-contrib
 # Setup DB
 sudo su - postgres
 createuser -s ubuntu
@@ -20,5 +26,7 @@ sudo service postgresql reload
 
 su - ubuntu
 
-# java -jar deployable.jar
+aws s3 cp "$RELEASE_BUCKET/4f2f87949d9ce6f40617268d25dd6ed6d9a8f417/store-api/src/main/java/com/book/store/api/deployable.jar" "$HOME"
+
+java -jar "$HOME/deployable.jar"
 # The API will be available @ something like http://{EC2 Public DNS}:8080, eg. http://ec2-3-15-180-230.us-east-2.compute.amazonaws.com:8080
