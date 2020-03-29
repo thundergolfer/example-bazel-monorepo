@@ -1,5 +1,5 @@
-# TODO(Jonathon): Set this as userdata for EC2 so that it happens on start-up
-# TODO(Jonathon): Find way to do the copy of the deployable store-api Jar to the instance during startup.
+#!/bin/bash
+# This should be copied into the store-api.tf locals after updating.
 
 # Install Java Runtime Environment (JRE 11)
 sudo apt install default-jdk
