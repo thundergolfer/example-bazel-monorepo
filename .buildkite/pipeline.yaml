@@ -4,5 +4,6 @@ steps:
   - command: "./tools/build/ci_lint_check.sh"
     label: ":lint-roller: Lint Check"
   - wait
-  - command: "aws sts get-caller-identity"
+  - command: "./tool/release/release.sh"
+    label: ":ship: Release Artifacts"
 #    branches: "master"
