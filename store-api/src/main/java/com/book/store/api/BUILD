@@ -39,9 +39,9 @@ springboot(
     name = "deployable",
     boot_app_class = "com.book.store.api.Application",
     java_library = ":lib",
-    deps = DEPS,
-    #    fail_on_duplicate_classes=True
     tags = [
         "release",
-    ]
+    ],
+    #    fail_on_duplicate_classes=True
+    deps = DEPS,
 )
