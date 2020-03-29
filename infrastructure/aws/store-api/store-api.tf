@@ -43,7 +43,7 @@ data "aws_ami" "ubuntu" {
 // TODO(Jonathon): Set up security group for this so that I can connect over SSH
 resource "aws_instance" "store_api" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
+  instance_type = "t2.nano"
   key_name = "store-api" // Note: Created outside of Terraform using AWS Console
 
   tags = {
