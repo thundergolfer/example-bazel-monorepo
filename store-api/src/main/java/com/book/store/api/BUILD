@@ -41,4 +41,7 @@ springboot(
     java_library = ":lib",
     deps = DEPS,
     #    fail_on_duplicate_classes=True
+    tags = [
+        "release",
+    ]
 )
