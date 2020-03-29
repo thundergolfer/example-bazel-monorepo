@@ -4,6 +4,6 @@ steps:
   - command: "./tools/build/ci_lint_check.sh"
     label: ":lint-roller: Lint Check"
   - wait
-  - command: "./tool/release/release.sh"
+  - command: "./tools/release/release.sh"
     label: ":ship: Release Artifacts"
 #    branches: "master"
