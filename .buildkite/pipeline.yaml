@@ -5,3 +5,4 @@ steps:
     label: ":lint-roller: Lint Check"
   - wait
   - command: "aws sts get-caller-identity"
+#    branches: "master"
