@@ -6,4 +6,4 @@ steps:
   - wait
   - command: "./tools/release/release.sh"
     label: ":ship: Release Artifacts"
-#    branches: "master"
+    branches: "master"
