@@ -29,7 +29,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 
   filter {
@@ -40,6 +40,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+// TODO(Jonathon): Set up security group for this so that I can connect over SSH
 resource "aws_instance" "store_api" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
