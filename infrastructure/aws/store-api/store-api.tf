@@ -19,6 +19,7 @@ provider "aws" {
 
 }
 
+// TODO(Jonathon): Move the massive instance-userdata variable into a Terraform .tpl file
 locals {
   foo = "bar"
   instance-userdata = <<EOF
@@ -78,6 +79,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+// TODO(Jonathon): Add permissions for this role to read from build artifacts bucket, so that it can copy jar down in userdata step
 resource "aws_iam_role" "store_api" {
   name = "store-api"
   assume_role_policy = <<EOF
@@ -106,7 +108,7 @@ resource "aws_iam_instance_profile" "store_api" {
   role = aws_iam_role.store_api.name
 }
 
-// TODO(Jonathon): Set up security group for this so that I can connect over SSH
+// TODO(Jonathon): Set up security group for this so that I can connect over SSH and any internet browser can connect on port 8080
 resource "aws_instance" "store_api" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.nano"
