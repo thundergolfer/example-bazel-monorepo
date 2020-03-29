@@ -44,6 +44,12 @@ public class UserService {
     }
 
     public User add(User u) {
+        Optional<User> x = userRepository.findByUsername(u.getUsername());
+        if (x.isPresent()) {
+            // TODO(Jonathon): Throw a proper exception that should be caught by a RestExceptionHandler
+            // Ref: https://www.toptal.com/java/spring-boot-rest-api-error-handling
+            throw new RuntimeException("Username already exists");
+        }
         User savedBook = userRepository.save(u);
         return savedBook;
     }

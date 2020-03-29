@@ -12,6 +12,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique=true)
     private String username;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

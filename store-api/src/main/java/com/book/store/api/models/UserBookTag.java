@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-// TODO(Jonathon): A (user_id, book_id) combo should have be unique. ie. A user cannot be both reading and want-to-read a single book.
+// TODO(Jonathon): A (user_id, book_id) combo should have to be unique. ie. A user cannot be both reading and want-to-read a single book.
 
 @Entity
 public class UserBookTag implements Serializable {
