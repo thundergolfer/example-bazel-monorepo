@@ -104,12 +104,19 @@ resource "aws_instance" "store_api" {
   }
 }
 
+//
 // Connect traffic to api.antilibrary.xyz to EC2 instance
+//
+
 resource "aws_route53_zone" "main" {
   name = var.domain_name
 }
 
 
+// This way of setting up the backend's subdomain is *NOT* highly-available or scalable,
+// but it is cheap and dead-simple.
+// Next step beyond this would be adding an Elastic IP.
+// The scalable and highly-available solution would be to use an AWS ALB with an EC2 auto-scaling group.
 resource "aws_route53_record" "api" {
   zone_id = aws_route53_zone.main.zone_id
   name    = "api.${var.domain_name}"
@@ -118,4 +125,6 @@ resource "aws_route53_record" "api" {
   records = [
     aws_instance.store_api.public_ip,
   ]
+
+  depends_on = [aws_instance.store_api]
 }
