@@ -18,6 +18,13 @@ provider "aws" {
   region = var.region
 }
 
+data "terraform_remote_state" "artifacts" {
+  backend = "local"
+  config = {
+    path = "../artifacts/${var.environment}.tfstate"
+  }
+}
+
 data "aws_partition" "current" {}
 
 data "aws_ami" "ubuntu" {
@@ -36,28 +43,47 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-// TODO(Jonathon): Add permissions for this role to read from build artifacts bucket, so that it can copy jar down in userdata step
+data "aws_iam_policy_document" "store_api_trust_policy" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "sts:AssumeRole"
+    ]
+
+    principals {
+      type = "Service"
+      identifiers = [
+        "ec2.amazonaws.com",
+      ]
+    }
+  }
+}
+
 resource "aws_iam_role" "store_api" {
   name = "store-api"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  assume_role_policy = data.aws_iam_policy_document.store_api_trust_policy.json
 
   lifecycle {
     create_before_destroy = true
   }
+}
+
+data "aws_iam_policy_document" "store_api_permissions" {
+  statement {
+    actions = [
+      "s3:Get*",
+      "s3:List*",
+    ]
+
+    resources = [
+      "${data.terraform_remote_state.artifacts.outputs.artifacts_bucket_arn}/*"
+    ]
+  }
+}
+
+resource "aws_iam_policy" "store_api_permissions" {
+  name = "store-api"
+  policy = data.aws_iam_policy_document.store_api_permissions.json
 }
 
 resource "aws_iam_instance_profile" "store_api" {
@@ -76,4 +102,20 @@ resource "aws_instance" "store_api" {
   tags = {
     Name = "store-api"
   }
+}
+
+// Connect traffic to api.antilibrary.xyz to EC2 instance
+resource "aws_route53_zone" "main" {
+  name = var.domain_name
+}
+
+
+resource "aws_route53_record" "api" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "api.${var.domain_name}"
+  type    = "A"
+  ttl     = "300"
+  records = [
+    aws_instance.store_api.public_ip,
+  ]
 }
