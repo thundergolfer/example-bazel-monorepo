@@ -105,7 +105,7 @@ resource "aws_instance" "store_api" {
 }
 
 //
-// Connect traffic to api.antilibrary.xyz to EC2 instance
+// Connect traffic to api.antilibrary.xyz:$PORT to EC2 instance
 //
 
 resource "aws_route53_zone" "main" {

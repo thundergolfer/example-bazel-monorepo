@@ -29,6 +29,7 @@ service postgresql reload
 
 aws s3 cp "$RELEASE_BUCKET/4f2f87949d9ce6f40617268d25dd6ed6d9a8f417/store-api/src/main/java/com/book/store/api/deployable.jar" "."
 
+# TODO(Jonathon): Production server should be listening on 80(HTTP) or 443 (HTTPS) not default (8080)
 # Run jar, adding '&' to run in background
 java -jar "./deployable.jar" &
 # The API will be available @ something like http://{EC2 Public DNS}:8080, eg. http://ec2-3-15-180-230.us-east-2.compute.amazonaws.com:8080
