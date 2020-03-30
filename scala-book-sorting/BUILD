@@ -13,6 +13,7 @@ TEST_DEPS = [
 
 scala_test(
     name = "test",
+    timeout = "short",
     srcs = glob(["src/test/scala/com/book/sorting/*.scala"]),
     deps = TEST_DEPS,
 )
