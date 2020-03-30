@@ -20,6 +20,14 @@ locals {
 
 resource "aws_s3_bucket" "artifacts" {
   bucket = "example-bazel-monorepo-artifacts"
+
+  lifecycle_rule {
+    id = "intelligent-tiering"
+    enabled = true
+    transition {
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
 }
 
 output "artifacts_bucket_arn" {
