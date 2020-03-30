@@ -94,7 +94,7 @@ resource "aws_iam_instance_profile" "store_api" {
 // TODO(Jonathon): Set up security group for this so that I can connect over SSH and any internet browser can connect on port 8080
 resource "aws_instance" "store_api" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.nano"
+  instance_type = "t3.nano"
   iam_instance_profile = "store-api"
   key_name = "store-api" // Note: Created outside of Terraform using AWS Console
   user_data = templatefile("${path.module}/userdata.tpl", {})
