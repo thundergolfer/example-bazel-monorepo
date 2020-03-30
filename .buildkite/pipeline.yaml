@@ -3,3 +3,7 @@ steps:
     label: ":bazel: Build + Test"
   - command: "./tools/build/ci_lint_check.sh"
     label: ":lint-roller: Lint Check"
+  - wait
+  - command: "./tools/release/release.sh"
+    label: ":ship: Release Artifacts"
+    branches: "master"
