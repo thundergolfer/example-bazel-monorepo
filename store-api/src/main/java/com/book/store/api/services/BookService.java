@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -21,6 +22,10 @@ public class BookService {
     public Book add(Book b) {
         Book savedBook = bookRepository.save(b);
         return savedBook;
+    }
+
+    public Optional<Book> findById(long id) {
+        return bookRepository.findById(id);
     }
 
     public void deleteById(long id) {

@@ -10,21 +10,28 @@ import java.util.Objects;
 public class UserBookTag implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     Long id;
 
     @ManyToOne
     @JoinColumn
     private Book book;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
     private Tag tag;
 
     public UserBookTag() {}
+
+    public UserBookTag(User u, Book b, Tag t) {
+        this.user = u;
+        this.book = b;
+        this.tag = t;
+    }
 
     public Book getBook() {
         return book;
@@ -41,11 +48,11 @@ public class UserBookTag implements Serializable {
         UserBookTag that = (UserBookTag) o;
         return Objects.equals(book.getName(), that.book.getName()) &&
                 Objects.equals(user.getUsername(), that.user.getUsername()) &&
-                Objects.equals(tag, that.tag);
+                Objects.equals(tag.getName(), that.tag.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(book.getName(), user.getUsername(), tag);
+        return Objects.hash(book.getName(), user.getUsername(), tag.getName());
     }
 }

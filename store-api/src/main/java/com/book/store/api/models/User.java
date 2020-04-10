@@ -18,6 +18,7 @@ public class User implements Serializable {
     @Column(unique=true)
     private String email;
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserBookTag> bookTags = new HashSet<>();
 
@@ -41,6 +42,14 @@ public class User implements Serializable {
                 .stream()
                 .filter(ubt -> ubt.getTag().equals(Tag.READ))
                 .collect(Collectors.toSet());
+    }
+
+    public void addBookTag(UserBookTag t) {
+        bookTags.add(t);
+    }
+
+    public void removeBookTag(UserBookTag t) {
+        bookTags.remove(t);
     }
 
     public Long getId() {

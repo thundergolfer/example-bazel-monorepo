@@ -1,8 +1,10 @@
 package com.book.store.api.services;
 
 import com.book.store.api.models.Book;
+import com.book.store.api.models.Tag;
 import com.book.store.api.models.User;
 import com.book.store.api.models.UserBookTag;
+import com.book.store.api.repositories.TagRepository;
 import com.book.store.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TagRepository tagRepository;
 
     public List<User> list() {
         return userRepository.findAll();
@@ -52,6 +56,50 @@ public class UserService {
         }
         User savedBook = userRepository.save(u);
         return savedBook;
+    }
+
+    public void markRead(User u, Book b) {
+        u.addBookTag(new UserBookTag(
+                u,
+                b,
+                tagRepository.findByName(Tag.READ)
+        ));
+        u.removeBookTag(new UserBookTag(
+                u,
+                b,
+                tagRepository.findByName(Tag.CURRENTLY_READING)
+        ));
+        userRepository.save(u);
+    }
+
+    public void markUnread(User u, Book b) {
+        UserBookTag t = new UserBookTag(
+                u,
+                b,
+                tagRepository.findByName(Tag.READ)
+        );
+        u.removeBookTag(t);
+        userRepository.save(u);
+    }
+
+    public void markCurrentlyReading(User u, Book b) {
+        UserBookTag t = new UserBookTag(
+                u,
+                b,
+                tagRepository.findByName(Tag.CURRENTLY_READING)
+        );
+        u.addBookTag(t);
+        userRepository.save(u);
+    }
+
+    public void markNotCurrentlyReading(User u, Book b) {
+        UserBookTag t = new UserBookTag(
+                u,
+                b,
+                tagRepository.findByName(Tag.CURRENTLY_READING)
+        );
+        u.removeBookTag(t);
+        userRepository.save(u);
     }
 
     public User getById(long id) {

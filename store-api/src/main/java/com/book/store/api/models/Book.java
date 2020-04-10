@@ -37,5 +37,5 @@ public class Book {
     public LocalDate getPublishDate() { return this.publishDate; }
     public float getRating() { return this.rating; }
 
-    public Set<Author> getAuthors() { return this.authors.stream().map(ba -> ba.getAuthor()).collect(Collectors.toSet()); }
+    public Set<Author> getAuthors() { return this.authors.stream().map(BookAuthor::getAuthor).collect(Collectors.toSet()); }
 }

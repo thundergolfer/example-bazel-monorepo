@@ -131,6 +131,20 @@ public class ApiController {
         }
     }
 
+    @PutMapping("/users/{id}/currently_reading/{bookId}")
+    public ResponseEntity<Object> markCurrentlyReading(@PathVariable long id, @PathVariable long bookId) {
+        User user = userService.getById(id);
+
+        Optional<Book> bookResult = bookService.findById(bookId);
+        if (!bookResult.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("BOOK ID DOES NOT EXIST"); // TODO(Jonathon): Improve err msg
+        }
+        userService.markCurrentlyReading(user, bookResult.get());
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/users/{id}/read")
     public ResponseEntity<Object> read(@PathVariable long id) {
         Optional<Set<UserBookTag>> result = userService.userRead(id);
@@ -145,6 +159,20 @@ public class ApiController {
                     .status(HttpStatus.NOT_FOUND)
                     .body("ID DOES NOT EXIST"); // TODO(Jonathon): Improve err msg
         }
+    }
+
+    @PutMapping("/users/{id}/read/{bookId}")
+    public ResponseEntity<Object> markRead(@PathVariable long id, @PathVariable long bookId) {
+        User user = userService.getById(id);
+
+        Optional<Book> bookResult = bookService.findById(bookId);
+        if (!bookResult.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("BOOK ID DOES NOT EXIST"); // TODO(Jonathon): Improve err msg
+        }
+        userService.markRead(user, bookResult.get());
+        return ResponseEntity.ok().build();
     }
 
     /*
