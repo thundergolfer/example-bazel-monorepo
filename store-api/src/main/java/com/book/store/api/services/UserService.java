@@ -54,6 +54,10 @@ public class UserService {
         return savedBook;
     }
 
+    public User getById(long id) {
+        return userRepository.findById(id).get();
+    }
+
 
     public void deleteById(long id) {
         userRepository.deleteById(id);

@@ -78,6 +78,11 @@ public class ApiController {
         return userService.list();
     }
 
+    @GetMapping("/users/{id}")
+    User getUser(@PathVariable long id) {
+        return userService.getById(id);
+    }
+
     /**
      * POST
      * {

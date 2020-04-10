@@ -1,6 +1,7 @@
 package com.book.store.api.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 // TODO(Jonathon): Move towards 'Tripartite Model' for users. Ref: http://habitatchronicles.com/2008/10/the-tripartite-identity-pattern/
 
 @Entity(name = "user_")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
