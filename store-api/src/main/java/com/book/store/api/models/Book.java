@@ -12,6 +12,7 @@ public class Book {
     @GeneratedValue
     private Long id;
     private String name;
+    @Column(length = 8192)
     private String description;
     private String isbn;
     private LocalDate publishDate;
