@@ -1,5 +1,8 @@
 filegroup(
-    name = "properties",
-    srcs = ["application.properties"],
+    name = "resources",
+    srcs = [
+        "application.properties",
+        "data.sql",
+    ],
     visibility = ["//store-api:__subpackages__"],
 )

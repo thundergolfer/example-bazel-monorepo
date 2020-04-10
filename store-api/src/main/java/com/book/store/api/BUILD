@@ -9,6 +9,7 @@ DEPS = [
     "@maven//:org_springframework_spring_beans",
     "@maven//:org_springframework_spring_context",
     "@maven//:org_springframework_spring_web",
+    "@maven//:org_springframework_spring_webmvc",
     "@maven//:org_postgresql_postgresql",
     "//store-api/src/main/java/com/book/store/api/models",
     "//store-api/src/main/java/com/book/store/api/repositories",
@@ -19,7 +20,7 @@ java_library(
     name = "lib",
     srcs = glob(["*.java"]),
     resources = [
-        "//store-api/src/main/resources:properties",
+        "//store-api/src/main/resources",
     ],
     visibility = ["//src/test:__subpackages__"],
     deps = DEPS,
@@ -38,6 +39,9 @@ springboot(
     name = "deployable",
     boot_app_class = "com.book.store.api.Application",
     java_library = ":lib",
-    deps = DEPS,
+    tags = [
+        "release",
+    ],
     #    fail_on_duplicate_classes=True
+    deps = DEPS,
 )

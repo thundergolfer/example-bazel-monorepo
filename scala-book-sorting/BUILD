@@ -7,14 +7,13 @@ scala_binary(
     deps = [],
 )
 
-TEST_SRCS = glob(["src/test/scala/com/book/sorting/*.scala"])
-
 TEST_DEPS = [
-    "//3rdparty/jvm/org/scalatest:scalatest",
+    "@3rdparty_jvm//org/scalatest:scalatest",
 ]
 
 scala_test(
     name = "test",
-    srcs = TEST_SRCS,
-    deps = [],
+    timeout = "short",
+    srcs = glob(["src/test/scala/com/book/sorting/*.scala"]),
+    deps = TEST_DEPS,
 )

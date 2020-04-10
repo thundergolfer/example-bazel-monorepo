@@ -16,7 +16,7 @@ var prefix = []string{"Your 'Blind Date With A Book' is"}
 func info() {
 	app.Name = "Blind Date With A Book"
 	app.Usage = "An example CLI"
-	app.Author = "thundergolfer"
+	app.Author = "thundergolfer - Jonathon Belotti"
 	app.Version = "0.1.1"
 }
 

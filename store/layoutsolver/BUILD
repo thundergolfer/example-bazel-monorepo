@@ -10,6 +10,7 @@ java_library(
 
 java_test(
     name = "test",
+    timeout = "short",
     srcs = glob([
         "src/test/java/com/bookstore/layoutsolver/*.java",
     ]),

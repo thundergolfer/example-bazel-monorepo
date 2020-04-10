@@ -75,6 +75,7 @@ maven_install(
         "org.springframework:spring-context:5.1.5.RELEASE",
         "org.springframework:spring-test:5.1.5.RELEASE",
         "org.springframework:spring-web:5.1.5.RELEASE",
+        "org.springframework:spring-webmvc:5.1.5.RELEASE",
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
     repositories = [
@@ -96,13 +97,13 @@ http_archive(
 )
 
 # Third-Party packaging support
-rules_python_external_version = "12bfbdffc57bbaf9a3de31e6a7acdc415eb9de72"
+rules_python_external_version = "0.1.4"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "31c1199d66241114c6974eafcb5578924a106f3fc62bcfcda6930159279098e0",
+    sha256 = "c3f3fae1bd624b83dcc6e83cd8e7e6e574189c7ed4f56f51dd0be9c50354cc9e",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
-    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/{version}.zip".format(version = rules_python_external_version),
+    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/v{version}.zip".format(version = rules_python_external_version),
 )
 
 # Install the rule dependencies
@@ -151,7 +152,7 @@ mypy_integration_pip_deps()
 ######################
 # RUBY SUPPORT
 ######################
-rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
+#rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
 
 # TODO(Jonathon): Reinstate this when it isn't breaking CI
 # Ref: https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo/builds/162#7a972413-1ff2-43a9-8385-a1a871acf358
@@ -182,6 +183,34 @@ rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
 #)
 
 ######################
+# RUST SUPPORT
+######################
+
+rules_rust_version = "fe50d3b54aecbaeac48abdc2ca7cd00a94969e15"
+
+http_archive(
+    name = "io_bazel_rules_rust",
+    sha256 = "3f6db529492d821a91560c230e2634e34b3e0a3147fc5c4c41ac5bc6ccd45d3f",
+    strip_prefix = "rules_rust-{version}".format(version = rules_rust_version),
+    urls = [
+        # Master branch as of 2019-10-07
+        "https://github.com/bazelbuild/rules_rust/archive/{version}.tar.gz".format(version = rules_rust_version),
+    ],
+)
+
+load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+
+rust_repositories()
+
+load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+
+bazel_version(name = "bazel_version")
+
+load("//3rdparty/cargo:crates.bzl", "raze_fetch_remote_crates")
+
+raze_fetch_remote_crates()
+
+######################
 # SCALA SUPPORT
 ######################
 
@@ -205,11 +234,14 @@ scala_register_toolchains()
 
 # Load dependencies managed by bazel-deps
 load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
+load("//3rdparty:target_file.bzl", "build_external_workspace")
+
+build_external_workspace(name = "3rdparty_jvm")
 
 scala_deps()
 
 #######################################
-# TYPESCRIPT / NODE-JS
+# TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
 rules_nodejs_version = "1.0.1"
@@ -244,7 +276,7 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 ts_setup_workspace()
 
 ######################
-# *OTHER*
+# OTHER
 ######################
 
 # requirement of 'com_github_bazelbuild_buildtools'

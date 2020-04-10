@@ -5,6 +5,7 @@ import com.book.store.api.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -16,4 +17,14 @@ public class BookService {
     public List<Book> list() {
         return bookRepository.findAll();
     }
+
+    public Book add(Book b) {
+        Book savedBook = bookRepository.save(b);
+        return savedBook;
+    }
+
+    public void deleteById(long id) {
+        bookRepository.deleteById(id);
+    }
+
 }

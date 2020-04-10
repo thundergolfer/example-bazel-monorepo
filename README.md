@@ -2,23 +2,25 @@
 
 > *Note:* Currently supporting the latest Bazel version as at mid December 2019, [2.0.0](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) 
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Ruby* and *Rust* support is in-progress . 
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
 Others can use it to check out the Bazel way of doing things and use parts
 as a reference implementation.
 
-Rather than the typical To-Do list, this project's code uses the contrived scenario of a book shop. 📗📕📒📚
+Rather than the typical To-Do list, this project's code uses the contrived scenario of a book shop and reading cataloging website, called *Antilibrary*. 📗📕📒📚
 
 ## Getting Started
 
 **Prerequisites:**
  
 - [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `2.0.0`)
-- Python 3.7
+- Python 3.6+
+- [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
+- [`rustc`, `cargo`, and `rustup`](https://www.rust-lang.org/tools/install) for the Rust code.
 
-Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`.  
+Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
 
 ## Why use a Monorepo?
 
@@ -64,6 +66,17 @@ Third-party Ruby dependencies are managed by `rules_ruby`, which accepts a `Gemf
 
 A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
 
+### *Rust* Support
+
+There's 'hello world' code contained in [`rust/hello_world`](/rust/hello_world).
+
+##### Dependency Management
+
+Its third-party dependencies are managed by [`google/cargo-raze`](https://github.com/google/cargo-raze). The usage of that tool is wrapped up in a script
+as [`tools/update_rust_dependencies.sh`](tools/update_rust_dependencies.sh).
+
+To use it, you update the `Cargo.toml` file in [`3rdparty/cargo`](3rdparty/cargo) and then run the script.
+
 
 ### *Scala* Support
 
@@ -80,9 +93,9 @@ To use it, you update [`tools/dependencies/jvm_dependencies.yaml`](tools/depende
 
 ### *Python* Support
 
-There's Python code in the [`/book_sorting`](/book_sorting] and [`/scraping`](/scraping).
+There's Python code in the [`/book_sorting`](/book_sorting) and [`/scraping`](/scraping).
 
-[`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used to for the core `py_*` rules.
+[`bazelbuild/rules_python`](https://github.com/bazelbuild/rules_python) is used for the core `py_*` rules.
 
 ##### Dependency Management
 
@@ -101,6 +114,10 @@ In order to add new third-party packages for Python, add them to [`tools/depende
 
 This repository's CI is managed by [Buildkite](https://buildkite.com), the CI platform used by Pinterest and Canva to manage Bazel monorepos,
 as well as being [used by the Bazel open-source project itself](https://buildkite.com/bazel).
+
+### Build Observability + Analysis
+
+This project is using [Buildbuddy.IO](https://buildbuddy.io/). Every build run locally or in CI get its own `https://app.buildbuddy.io/invocation/xyz123...` URL which analyses and records the build's information.
 
 ### Linting
 
