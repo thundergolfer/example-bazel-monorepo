@@ -1,6 +1,6 @@
 # Example Bazel Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
 
-> *Note:* Currently supporting the latest Bazel version as at mid December 2019, [2.0.0](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) 
+> *Note:* Currently supporting the latest Bazel version as at mid April 2020, [3.0.0](https://github.com/bazelbuild/bazel/releases/tag/3.0.0) 
 
 Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Ruby* and *Rust* support is in-progress . 
 
@@ -15,7 +15,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 
 **Prerequisites:**
  
-- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `2.0.0`)
+- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `3.0.0`)
 - Python 3.6+
 - [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
 - [`rustc`, `cargo`, and `rustup`](https://www.rust-lang.org/tools/install) for the Rust code.
