@@ -5,6 +5,7 @@ import com.book.store.api.services.AuthorService;
 import com.book.store.api.services.BookService;
 import com.book.store.api.services.TagService;
 import com.book.store.api.services.UserService;
+import com.book.store.search.EditDistanceRanking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,10 +31,24 @@ public class ApiController {
     @Autowired
     UserService userService;
 
+    EditDistanceRanking searchService = new EditDistanceRanking();
+
 
     @RequestMapping("/")
     public String index() {
         return "👋 Greetings from AntiLibrary! An online world of reading built with Bazel.";
+    }
+
+    /*
+     * Search 🕵️‍♂️
+     * A VERY, VERY basic search endpoint
+     */
+    @GetMapping("/search")
+    List<Book> search(@RequestParam("query") String query) {
+        // TODO(Jonathon): Only searches books right now. Should search authors and users also
+        List<Book> books = bookService.list();
+        int numResults = 5;
+        return searchService.rankByTitle(query, books, numResults);
     }
 
     /*
