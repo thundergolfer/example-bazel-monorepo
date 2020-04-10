@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(path = "v1")
 public class ApiController {
 
     @Autowired
