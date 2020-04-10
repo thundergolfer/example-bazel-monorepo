@@ -15,6 +15,8 @@ public class User implements Serializable {
     private Long id;
     @Column(unique=true)
     private String username;
+    @Column(unique=true)
+    private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserBookTag> bookTags = new HashSet<>();
@@ -22,6 +24,9 @@ public class User implements Serializable {
     // standard getters and setters
     public String getUsername() {
         return this.username;
+    }
+    public String getEmail() {
+        return this.email;
     }
 
     public Set<UserBookTag> getCurrentlyReadingList() {

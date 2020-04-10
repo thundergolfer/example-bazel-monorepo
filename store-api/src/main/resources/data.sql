@@ -29,11 +29,11 @@ INSERT INTO author (id, name) VALUES
     (1, 'Sally Rooney'),
     (2, 'David Foster Wallace');
 
-INSERT INTO user_ (id, username) VALUES
-    (1, 'User1'),
-    (2, 'User2'),
-    (3, 'User3'),
-    (4, 'User4');
+INSERT INTO user_ (id, username, email) VALUES
+    (1, 'User1', 'user1@gmail.com'),
+    (2, 'User2', 'user2@example.com'),
+    (3, 'User3', 'user-the-third@example.com'),
+    (4, 'User4', 'us3r_4@hotmail.com');
 
 INSERT INTO tag (id, name) VALUES
     (1, 'CURRENTLY_READING'),
