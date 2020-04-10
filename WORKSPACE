@@ -244,13 +244,13 @@ scala_deps()
 # TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
-rules_nodejs_version = "1.0.1"
+rules_nodejs_version = "1.5.0"
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "e1a0d6eb40ec89f61a13a028e7113aa3630247253bcb1406281b627e44395145",
+    sha256 = "d0c4bb8b902c1658f42eb5563809c70a06e46015d64057d25560b0eb4bdc9007",
     urls = [
         "https://github.com/bazelbuild/rules_nodejs/releases/download/{version}/rules_nodejs-{version}.tar.gz".format(
             version = rules_nodejs_version,
