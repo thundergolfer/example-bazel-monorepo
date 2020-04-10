@@ -11,7 +11,7 @@ main() {
 
   if git diff --name-only | grep -vq "bazelignore";
   then
-    git diff
+    git diff --no-pager
     echo "Bazel linting errors found. Run $(basename "${BASH_SOURCE}")  to lint BUILD files + WORKSPACE"
     exit 1
   fi
