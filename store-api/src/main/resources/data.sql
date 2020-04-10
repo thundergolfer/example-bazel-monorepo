@@ -1,9 +1,9 @@
 -- noinspection SqlNoDataSourceInspectionForFile
 
-TRUNCATE TABLE book, author, user_, tag, user_book_tag;
+TRUNCATE TABLE book, author, user_, tag, user_book_tag, book_author;
 
 INSERT INTO book (id, name, isbn, description, publish_date, rating) VALUES
-    (1, 'The Wind in the Willows', '1984822179', 'ABCDEFG', date '2001-10-01', 4.5),
+    (1, 'The Wind in the Willows', '1984822179', 'ABCDEFG', date '1908-04-01', 4.5), -- Kenneth Grahame
     (2, 'Gone Girl', '1984822179', 'ABCDEFG', date '2001-10-01', 4.5),
     (3, 'The Road to Serfdom', '9780226320618', 'TODO', '1944-10-15', 3.4), -- Friedrich A. Hayek
     (4, 'Creating a Learning Society: A New Approach to Growth, Development, and Social Progress', '9780231152143', 'TODO', '2014-06-24', 3.9), -- Joseph E. Stiglitz
@@ -25,9 +25,27 @@ INSERT INTO book (id, name, isbn, description, publish_date, rating) VALUES
     (20, 'V for Vendetta', '9781401207922', 'Remember, remember the fifth of November...', '1990-01-01', 5.0); -- Alan Moore
 
 
-INSERT INTO author (id, name) VALUES
-    (1, 'Sally Rooney'),
-    (2, 'David Foster Wallace');
+INSERT INTO author (id, name, nationality, date_of_birth) VALUES
+    (1, 'Sally Rooney', 'Irish', '1991-02-20'),
+    (2, 'David Foster Wallace', 'American', '1962-02-21'),
+    (3, 'Alan Moore', 'English', '1953-11-18'),
+    (4, 'Gillian Flynn', 'American', '1971-02-24'),
+    (5, 'Friedrich A. Hayek', 'Austrian-British', '1899-05-8'),
+    (6, 'Joseph E. Stiglitz', 'American', '1943-02-9'),
+    (7, 'Kurt Vonnegut', 'American', '1922-11-11,'),
+    (8, 'René Girard', 'French', '1923-12-25'),
+    (9, 'Peter Theil', 'American', '1967-10-11'),
+    (10, 'Blake Masters', 'American', '1986-01-01'),
+    (11, 'Ezra Klein', 'American', '1984-05-09'),
+    (12, 'Oscar Wilde', 'British', '1854-10-16'),
+    (13, 'Michael Lewis', 'American', '1960-10-15'),
+    (14, 'George Orwell', 'British', '1903-06-25'),
+    (15, 'David Graeber', 'American', '1961-02-12'),
+    (16, 'Nana Kwame Adjei-Brenyah', 'American', null),
+    (17, 'James Bridle', 'British', null), -- born 1980
+    (18, 'Herbert A. Simon', 'American', '1916-06-15'),
+    (19, 'Isabel Wilkerson', 'American', null), -- born 1961
+    (20, 'Kenneth Grahame', 'Scottish', '1859-03-08');
 
 INSERT INTO user_ (id, username, email) VALUES
     (1, 'User1', 'user1@gmail.com'),
@@ -43,3 +61,25 @@ INSERT INTO tag (id, name) VALUES
 INSERT INTO user_book_tag (id, user_id, book_id, tag_id) VALUES
     (1, 2, 1, 1),
     (2, 2, 2, 3);
+
+INSERT INTO book_author (id, book_id, author_id) VALUES
+    (1, 1, 20),
+    (2, 2, 4),
+    (3, 3, 5),
+    (4, 4, 6),
+    (5, 5, 1),
+    (6, 6, 7),
+    (7, 7, 8),
+    (8, 8, 9),
+    (9, 9, 11),
+    (10, 10, 7),
+    (11, 11, 12),
+    (12, 12, 13),
+    (13, 13, 14),
+    (14, 14, 14),
+    (15, 15, 15),
+    (16, 16, 17),
+    (17, 17, 16),
+    (18, 18, 19),
+    (19, 19, 18),
+    (20, 20, 3);

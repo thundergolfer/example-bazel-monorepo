@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Book {
@@ -19,6 +20,9 @@ public class Book {
     private float rating;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private Set<BookAuthor> authors = new HashSet<>();
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private Set<UserBookTag> bookTags = new HashSet<>();
 
     // standard getters and setters
@@ -32,4 +36,6 @@ public class Book {
     public String getIsbn() { return this.isbn; }
     public LocalDate getPublishDate() { return this.publishDate; }
     public float getRating() { return this.rating; }
+
+    public Set<Author> getAuthors() { return this.authors.stream().map(ba -> ba.getAuthor()).collect(Collectors.toSet()); }
 }
