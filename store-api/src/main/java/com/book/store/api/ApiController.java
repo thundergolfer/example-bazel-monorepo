@@ -3,7 +3,6 @@ package com.book.store.api;
 import com.book.store.api.models.*;
 import com.book.store.api.services.AuthorService;
 import com.book.store.api.services.BookService;
-import com.book.store.api.services.TagService;
 import com.book.store.api.services.UserService;
 import com.book.store.search.EditDistanceRanking;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,6 @@ public class ApiController {
     BookService bookService;
     @Autowired
     AuthorService authorService;
-    @Autowired
-    TagService tagService;
     @Autowired
     UserService userService;
 
@@ -145,6 +142,19 @@ public class ApiController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/users/{id}/currently_reading/{bookId}")
+    public ResponseEntity<Object> markNotCurrentlyReading(@PathVariable long id, @PathVariable long bookId) {
+        User user = userService.getById(id);
+        Optional<Book> bookResult = bookService.findById(bookId);
+        if (!bookResult.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("BOOK ID DOES NOT EXIST"); // TODO(Jonathon): Improve err msg
+        }
+        userService.markNotCurrentlyReading(user, bookResult.get());
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/users/{id}/read")
     public ResponseEntity<Object> read(@PathVariable long id) {
         Optional<Set<UserBookTag>> result = userService.userRead(id);
@@ -175,12 +185,17 @@ public class ApiController {
         return ResponseEntity.ok().build();
     }
 
-    /*
-     * TAG Routes
-     */
-    @GetMapping("/tags")
-    List<Tag> allTags() {
-        return tagService.list();
+    @DeleteMapping("/users/{id}/read/{bookId}")
+    public ResponseEntity<Object> markUnread(@PathVariable long id, @PathVariable long bookId) {
+        User user = userService.getById(id);
+        Optional<Book> bookResult = bookService.findById(bookId);
+        if (!bookResult.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("BOOK ID DOES NOT EXIST"); // TODO(Jonathon): Improve err msg
+        }
+        userService.markUnread(user, bookResult.get());
+        return ResponseEntity.ok().build();
     }
 
     /*

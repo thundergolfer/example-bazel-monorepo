@@ -4,12 +4,13 @@ import com.book.store.api.models.Book;
 import com.book.store.api.models.Tag;
 import com.book.store.api.models.User;
 import com.book.store.api.models.UserBookTag;
-import com.book.store.api.repositories.TagRepository;
+import com.book.store.api.repositories.BookRepository;
+import com.book.store.api.repositories.UserBookTagRepository;
 import com.book.store.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -20,7 +21,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private TagRepository tagRepository;
+    private UserBookTagRepository userBookTagRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     public List<User> list() {
         return userRepository.findAll();
@@ -62,12 +65,12 @@ public class UserService {
         u.addBookTag(new UserBookTag(
                 u,
                 b,
-                tagRepository.findByName(Tag.READ)
+                Tag.READ
         ));
         u.removeBookTag(new UserBookTag(
                 u,
                 b,
-                tagRepository.findByName(Tag.CURRENTLY_READING)
+                Tag.CURRENTLY_READING
         ));
         userRepository.save(u);
     }
@@ -76,7 +79,7 @@ public class UserService {
         UserBookTag t = new UserBookTag(
                 u,
                 b,
-                tagRepository.findByName(Tag.READ)
+                Tag.READ
         );
         u.removeBookTag(t);
         userRepository.save(u);
@@ -86,20 +89,21 @@ public class UserService {
         UserBookTag t = new UserBookTag(
                 u,
                 b,
-                tagRepository.findByName(Tag.CURRENTLY_READING)
+                Tag.CURRENTLY_READING
         );
         u.addBookTag(t);
+//        b.addBookTag(t);
         userRepository.save(u);
+//        bookRepository.save(b);
     }
 
     public void markNotCurrentlyReading(User u, Book b) {
-        UserBookTag t = new UserBookTag(
-                u,
-                b,
-                tagRepository.findByName(Tag.CURRENTLY_READING)
-        );
+        UserBookTag t = userBookTagRepository.findByUserIdAndBookId(u.getId(), b.getId());
         u.removeBookTag(t);
+        b.removeBookTag(t);
         userRepository.save(u);
+        bookRepository.save(b);
+        userBookTagRepository.delete(t);
     }
 
     public User getById(long id) {

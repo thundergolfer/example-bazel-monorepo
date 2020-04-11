@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserBookTagRepository extends JpaRepository<UserBookTag, Long> {}
+public interface UserBookTagRepository extends JpaRepository<UserBookTag, Long> {
+    UserBookTag findByUserIdAndBookId(long userId, long bookId);
+}

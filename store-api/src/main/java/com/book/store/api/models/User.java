@@ -49,7 +49,11 @@ public class User implements Serializable {
     }
 
     public void removeBookTag(UserBookTag t) {
-        bookTags.remove(t);
+        boolean removed = bookTags.remove(t);
+        if (!removed) {
+            // TODO(Jonathon): Remove this. Temp hack
+            throw new IllegalArgumentException();
+        }
     }
 
     public Long getId() {

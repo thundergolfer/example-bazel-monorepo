@@ -17,12 +17,10 @@ public class UserBookTag implements Serializable {
     @JoinColumn
     private Book book;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn
     private User user;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn
     private Tag tag;
 
     public UserBookTag() {}
@@ -37,9 +35,7 @@ public class UserBookTag implements Serializable {
         return book;
     }
 
-    public String getTag() {
-        return tag.getName();
-    }
+    public Tag getTag() { return tag; }
 
     @Override
     public boolean equals(Object o) {
@@ -48,11 +44,11 @@ public class UserBookTag implements Serializable {
         UserBookTag that = (UserBookTag) o;
         return Objects.equals(book.getName(), that.book.getName()) &&
                 Objects.equals(user.getUsername(), that.user.getUsername()) &&
-                Objects.equals(tag.getName(), that.tag.getName());
+                Objects.equals(tag, that.tag);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(book.getName(), user.getUsername(), tag.getName());
+        return Objects.hash(book.getName(), user.getUsername(), tag);
     }
 }
