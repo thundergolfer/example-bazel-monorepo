@@ -10,6 +10,7 @@ import java.util.Objects;
 public class UserBookTag implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     Long id;
 
     @ManyToOne
@@ -20,19 +21,21 @@ public class UserBookTag implements Serializable {
     @JoinColumn
     private User user;
 
-    @ManyToOne
-    @JoinColumn
     private Tag tag;
 
     public UserBookTag() {}
+
+    public UserBookTag(User u, Book b, Tag t) {
+        this.user = u;
+        this.book = b;
+        this.tag = t;
+    }
 
     public Book getBook() {
         return book;
     }
 
-    public String getTag() {
-        return tag.getName();
-    }
+    public Tag getTag() { return tag; }
 
     @Override
     public boolean equals(Object o) {
