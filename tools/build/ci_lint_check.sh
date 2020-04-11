@@ -12,7 +12,7 @@ main() {
   if git diff --name-only | grep -vq "bazelignore";
   then
     # shellcheck disable=SC2034
-    GIT_PAGER=cat
+    export GIT_PAGER=cat
     git diff
     echo "Bazel linting errors found. Run $(basename "${BASH_SOURCE}")  to lint BUILD files + WORKSPACE"
     exit 1
