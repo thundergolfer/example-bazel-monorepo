@@ -206,5 +206,10 @@ public class ApiController {
     List<Author> allAuthors() {
         return authorService.list();
     }
+
+    @GetMapping("/authors/{id}")
+    Author getAuthorById(@PathVariable long id) {
+        return authorService.getById(id);
+    }
 }
 
