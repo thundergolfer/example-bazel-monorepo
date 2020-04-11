@@ -38,17 +38,4 @@ public class Book {
     public float getRating() { return this.rating; }
 
     public Set<Author> getAuthors() { return this.authors.stream().map(BookAuthor::getAuthor).collect(Collectors.toSet()); }
-
-    public void addBookTag(UserBookTag t) {
-        bookTags.add(t);
-    }
-
-    public void removeBookTag(UserBookTag t) {
-        boolean removed = bookTags.remove(t);
-        if (!removed) {
-            // TODO(Jonathon): Remove this. Temp hack
-            throw new IllegalArgumentException();
-        }
-    }
-
 }

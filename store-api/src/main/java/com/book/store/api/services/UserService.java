@@ -22,8 +22,6 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private UserBookTagRepository userBookTagRepository;
-    @Autowired
-    private BookRepository bookRepository;
 
     public List<User> list() {
         return userRepository.findAll();
@@ -67,22 +65,27 @@ public class UserService {
                 b,
                 Tag.READ
         ));
-        u.removeBookTag(new UserBookTag(
-                u,
-                b,
+        Optional<UserBookTag> optCurrReadingTag = userBookTagRepository.findByUserIdAndBookIdAndTag(
+                u.getId(),
+                b.getId(),
                 Tag.CURRENTLY_READING
-        ));
+        );
+        if (optCurrReadingTag.isPresent()) {
+            UserBookTag currReadingTag = optCurrReadingTag.get();
+            u.removeBookTag(currReadingTag);
+            userBookTagRepository.delete(currReadingTag);
+        }
         userRepository.save(u);
     }
 
     public void markUnread(User u, Book b) {
-        UserBookTag t = new UserBookTag(
-                u,
-                b,
-                Tag.READ
-        );
-        u.removeBookTag(t);
-        userRepository.save(u);
+        Optional<UserBookTag> optTag = userBookTagRepository.findByUserIdAndBookIdAndTag(u.getId(), b.getId(), Tag.READ);
+        if (optTag.isPresent()) {
+            UserBookTag t = optTag.get();
+            u.removeBookTag(t);
+            userRepository.save(u);
+            userBookTagRepository.delete(t);
+        }
     }
 
     public void markCurrentlyReading(User u, Book b) {
@@ -92,18 +95,17 @@ public class UserService {
                 Tag.CURRENTLY_READING
         );
         u.addBookTag(t);
-//        b.addBookTag(t);
         userRepository.save(u);
-//        bookRepository.save(b);
     }
 
     public void markNotCurrentlyReading(User u, Book b) {
-        UserBookTag t = userBookTagRepository.findByUserIdAndBookId(u.getId(), b.getId());
-        u.removeBookTag(t);
-        b.removeBookTag(t);
-        userRepository.save(u);
-        bookRepository.save(b);
-        userBookTagRepository.delete(t);
+        Optional<UserBookTag> optTag = userBookTagRepository.findByUserIdAndBookIdAndTag(u.getId(), b.getId(), Tag.CURRENTLY_READING);
+        if (optTag.isPresent()) {
+            UserBookTag t = optTag.get();
+            u.removeBookTag(t);
+            userRepository.save(u);
+            userBookTagRepository.delete(t);
+        }
     }
 
     public User getById(long id) {
