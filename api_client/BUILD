@@ -12,15 +12,15 @@ py_library(
 py_binary(
     name = "test_run",
     srcs = glob(["py_antilibrary/**/*.py"]),
+    main = "py_antilibrary/__init__.py",
     deps = [
         requirement("requests"),
     ],
-    main = "py_antilibrary/__init__.py"
 )
 
 py_interpreter(
     name = "repl",
-    deps = [":nyt_bestsellers"],
+    deps = [":api_client"],
 )
 
 # TODO(Jonathon): Figure out how to use Bazel to distribute this client to PyPi
