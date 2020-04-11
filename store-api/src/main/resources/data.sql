@@ -1,6 +1,6 @@
 -- noinspection SqlNoDataSourceInspectionForFile
 
-TRUNCATE TABLE book, author, user_, user_book_tag, book_author;
+TRUNCATE TABLE book, author, user_, review, user_book_tag, book_author;
 
 INSERT INTO book (id, name, isbn, description, publish_date, rating) VALUES
     (1, 'The Wind in the Willows', '1984822179', 'ABCDEFG', date '1908-04-01', 4.5), -- Kenneth Grahame
@@ -79,3 +79,7 @@ INSERT INTO book_author (id, book_id, author_id) VALUES
     (19, 19, 18),
     (20, 20, 3),
     (21, 8, 10);
+
+INSERT INTO review (id, user_id, book_id, rating) VALUES
+    (1, 1, 20, 2.5),
+    (2, 1, 19, 2.5);

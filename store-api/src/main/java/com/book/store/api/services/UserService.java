@@ -1,10 +1,8 @@
 package com.book.store.api.services;
 
-import com.book.store.api.models.Book;
-import com.book.store.api.models.Tag;
-import com.book.store.api.models.User;
-import com.book.store.api.models.UserBookTag;
+import com.book.store.api.models.*;
 import com.book.store.api.repositories.BookRepository;
+import com.book.store.api.repositories.ReviewRepository;
 import com.book.store.api.repositories.UserBookTagRepository;
 import com.book.store.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -22,6 +21,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private UserBookTagRepository userBookTagRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public List<User> list() {
         return userRepository.findAll();
@@ -110,6 +111,25 @@ public class UserService {
 
     public User getById(long id) {
         return userRepository.findById(id).get();
+    }
+
+    public Set<Review> listReviews(User u) {
+        return u.getReviews();
+    }
+
+    public void addReview(User u, Book b, float rating) {
+        Optional<Review> optReview = reviewRepository.findByUserIdAndBookId(u.getId(), b.getId());
+        Review r;
+        if (optReview.isPresent()) {
+            r = optReview.get();
+        } else {
+            r = new Review();
+            r.setUser(u);
+            r.setBook(b);
+            u.addReview(r);
+        }
+        r.setRating(rating);
+        userRepository.save(u);
     }
 
 

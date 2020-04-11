@@ -1,6 +1,7 @@
 package com.book.store.api.services;
 
 import com.book.store.api.models.Book;
+import com.book.store.api.models.User;
 import com.book.store.api.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class BookService {
     public Book add(Book b) {
         Book savedBook = bookRepository.save(b);
         return savedBook;
+    }
+
+    public Book getById(long id) {
+        return findById(id).get();
     }
 
     public Optional<Book> findById(long id) {

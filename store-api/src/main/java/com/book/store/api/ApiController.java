@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -198,6 +200,26 @@ public class ApiController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/users/{id}/reviews")
+    public Set<Review> getReviews(@PathVariable long id) {
+        User user = userService.getById(id);
+        return userService.listReviews(user);
+    }
+
+    @PutMapping("/users/{id}/reviews/book/{bookId}/rating/{rating}")
+    public ResponseEntity<Object> putReview(@PathVariable long id, @PathVariable long bookId, @PathVariable float rating) {
+        User user = userService.getById(id);
+        Book book = bookService.getById(bookId);
+        if (rating < 0.0 || rating > 5.0) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Invalid Rating. Value be between 0.0 and 5.0");
+        }
+
+        userService.addReview(user, book, round(rating, 1));
+        return ResponseEntity.ok().build();
+    }
+
     /*
      * AUTHOR Routes
      */
@@ -210,6 +232,14 @@ public class ApiController {
     @GetMapping("/authors/{id}")
     Author getAuthorById(@PathVariable long id) {
         return authorService.getById(id);
+    }
+
+    private static float round(float value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(Float.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.floatValue();
     }
 }
 

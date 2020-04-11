@@ -22,6 +22,10 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserBookTag> bookTags = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Review> reviews = new HashSet<>();
+
+
     // standard getters and setters
     public String getUsername() {
         return this.username;
@@ -44,12 +48,26 @@ public class User implements Serializable {
                 .collect(Collectors.toSet());
     }
 
+    public Set<Review> getReviews() {
+        return this.reviews;
+    }
+
     public void addBookTag(UserBookTag t) {
         bookTags.add(t);
     }
 
     public void removeBookTag(UserBookTag t) {
         bookTags.remove(t);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+        review.setUser(this);
+    }
+
+    public void removeReview(Review review) {
+        reviews.remove(review);
+        review.setUser(null);
     }
 
     public Long getId() {
