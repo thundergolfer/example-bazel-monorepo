@@ -1,16 +1,14 @@
 load("@py_deps//:requirements.bzl", "requirement")
 load("//tools/python/interpreter:macro.bzl", "py_interpreter")
 
-DEPS = [
-    requirement("requests"),
-    requirement("beautifulsoup4"),
-]
-
 py_binary(
     name = "nyt_bestsellers",
     srcs = ["main.py"],
     main = "main.py",
-    deps = DEPS,
+    deps = [
+        requirement("requests"),
+        requirement("beautifulsoup4"),
+    ],
 )
 
 # Try it with:
