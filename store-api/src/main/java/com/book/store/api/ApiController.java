@@ -216,6 +216,8 @@ public class ApiController {
                     .body("Invalid Rating. Value be between 0.0 and 5.0");
         }
 
+        // TODO(Jonathon): Users should not be able to rate books they haven't read
+
         userService.addReview(user, book, round(rating, 1));
         return ResponseEntity.ok().build();
     }
