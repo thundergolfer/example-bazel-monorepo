@@ -287,7 +287,7 @@ graknlabs_bazel_distribution_version = "af5283473c9c7dca59579532d0d233f3f6a47e5f
 
 http_archive(
     name = "graknlabs_bazel_distribution",
-    sha256 = "",
+    sha256 = "cbda10301d41d7b601b55d86d62576f30eea9af22e8f453178f424be28262fdc",
     strip_prefix = "bazel-distribution-{version}".format(version = graknlabs_bazel_distribution_version),
     urls = ["https://github.com/graknlabs/bazel-distribution/archive/{version}.zip".format(version = graknlabs_bazel_distribution_version)],
 )
