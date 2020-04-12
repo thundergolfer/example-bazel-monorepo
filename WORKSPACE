@@ -276,6 +276,30 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 ts_setup_workspace()
 
 ######################
+# CODE DISTRIBUTION
+######################
+
+graknlabs_bazel_distribution_version = "af5283473c9c7dca59579532d0d233f3f6a47e5f"
+
+http_archive(
+    name = "graknlabs_bazel_distribution",
+    sha256 = "",
+    strip_prefix = "bazel-distribution-{version}".format(version = graknlabs_bazel_distribution_version),
+    urls = ["https://github.com/graknlabs/bazel-distribution/archive/{version}.zip".format(version = graknlabs_bazel_distribution_version)],
+)
+
+load("@io_bazel_rules_python//python:pip.bzl", "pip_repositories", "pip_import")
+pip_repositories()
+
+pip_import(
+    name = "graknlabs_bazel_distribution_pip",
+    requirements = "@graknlabs_bazel_distribution//pip:requirements.txt",
+)
+load("@graknlabs_bazel_distribution_pip//:requirements.bzl", graknlabs_bazel_distribution_pip_install = "pip_install")
+graknlabs_bazel_distribution_pip_install()
+
+
+######################
 # OTHER
 ######################
 
