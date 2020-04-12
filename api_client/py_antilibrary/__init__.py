@@ -41,7 +41,9 @@ class Client:
             raise RuntimeError(resp)
         # TODO(Jonathon): When auth exists in backend this should do more than just check for 404 and get id
         for u in users:
-            if (self.email and u["email"] == self.email) or (self.username and u["username"] == self.username):
+            if (self.email and u["email"] == self.email) or (
+                self.username and u["username"] == self.username
+            ):
                 self.user = u
                 return
         raise RuntimeError(f"User not found for username: {self.username} email: {self.email}")
