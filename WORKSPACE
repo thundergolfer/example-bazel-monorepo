@@ -79,8 +79,8 @@ maven_install(
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
     repositories = [
-        "https://maven.google.com",
         "https://repo1.maven.org/maven2",
+        "https://maven.google.com",
     ],
     maven_install_json = "@example_bazel_monorepo//3rdparty:maven_install.json",
 )
