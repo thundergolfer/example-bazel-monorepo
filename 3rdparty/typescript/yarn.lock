@@ -36,8 +36,8 @@
     tmp "0.0.33"
 
 "@bazel/typescript@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-1.0.1.tgz#23c8232f9a08199971a306a688843f10832f2458"
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-1.6.0.tgz#8dfd29e71bcf917d5f9cb67f19ac4dcfc9082439"
   dependencies:
     protobufjs "6.8.8"
     semver "5.6.0"
@@ -100,16 +100,16 @@
   resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.117.tgz#695a7f514182771a1e0f4345d189052ee33c8778"
 
 "@types/long@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.0.tgz#719551d2352d301ac8b81db732acb6bdc28dbdef"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.1.tgz#459c65fa1867dafe6a8f322c4c51695663cc55e9"
 
 "@types/node@*":
   version "10.12.0"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
 
 "@types/node@^10.1.0":
-  version "10.17.13"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.13.tgz#ccebcdb990bd6139cd16e84c39dc2fb1023ca90c"
+  version "10.17.19"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.19.tgz#1d31ddd5503dba2af7a901aafef3392e4955620e"
 
 "@types/prop-types@*":
   version "15.5.6"
@@ -584,7 +584,7 @@ buffer-fill@^1.0.0:
 
 buffer-from@^1.0.0:
   version "1.1.1"
-  resolved "http://registry.npm.taobao.org/buffer-from/download/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
+  resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
 
 buffer-more-ints@0.0.2:
   version "0.0.2"
@@ -3326,7 +3326,7 @@ source-map-resolve@^0.5.0:
 
 source-map-support@0.5.9:
   version "0.5.9"
-  resolved "http://registry.npm.taobao.org/source-map-support/download/source-map-support-0.5.9.tgz#41bc953b2534267ea2d605bccfa7bfa3111ced5f"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.9.tgz#41bc953b2534267ea2d605bccfa7bfa3111ced5f"
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
@@ -3577,8 +3577,8 @@ tough-cookie@~2.4.3:
     punycode "^1.4.1"
 
 tslib@^1.8.1:
-  version "1.9.3"
-  resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
 
 tslib@^1.9.0:
   version "1.10.0"
@@ -3590,7 +3590,7 @@ tsscmp@~1.0.0:
 
 tsutils@2.27.2:
   version "2.27.2"
-  resolved "http://registry.npm.taobao.org/tsutils/download/tsutils-2.27.2.tgz#60ba88a23d6f785ec4b89c6e8179cac9b431f1c7"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.27.2.tgz#60ba88a23d6f785ec4b89c6e8179cac9b431f1c7"
   dependencies:
     tslib "^1.8.1"
 
