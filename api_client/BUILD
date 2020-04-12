@@ -2,7 +2,11 @@ load("@py_deps//:requirements.bzl", "requirement")
 load("@graknlabs_bazel_distribution//pip:rules.bzl", "assemble_pip", "deploy_pip")
 load("//tools/python/interpreter:macro.bzl", "py_interpreter")
 
-exports_files(["README.md", "deployment.properties"])
+exports_files([
+    "README.md",
+    "deployment.properties",
+    "pypi-version.txt",
+])
 
 py_library(
     name = "api_client",
@@ -28,8 +32,9 @@ py_interpreter(
 
 assemble_pip(
     name = "assemble-pip",
-    target = ":api_client",
     package_name = "py-antilibrary",
+    author = "Jonathon Belotti",
+    author_email = "jonathon.i.belotti@gmail.com",
     classifiers = [
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.5",
@@ -40,24 +45,29 @@ assemble_pip(
         "Intended Audience :: Developers",
         "Environment :: Console",
     ],
-    url = "https://github.com/thundergolfer/example-bazel-monorepo/",
-    author = "Jonathon Belotti",
-    author_email = "jonathon.i.belotti@gmail.com",
-    license = "MIT",
+    description = "API Client for antilibrary.xyz, a demo app for thundergolfer/example-bazel-monorepo",
     # TODO(Jonathon): This rule should support automatic construction of this array
     # Ref: https://github.com/graknlabs/bazel-distribution/issues/223
-    install_requires=[
-        'requests~=2.23.0',
+    install_requires = [
+        "requests~=2.23.0",
     ],
-    keywords = ["antilibrary", "apiwrapper", "apiclient", "demo"],
-    description = "API Client for antilibrary.xyz, a demo app for thundergolfer/example-bazel-monorepo",
+    keywords = [
+        "antilibrary",
+        "apiwrapper",
+        "apiclient",
+        "demo",
+    ],
+    license = "MIT",
     long_description_file = "//api_client:README.md",
+    target = ":api_client",
+    url = "https://github.com/thundergolfer/example-bazel-monorepo/",
+    version_file = "pypi-version.txt",
 )
 
 # 1. Set DEPLOY_PIP_USERNAME and DEPLOY_PIP_PASSWORD environment variables
 # 2. Run `bazel run //api_client:deploy-pip -- repository`
 deploy_pip(
     name = "deploy-pip",
-    target = ":assemble-pip",
     deployment_properties = ":deployment.properties",
+    target = ":assemble-pip",
 )
