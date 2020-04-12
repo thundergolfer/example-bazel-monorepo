@@ -61,6 +61,3 @@ deploy_pip(
     target = ":assemble-pip",
     deployment_properties = ":deployment.properties",
 )
-
-
-# TODO(Jonathon): Figure out how to use Bazel to distribute this client to PyPi
