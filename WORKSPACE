@@ -327,11 +327,16 @@ linting_system_version = "0.3.0"
 
 # source code linting system
 # ⚠️ Currently in ALPHA as at 2020/03/10
-http_archive(
+#http_archive(
+#    name = "linting_system",
+#    sha256 = "1175101c17edba1d37ada53c7737ac4991292daa908d0898916f807972e13df4",
+#    strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
+#    url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
+#)
+
+local_repository(
     name = "linting_system",
-    sha256 = "1175101c17edba1d37ada53c7737ac4991292daa908d0898916f807972e13df4",
-    strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
-    url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
+    path = "../bazel-linting-rules",
 )
 
 load("@linting_system//repositories:repositories.bzl", "repositories")
