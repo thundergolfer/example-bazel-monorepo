@@ -78,11 +78,11 @@ maven_install(
         "org.springframework:spring-webmvc:5.1.5.RELEASE",
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
+    maven_install_json = "@example_bazel_monorepo//3rdparty:maven_install.json",
     repositories = [
         "https://repo1.maven.org/maven2",
         "https://maven.google.com",
     ],
-    maven_install_json = "@example_bazel_monorepo//3rdparty:maven_install.json",
 )
 
 load("@maven//:defs.bzl", "pinned_maven_install")
