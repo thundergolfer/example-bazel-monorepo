@@ -9,8 +9,8 @@ exports_files([
 ])
 
 py_library(
-    name = "api_client",
-    srcs = glob(["py_antilibrary/**/*.py"]),
+    name = "py_antilibrary",
+    srcs = glob(["__init__.py"]),
     deps = [
         requirement("requests"),
     ],
@@ -18,8 +18,8 @@ py_library(
 
 py_binary(
     name = "test_run",
-    srcs = glob(["py_antilibrary/**/*.py"]),
-    main = "py_antilibrary/__init__.py",
+    srcs = glob(["__init__.py"]),
+    main = "__init__.py",
     deps = [
         requirement("requests"),
     ],
@@ -27,9 +27,12 @@ py_binary(
 
 py_interpreter(
     name = "repl",
-    deps = [":api_client"],
+    deps = [":py_antilibrary"],
 )
 
+# TODO(Jonathon): This rule should support specifying the top-level package.
+# If py_antilibrary wasn't top-level in the repo and instead lived under 'xxx', then
+# user's of the package would have to import it like `import xxx.py_antilibrary`. Not ideal.
 assemble_pip(
     name = "assemble-pip",
     package_name = "py-antilibrary",
@@ -58,14 +61,14 @@ assemble_pip(
         "demo",
     ],
     license = "MIT",
-    long_description_file = "//api_client:README.md",
-    target = ":api_client",
+    long_description_file = "//py_antilibrary:README.md",
+    target = ":py_antilibrary",
     url = "https://github.com/thundergolfer/example-bazel-monorepo/",
     version_file = "pypi-version.txt",
 )
 
 # 1. Set DEPLOY_PIP_USERNAME and DEPLOY_PIP_PASSWORD environment variables
-# 2. Run `bazel run //api_client:deploy-pip -- repository`
+# 2. Run `bazel run //py_antilibrary:deploy-pip -- repository`
 deploy_pip(
     name = "deploy-pip",
     deployment_properties = ":deployment.properties",
