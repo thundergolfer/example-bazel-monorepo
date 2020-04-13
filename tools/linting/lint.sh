@@ -16,24 +16,20 @@ BZL_FLAGS="--bes_results_url= --bes_backend="
 main() {
   cd "${REPO_ROOT}"
 
-  bazel run \
-   ${BZL_FLAGS} \
-   //:buildifier
-
-  # TODO(Jonathon): Shouldn't buildifier support '--exclude' functionality?
-  git checkout -- 3rdparty
+  echo "Running 'build' phase of bazel-linting-system..."
 
   bazel build //... \
     ${BZL_FLAGS} \
     --aspects //tools/linting:aspect.bzl%lint \
     --output_groups=report
 
+  echo "Running 'apply' phase of bazel-linting-system..."
+
   bazel run @linting_system//:apply_changes \
     ${BZL_FLAGS} \
     -- \
     "$(git rev-parse --show-toplevel)" \
-    "$(bazel info bazel-genfiles)" \
-    "$(bazel query //... | tr '\n' ' ')"
+    "$(bazel info bazel-genfiles)"
 }
 
 main "$@"
