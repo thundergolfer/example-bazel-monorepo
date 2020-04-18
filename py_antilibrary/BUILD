@@ -65,6 +65,7 @@ assemble_pip(
     target = ":py_antilibrary",
     url = "https://github.com/thundergolfer/example-bazel-monorepo/",
     version_file = "pypi-version.txt",
+    tags = ["manual"],
 )
 
 # 1. Set DEPLOY_PIP_USERNAME and DEPLOY_PIP_PASSWORD environment variables
@@ -73,4 +74,5 @@ deploy_pip(
     name = "deploy-pip",
     deployment_properties = ":deployment.properties",
     target = ":assemble-pip",
+    tags = ["manual"],
 )
