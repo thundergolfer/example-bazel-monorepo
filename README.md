@@ -133,5 +133,5 @@ This project is using [Buildbuddy.IO](https://buildbuddy.io/). Every build run l
 
 ### Linting
 
-[`./tools/linting/lint.sh`](tools/linting/lint.sh) will lint all source-code in the repo _and_ all Bazel files.
+[thundergolfer/bazel-linting-system](https://github.com/thundergolfer/bazel-linting-system) is used. [`./tools/linting/lint.sh`](tools/linting/lint.sh) will lint all source-code in the repo and [`./tools/linting/lint_bzl_files.sh`](tools/linting/lint_bzl_files.sh) will lint all Bazel files.
 
