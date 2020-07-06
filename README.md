@@ -1,4 +1,11 @@
-# Example Bazel Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
+<h1 align="center">Example Bazel Monorepo</h1>
+<p align="center">
+    <a href="https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo">
+        <img src="https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master">
+    </a>
+</p>
+
+----
 
 > *Note:* Currently supporting the latest Bazel version as at mid April 2020, [3.0.0](https://github.com/bazelbuild/bazel/releases/tag/3.0.0) 
 
