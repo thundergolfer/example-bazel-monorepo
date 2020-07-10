@@ -7,12 +7,14 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # GOLANG SUPPORT
 ######################
 
+rules_go_version = "v0.22.6"
+
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "513c12397db1bc9aa46dd62f02dd94b49a9b5d17444d49b5a04c5a89f3053c1c",
+    sha256 = "e0d2e3d92ef8b3704f26ac19231ef9aba66c8a3bdec4aca91a22ad7d6e6f3ef7",
     urls = [
-        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz",
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/{version}/rules_go-{version}.tar.gz".format(version = rules_go_version),
+        "https://github.com/bazelbuild/rules_go/releases/download/{version}/rules_go-{version}.tar.gz".format(version = rules_go_version),
     ],
 )
 
