@@ -111,11 +111,11 @@ py_repositories()
 
 
 # Third-Party packaging support
-rules_python_external_version = "0.1.4"
+rules_python_external_version = "0.1.5"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "c3f3fae1bd624b83dcc6e83cd8e7e6e574189c7ed4f56f51dd0be9c50354cc9e",
+    sha256 = "bc655e6d402915944e014c3b2cad23d0a97b83a66cc22f20db09c9f8da2e2789",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
     url = "https://github.com/dillon-giacoppo/rules_python_external/archive/v{version}.zip".format(version = rules_python_external_version),
 )
