@@ -1,8 +1,5 @@
 ## SpringBoot Rule
 
-> ⚠️ **NOTE**: This has been slightly modified from the original source at https://github.com/salesforce/bazel-springboot-rule/commit/8f5e8709fddce2499a2a060c15969aac90c31327
-> See https://github.com/salesforce/bazel-springboot-rule/issues/13 for details.
-
 This implements a Bazel rule for packaging a Spring Boot application as an executable jar file.
 The output of this rule is a jar file that can be copied to production environments and run.
 
@@ -84,6 +81,16 @@ java -jar bazel-bin/samples/helloworld/helloworld.jar
 
 The executable jar file is ready to be copied to your production environment.
 
+## Debugging
+
+If the environment variable `DEBUG_SPRINGBOOT_RULE` is set, the rule writes debug output to `$TMPDIR/bazel/debug/springboot`. If `$TMPDIR` is not defined, it defaults to `/tmp`.
+
+In order to pass this environment variable to Bazel, use the `--action_env` argument:
+
+```
+bazel build //... --action_env=DEBUG_SPRINGBOOT_RULE=1
+```
+
 ## In Depth
 
 To understand how this rule works, start by reading the [springboot.bzl file](springboot.bzl).
@@ -115,3 +122,7 @@ springboot(
     fail_on_duplicate_classes = True,
 )
 ```
+
+It will fail the build if:
+- the same class (package + classname) is found in more than one jar
+- the MD5 hash of the classfile bytes differ

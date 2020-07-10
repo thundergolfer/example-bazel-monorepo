@@ -82,11 +82,12 @@ ${cmd}
 #  do not use directly, see the SpringBoot Macro below
 
 def _springboot_rule_impl(ctx):
-    outs = depset()
-    outs += ctx.attr.app_compile_rule.files
-    outs += ctx.attr.genmanifest_rule.files
-    outs += ctx.attr.gengitinfo_rule.files
-    outs += ctx.attr.genjar_rule.files
+    outs = depset(transitive = [
+        ctx.attr.app_compile_rule.files,
+        ctx.attr.genmanifest_rule.files,
+        ctx.attr.gengitinfo_rule.files,
+        ctx.attr.genjar_rule.files,
+    ])
 
     # setup the script that runs "java -jar <springboot.jar>" when calling
     # "bazel run" with the springboot target
@@ -176,6 +177,7 @@ def springboot(name, java_library, boot_app_class, deps, fail_on_duplicate_class
     # The resolved input_file_paths array is made available as the $(SRCS) token in the cmd string.
     # Skylark will convert the logical input_file_paths into real file system paths when surfaced in $(SRCS)
     #  cmd format (see springboot_pkg.sh)
+    #    param0: location of the jar utility (singlejar)
     #    param1: boot application classname (the @SpringBootApplication class)
     #    param2: verify_duplicates
     #    param3: jdk path for running java tools e.g. jar; $(JAVABASE)
@@ -187,8 +189,15 @@ def springboot(name, java_library, boot_app_class, deps, fail_on_duplicate_class
     native.genrule(
         name = genjar_rule,
         srcs = [java_library, ":" + genmanifest_rule, ":" + gengitinfo_rule, ":" + dep_aggregator_rule],
-        cmd = "$(location //tools/springboot:springboot_pkg.sh) " + boot_app_class + " " + verify_str + " $(JAVABASE) " + name + " $@ $(SRCS)",
-        tools = ["//tools/springboot:springboot_pkg.sh", "//tools/springboot:verify_conflict.py", "//tools/springboot:whitelist.txt"],
+        cmd = "$(location //tools/springboot:springboot_pkg.sh) " +
+              "$(location @bazel_tools//tools/jdk:singlejar) " +
+              boot_app_class + " " + verify_str + " $(JAVABASE) " + name + " $@ $(SRCS)",
+        tools = [
+            "//tools/springboot:springboot_pkg.sh",
+            "//tools/springboot:verify_conflict.py",
+            "//tools/springboot:whitelist.txt",
+            "@bazel_tools//tools/jdk:singlejar",
+        ],
         tags = tags,
         outs = [_get_springboot_jar_file_name(name)],
         toolchains = ["@bazel_tools//tools/jdk:current_host_java_runtime"],  # so that JAVABASE is computed

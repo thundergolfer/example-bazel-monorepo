@@ -7,12 +7,14 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # GOLANG SUPPORT
 ######################
 
+rules_go_version = "v0.22.6"
+
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "513c12397db1bc9aa46dd62f02dd94b49a9b5d17444d49b5a04c5a89f3053c1c",
+    sha256 = "e0d2e3d92ef8b3704f26ac19231ef9aba66c8a3bdec4aca91a22ad7d6e6f3ef7",
     urls = [
-        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.19.5/rules_go-v0.19.5.tar.gz",
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/{version}/rules_go-{version}.tar.gz".format(version = rules_go_version),
+        "https://github.com/bazelbuild/rules_go/releases/download/{version}/rules_go-{version}.tar.gz".format(version = rules_go_version),
     ],
 )
 
@@ -22,13 +24,15 @@ go_rules_dependencies()
 
 go_register_toolchains()
 
+gazelle_version = "v0.21.1"
+
 # Gazelle - used for Golang external dependencies
 http_archive(
     name = "bazel_gazelle",
-    sha256 = "7fc87f4170011201b1690326e8c16c5d802836e3a0d617d8f75c3af2b23180c4",
+    sha256 = "cdb02a887a7187ea4d5a27452311a75ed8637379a1287d8eeb952138ea485f7d",
     urls = [
-        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/bazel-gazelle/releases/download/0.18.2/bazel-gazelle-0.18.2.tar.gz",
-        "https://github.com/bazelbuild/bazel-gazelle/releases/download/0.18.2/bazel-gazelle-0.18.2.tar.gz",
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/bazel-gazelle/releases/download/{version}/bazel-gazelle-{version}.tar.gz".format(version = gazelle_version),
+        "https://github.com/bazelbuild/bazel-gazelle/releases/download/{version}/bazel-gazelle-{version}.tar.gz".format(version = gazelle_version),
     ],
 )
 
@@ -46,11 +50,11 @@ go_dependencies()
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-rules_jvm_external_version = "2.10"
+rules_jvm_external_version = "3.3"
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = "1bbf2e48d07686707dd85357e9a94da775e1dbd7c464272b3664283c9c716d26",
+    sha256 = "d85951a92c0908c80bd8551002d66cb23c3434409c814179c0ff026b53544dab",
     strip_prefix = "rules_jvm_external-{version}".format(version = rules_jvm_external_version),
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/{version}.zip".format(version = rules_jvm_external_version),
 )
@@ -78,30 +82,39 @@ maven_install(
         "org.springframework:spring-webmvc:5.1.5.RELEASE",
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
+    maven_install_json = "@example_bazel_monorepo//3rdparty:maven_install.json",
     repositories = [
-        "https://maven.google.com",
         "https://repo1.maven.org/maven2",
+        "https://maven.google.com",
     ],
 )
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+
+pinned_maven_install()
 
 ######################
 # PYTHON SUPPORT
 ######################
-rules_python_version = "5bd834008f170c806ade1a135876d4a0b1ec3718"
+rules_python_version = "0.0.2"
 
 http_archive(
-    name = "io_bazel_rules_python",
-    sha256 = "f8ba6d729774eb71e32d8d78bc4a72c0fef7b9c190192caadd50ed7bd477ac99",
+    name = "rules_python",
+    sha256 = "b5668cde8bb6e3515057ef465a35ad712214962f0b3a314e551204266c7be90c",
     strip_prefix = "rules_python-{version}".format(version = rules_python_version),
-    url = "https://github.com/uri-canva/rules_python/archive/{}.tar.gz".format(rules_python_version),
+    url = "https://github.com/bazelbuild/rules_python/releases/download/{version}/rules_python-{version}.tar.gz".format(version = rules_python_version),
 )
 
+load("@rules_python//python:repositories.bzl", "py_repositories")
+
+py_repositories()
+
 # Third-Party packaging support
-rules_python_external_version = "0.1.4"
+rules_python_external_version = "0.1.5"
 
 http_archive(
     name = "rules_python_external",
-    sha256 = "c3f3fae1bd624b83dcc6e83cd8e7e6e574189c7ed4f56f51dd0be9c50354cc9e",
+    sha256 = "bc655e6d402915944e014c3b2cad23d0a97b83a66cc22f20db09c9f8da2e2789",
     strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
     url = "https://github.com/dillon-giacoppo/rules_python_external/archive/v{version}.zip".format(version = rules_python_external_version),
 )
@@ -150,39 +163,6 @@ load("@mypy_integration//repositories:pip_repositories.bzl", mypy_integration_pi
 mypy_integration_pip_deps()
 
 ######################
-# RUBY SUPPORT
-######################
-#rules_ruby_version = "a0d21e570f79424e6125df6c691ab27ed7454e1a"
-
-# TODO(Jonathon): Reinstate this when it isn't breaking CI
-# Ref: https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo/builds/162#7a972413-1ff2-43a9-8385-a1a871acf358
-#http_archive(
-#    name = "bazelruby_ruby_rules",
-#    sha256 = "",
-#    strip_prefix = "rules_ruby-{version}".format(version = rules_ruby_version),
-#    url = "https://github.com/bazelruby/rules_ruby/archive/{version}.zip".format(version = rules_ruby_version),
-#)
-#
-#load(
-#    "@bazelruby_ruby_rules//ruby:deps.bzl",
-#    "ruby_register_toolchains",
-#    "ruby_rules_dependencies",
-#)
-#
-#ruby_rules_dependencies()
-#
-#ruby_register_toolchains()
-#
-#load("@bazelruby_ruby_rules//ruby:defs.bzl", "bundle_install")
-#
-#bundle_install(
-#    name = "bundle",
-#    gemfile = "//tools/dependencies:Gemfile",
-#    gemfile_lock = "//tools/dependencies:Gemfile.lock",
-#    visibility = ["//visibility:public"],
-#)
-
-######################
 # RUST SUPPORT
 ######################
 
@@ -214,11 +194,11 @@ raze_fetch_remote_crates()
 # SCALA SUPPORT
 ######################
 
-rules_scala_version = "e83df505ad87a2a5bdadd6b1230a1db579791b09"
+rules_scala_version = "0c1ed832f2db5fa1069c7b21d546f234d078d210"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "6a69c9a9f6928920755ac634046f32f851c290e43e7ebf199e651970e823e8a1",
+    sha256 = "5be1fde5e5435da1485a8ff724e0588b7b2462c8315e406666ad00b7d769d152",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
@@ -244,13 +224,13 @@ scala_deps()
 # TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
-rules_nodejs_version = "1.6.0"
+rules_nodejs_version = "1.7.0"
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "f9e7b9f42ae202cc2d2ce6d698ccb49a9f7f7ea572a78fd451696d03ef2ee116",
+    sha256 = "84abf7ac4234a70924628baa9a73a5a5cbad944c4358cf9abdb4aab29c9a5b77",
     urls = [
         "https://github.com/bazelbuild/rules_nodejs/releases/download/{version}/rules_nodejs-{version}.tar.gz".format(
             version = rules_nodejs_version,
@@ -276,6 +256,32 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 ts_setup_workspace()
 
 ######################
+# CODE DISTRIBUTION
+######################
+
+graknlabs_bazel_distribution_version = "af5283473c9c7dca59579532d0d233f3f6a47e5f"
+
+http_archive(
+    name = "graknlabs_bazel_distribution",
+    sha256 = "cbda10301d41d7b601b55d86d62576f30eea9af22e8f453178f424be28262fdc",
+    strip_prefix = "bazel-distribution-{version}".format(version = graknlabs_bazel_distribution_version),
+    urls = ["https://github.com/graknlabs/bazel-distribution/archive/{version}.zip".format(version = graknlabs_bazel_distribution_version)],
+)
+
+load("@rules_python//python:pip.bzl", "pip_import", "pip_repositories")
+
+pip_repositories()
+
+pip_import(
+    name = "graknlabs_bazel_distribution_pip",
+    requirements = "@graknlabs_bazel_distribution//pip:requirements.txt",
+)
+
+load("@graknlabs_bazel_distribution_pip//:requirements.bzl", graknlabs_bazel_distribution_pip_install = "pip_install")
+
+graknlabs_bazel_distribution_pip_install()
+
+######################
 # OTHER
 ######################
 
@@ -297,13 +303,13 @@ http_archive(
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
 
-linting_system_version = "0.3.0"
+linting_system_version = "0.4.0"
 
-# source code linting system
-# ⚠️ Currently in ALPHA as at 2020/03/10
+# Source code linting system
+# ⚠️ Currently in ALPHA as at 2020/06/10
 http_archive(
     name = "linting_system",
-    sha256 = "1175101c17edba1d37ada53c7737ac4991292daa908d0898916f807972e13df4",
+    sha256 = "a254c73bdde03214b62cacdb570229ed1a1814a2ed749448a1db4e90b18ac0a1",
     strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
     url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
 )

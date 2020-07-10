@@ -27,7 +27,7 @@ createdb bookstore_api
 sudo -u postgres sed -i 's/host    all             all             127.0.0.1\/32            md5/host    all             all             127.0.0.1\/32            trust/g' /etc/postgresql/10/main/pg_hba.conf
 service postgresql reload
 
-aws s3 cp "$RELEASE_BUCKET/4f2f87949d9ce6f40617268d25dd6ed6d9a8f417/store-api/src/main/java/com/book/store/api/deployable.jar" "."
+aws s3 cp "$RELEASE_BUCKET/398f2d5620c3e681f4304776eb137690c52cbfab/store-api/src/main/java/com/book/store/api/deployable.jar" "."
 
 # TODO(Jonathon): Production server should be listening on 80(HTTP) or 443 (HTTPS) not default (8080)
 # Run jar, adding '&' to run in background

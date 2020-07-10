@@ -24,7 +24,6 @@ test --strategy=Scalac=worker
 try-import %workspace%/linting.bazelrc
 
 test --test_output=all
-build --incompatible_depset_union=false
 
 # Restrict workers from reading files that aren't declared as inputs
 # Note that this uses a different sandboxing mechanism than the actions spawn:

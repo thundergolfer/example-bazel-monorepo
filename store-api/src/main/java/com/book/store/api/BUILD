@@ -14,6 +14,7 @@ DEPS = [
     "//store-api/src/main/java/com/book/store/api/models",
     "//store-api/src/main/java/com/book/store/api/repositories",
     "//store-api/src/main/java/com/book/store/api/services",
+    "//store-api/src/main/java/com/book/store/search",
 ]
 
 java_library(
