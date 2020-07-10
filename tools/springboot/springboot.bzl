@@ -83,10 +83,12 @@ ${cmd}
 
 def _springboot_rule_impl(ctx):
     outs = depset()
-    outs += ctx.attr.app_compile_rule.files
-    outs += ctx.attr.genmanifest_rule.files
-    outs += ctx.attr.gengitinfo_rule.files
-    outs += ctx.attr.genjar_rule.files
+    depset(transitive = [
+        ctx.attr.app_compile_rule.files,
+        ctx.attr.genmanifest_rule.files,
+        ctx.attr.gengitinfo_rule.files,
+        ctx.attr.genjar_rule.files
+    ])
 
     # setup the script that runs "java -jar <springboot.jar>" when calling
     # "bazel run" with the springboot target
