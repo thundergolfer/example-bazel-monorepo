@@ -194,11 +194,11 @@ raze_fetch_remote_crates()
 # SCALA SUPPORT
 ######################
 
-rules_scala_version = "e83df505ad87a2a5bdadd6b1230a1db579791b09"
+rules_scala_version = "0c1ed832f2db5fa1069c7b21d546f234d078d210"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "6a69c9a9f6928920755ac634046f32f851c290e43e7ebf199e651970e823e8a1",
+    sha256 = "5be1fde5e5435da1485a8ff724e0588b7b2462c8315e406666ad00b7d769d152",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
