@@ -1,6 +1,6 @@
 options:
   buildHeader: [ "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")" ]
-  languages: [ "java", "scala:2.11.12" ]
+  languages: [ "java", "scala:2.12.10" ]
   resolvers:
     - id: "mavencentral"
       type: "default"
