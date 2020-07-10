@@ -82,8 +82,7 @@ ${cmd}
 #  do not use directly, see the SpringBoot Macro below
 
 def _springboot_rule_impl(ctx):
-    outs = depset()
-    depset(transitive = [
+    outs = depset(transitive = [
         ctx.attr.app_compile_rule.files,
         ctx.attr.genmanifest_rule.files,
         ctx.attr.gengitinfo_rule.files,
