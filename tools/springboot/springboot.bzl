@@ -87,7 +87,7 @@ def _springboot_rule_impl(ctx):
         ctx.attr.app_compile_rule.files,
         ctx.attr.genmanifest_rule.files,
         ctx.attr.gengitinfo_rule.files,
-        ctx.attr.genjar_rule.files
+        ctx.attr.genjar_rule.files,
     ])
 
     # setup the script that runs "java -jar <springboot.jar>" when calling
