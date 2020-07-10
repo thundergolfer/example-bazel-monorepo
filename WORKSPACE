@@ -305,8 +305,8 @@ http_archive(
 
 linting_system_version = "0.4.0"
 
-# source code linting system
-# ⚠️ Currently in ALPHA as at 2020/04/10
+# Source code linting system
+# ⚠️ Currently in ALPHA as at 2020/06/10
 http_archive(
     name = "linting_system",
     sha256 = "a254c73bdde03214b62cacdb570229ed1a1814a2ed749448a1db4e90b18ac0a1",
