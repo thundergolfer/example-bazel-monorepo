@@ -30,6 +30,10 @@ bazel-out/darwin-fastbuild/bin/external/io_grpc_grpc_java/protobuf-lite/libproto
 bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libempty_proto-speed.jar
 bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libduration_proto-speed.jar
 bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libprotobuf_java_util.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libany_proto-speed.jar
+bazel-out/darwin-fastbuild/bin/external/googleapi/libhttp_proto-speed.jar
+bazel-out/darwin-fastbuild/bin/external/com_google_protobuf/libdescriptor_proto-speed.jar
+bazel-out/darwin-fastbuild/bin/external/googleapi/libannotations_proto-speed.jar
 
 # the following 2 jars have conflicting classes
 # (what is this speed jar? There are more speed jars listed above, however

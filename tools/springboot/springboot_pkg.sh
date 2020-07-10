@@ -16,13 +16,14 @@
 # /tmp/bazel/debug/springboot for each Spring Boot app.
 
 RULEDIR=$(pwd)
-MAINCLASS=$1
-VERIFY_DUPE=$2
-JAVABASE=$3
-APPJAR_NAME=$4
-OUTPUTJAR=$5
-APPJAR=$6
-MANIFEST=$7
+SINGLEJAR_CMD=$(pwd)/$1
+MAINCLASS=$2
+VERIFY_DUPE=$3
+JAVABASE=$4
+APPJAR_NAME=$5
+OUTPUTJAR=$6
+APPJAR=$7
+MANIFEST=$8
 #GITPROPSFILE=$6
 
 #The coverage variable is used to make sure that the correct files are picked in case bazel coverage is run with this springboot rule
@@ -33,11 +34,11 @@ COVERAGE=1
 # This is a workaround to ensure that the MANIFEST is picked correctly.
 
 if [[ $MANIFEST = *"MANIFEST.MF" ]]; then
-    GITPROPSFILE=$8
+    GITPROPSFILE=$9
     COVERAGE=0
 else
-    MANIFEST=$7
-    GITPROPSFILE=$9
+    MANIFEST=$8
+    GITPROPSFILE=$10
 fi
 
 # package name (not guaranteed to be globally unique)
@@ -60,24 +61,21 @@ export PACKAGESHA=$(echo "$PACKAGESHA_RAW" | cut -d " " -f 1 )
 BUILD_DATE_TIME=$(date)
 BUILD_TIME_START=$SECONDS
 
-# By default, debug capture is disabled
-DEBUGFILE=/dev/null
+SPRINGBOOT_RULE_TMPDIR=${TMPDIR:-/tmp}/bazel
+mkdir -p $SPRINGBOOT_RULE_TMPDIR
 
-
-# June 2018 - I will leave debug capture on for all users since the cost is miniscule
-#  and we are still in validation phase of various features.
-#  Long term, we can use an environment variable to selectively enable debug capture
-#  See https://bazel.build/designs/2016/06/21/environment.html
-#  I am writing this to /tmp which is normally verboten, but this is a meta-output so I think it is ok.
-DEBUGDIR=/tmp/bazel/debug/springboot
-mkdir -p $DEBUGDIR
-DEBUGFILENAME=$PACKAGENAME-$PACKAGESHA
-DEBUGFILE=$DEBUGDIR/$DEBUGFILENAME.log
-#echo "DEBUG: SpringBoot packaging subrule debug log for $PACKAGENAME: $DEBUGFILE"
+if [ -z "${DEBUG_SPRINGBOOT_RULE}" ]; then
+    DEBUGFILE=/dev/null
+else
+    DEBUGDIR=$SPRINGBOOT_RULE_TMPDIR/debug/springboot
+    mkdir -p $DEBUGDIR
+    DEBUGFILENAME=$PACKAGENAME-$PACKAGESHA
+    DEBUGFILE=$DEBUGDIR/$DEBUGFILENAME.log
+fi
 >$DEBUGFILE
 
 # file that will list the contents of the jar file for duplicate classes checks
-CLASSLIST_FILENAME=$DEBUGDIR/$PACKAGENAME-classlist.txt
+CLASSLIST_FILENAME=$SPRINGBOOT_RULE_TMPDIR/$PACKAGENAME-classlist.txt
 >$CLASSLIST_FILENAME
 
 # Write debug header
@@ -86,6 +84,7 @@ echo "**************************************************************************
 echo "Build time: $BUILD_DATE_TIME"  >> $DEBUGFILE
 echo "SPRING BOOT PACKAGER FOR BAZEL" >> $DEBUGFILE
 echo "  RULEDIR         $RULEDIR     (build working directory)" >> $DEBUGFILE
+echo "  SINGLEJAR       $SINGLEJAR_CMD (path to the singlejar utility)" >> $DEBUGFILE
 echo "  MAINCLASS       $MAINCLASS   (classname of the @SpringBootApplication class for the MANIFEST.MF file entry)" >> $DEBUGFILE
 echo "  OUTPUTJAR       $OUTPUTJAR   (the executable JAR that will be built from this rule)" >> $DEBUGFILE
 echo "  JAVABASE        $JAVABASE    (the path to the JDK2)" >> $DEBUGFILE
@@ -103,9 +102,9 @@ echo "Jar command:" >> $DEBUGFILE
 echo $JAR_COMMAND >> $DEBUGFILE
 
 if [[ $COVERAGE -eq 0 ]]; then
-    i=8
-else
     i=9
+else
+    i=10
 fi
 
 # log the list of dep jars we were given
@@ -128,13 +127,19 @@ unzip -l $RULEDIR/$APPJAR >> $CLASSLIST_FILENAME 2>/dev/null
 
 if [[ $VERIFY_DUPE == "verify" ]]; then
     # This python script parses the jarfile to check for duplicate classes
-    python tools/springboot/verify_conflict.py $CLASSLIST_FILENAME tools/springboot/whitelist.txt
+    python external/bazel_springboot_rule/tools/springboot/verify_conflict.py $CLASSLIST_FILENAME external/bazel_springboot_rule/tools/springboot/whitelist.txt
     returnCode=$?
 
     if [[ $returnCode -eq 1 ]]; then
       echo "ERROR: Failing build because of conflicting jars/classes"
       exit 1
     fi
+fi
+
+if [ -z "${DEBUG_SPRINGBOOT_RULE}" ]; then
+  # cleanup, unless in debug mode: this file is only needed for the conflicting
+  # classes check above
+  rm -f $CLASSLIST_FILENAME
 fi
 
 echo $SHASUM_INSTALL_MSG >> $DEBUGFILE
@@ -157,17 +162,17 @@ $JAR_COMMAND -xf $RULEDIR/$APPJAR
 cd $WORKING_DIR
 
 if [[ $COVERAGE -eq 0 ]]; then
-    i=9
-else
     i=10
+else
+    i=11
 fi
 
 while [ "$i" -le "$#" ]; do
   eval "lib=\${$i}"
   libname=$(basename $lib)
   libdir=$(dirname $lib)
-
-  if [[ $libname == stamped_spring-boot-loader* ]]; then
+  echo "DEBUG: libname: $libname" >> $DEBUGFILE
+  if [[ $libname == *spring-boot-loader* ]]; then
     # if libname is prefixed with the string 'spring-boot-loader' then...
     # the Spring Boot Loader classes are special, they must be extracted at the root level /,
     #   not in BOOT-INF/lib/loader.jar nor BOOT-INF/classes/**/*.class
@@ -193,9 +198,6 @@ cat $RULEDIR/$GITPROPSFILE >> $DEBUGFILE
 cp -f $RULEDIR/$GITPROPSFILE $WORKING_DIR/BOOT-INF/classes
 
 # Create the output jar
-# Note that a critical part of this step is to pass option 0 into the jar command
-# that tells jar not to compress the jar, only package it. Spring Boot does not
-# allow the jar file to be compressed (it will fail at startup).
 cd $WORKING_DIR
 
 # write debug telemetry data
@@ -205,9 +207,24 @@ find . >> $DEBUGFILE
 ELAPSED_PRE_JAR=$(( $SECONDS - BUILD_TIME_START ))
 echo "DEBUG: elapsed time (seconds): $ELAPSED_PRE_JAR" >> $DEBUGFILE
 
-# run the command
-echo "DEBUG: Run jar command:" >> $DEBUGFILE
-$JAR_COMMAND -cfm0 $RULEDIR/$OUTPUTJAR $RULEDIR/$MANIFEST .  2>&1 | tee -a $DEBUGFILE
+# first use jar to create a correct jar file for Spring Boot
+# Note that a critical part of this step is to pass option 0 into the jar command
+# that tells jar not to compress the jar, only package it. Spring Boot does not
+# allow the jar file to be compressed (it will fail at startup).
+RAW_OUTPUT=$RULEDIR/${OUTPUTJAR}.raw
+echo "DEBUG: Running jar command to produce $RAW_OUTPUT" >> $DEBUGFILE
+$JAR_COMMAND -cfm0 $RAW_OUTPUT $RULEDIR/$MANIFEST .  2>&1 | tee -a $DEBUGFILE
+
+# now use Bazel's singlejar to re-jar it which normalizes timestamps as Jan 1 2010
+# note that it does not use the MANIFEST from the jar file, which is a bummer
+# so we have to respecify the manifest data
+# TODO we could rewrite the write_manfiest.sh to produce inputs compatible for singlejar
+SINGLEJAR_OPTIONS="--normalize --dont_change_compression" # add in --verbose for more details from command
+SINGLEJAR_MAINCLASS="--main_class org.springframework.boot.loader.JarLauncher"
+$SINGLEJAR_CMD $SINGLEJAR_OPTIONS $SINGLEJAR_MAINCLASS \
+    --deploy_manifest_lines "Start-Class: $MAINCLASS" \
+    --sources $RAW_OUTPUT \
+    --output $RULEDIR/$OUTPUTJAR 2>&1 | tee -a $DEBUGFILE
 
 if [ $? -ne 0 ]; then
   echo "ERROR: Failed creating the JAR file $WORKING_DIR." | tee -a $DEBUGFILE
