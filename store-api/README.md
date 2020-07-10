@@ -12,3 +12,11 @@ A Java Spring Boot backend.
 ```
 bazel run //store-api/src/main/java/com/book/store/api:deployable
 ```
+
+Then try: http://localhost:8080/v1/
+
+You should see: 
+
+```
+👋 Greetings from AntiLibrary! An online world of reading built with Bazel.
+```

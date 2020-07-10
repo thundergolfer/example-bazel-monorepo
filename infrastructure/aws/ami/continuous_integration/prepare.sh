@@ -3,7 +3,7 @@
 set -o errexit
 set -o pipefail
 
-BAZEL_VERSION="3.0.0"
+BAZEL_VERSION="3.3.0"
 
 ## Install Bazel's and Project's dependencies
 
@@ -13,9 +13,6 @@ sudo yum install -y zip unzip
 # Copied from https://github.com/buildkite/elastic-ci-stack-for-aws/pull/583/files
 sudo yum install -y python3-pip python3 python3-setuptools
 sudo yum install -y java-1.8.0-openjdk-devel
-
-# Ruby
-sudo amazon-linux-extras install ruby2.6
 
 # Node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash

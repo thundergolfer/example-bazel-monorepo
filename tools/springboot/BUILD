@@ -18,3 +18,13 @@ exports_files([
     "write_manifest.sh",
     "whitelist.txt",
 ])
+
+py_test(
+    name = "verify_conflict_test",
+    size = "small",
+    srcs = [
+        "tests/verify_conflict_test.py",
+        "verify_conflict.py",
+    ],
+    imports = ["."],
+)

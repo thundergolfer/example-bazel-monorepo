@@ -9,12 +9,10 @@
 MAINCLASS=$1
 MANIFESTFILE=$2
 FOUND_SPRING_JAR=0
-
 # Looking for the springboot jar injected by springboot.bzl and extracting the version
 for var in "$@"
 do
   if [[ $var = *"spring-boot-"* ]]; then
-#    echo "$var" > /tmp/var
     SPRING_VERSION=$(echo "$var" | rev | cut -c5- | rev | cut -d / -f 4 | cut -d - -f 3)
     FOUND_SPRING_JAR=1
     break
@@ -37,7 +35,6 @@ JAVA_VERSION=$(echo "$JAVA_STRING" | head -n1 | cut -d ' ' -f 3 | rev | cut -c2-
 echo "Manifest-Version: 1.0" > $MANIFESTFILE
 echo "Created-By: Bazel" >> $MANIFESTFILE
 echo "Built-By: Bazel" >> $MANIFESTFILE
-echo "Throw-Down: hootenanny" >> $MANIFESTFILE
 echo "Main-Class: org.springframework.boot.loader.JarLauncher" >> $MANIFESTFILE
 echo "Spring-Boot-Classes: BOOT-INF/classes/" >> $MANIFESTFILE
 echo "Spring-Boot-Lib: BOOT-INF/lib/" >> $MANIFESTFILE

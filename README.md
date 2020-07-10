@@ -1,8 +1,15 @@
-# Example Bazel Monorepo [![Build Status](https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master)](https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo)
+<h1 align="center">Example Bazel Monorepo</h1>
+<p align="center">
+    <a href="https://buildkite.com/thundergolfer-inc/the-one-true-bazel-monorepo">
+        <img src="https://badge.buildkite.com/aa36b75077a5c69156bc143b32c8c2db04c4b20b8706b8a99b.svg?branch=master">
+    </a>
+</p>
 
-> *Note:* Currently supporting the latest Bazel version as at mid April 2020, [3.0.0](https://github.com/bazelbuild/bazel/releases/tag/3.0.0) 
+----
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Ruby* and *Rust* support is in-progress . 
+> *Note:* Currently supporting the latest Bazel version as at mid July 2020, [3.3.0](https://github.com/bazelbuild/bazel/releases/tag/3.3.0) 
+
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Rust* support is in-progress . 
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
@@ -15,7 +22,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 
 **Prerequisites:**
  
-- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `3.0.0`)
+- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `3.3.0`)
 - Python 3.6+
 - [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
 - [`rustc`, `cargo`, and `rustup`](https://www.rust-lang.org/tools/install) for the Rust code.
@@ -36,6 +43,11 @@ is a good place to go.
 Adam Jacob, former CTO of [Chef](https://www.chef.io/)
 * [*Advantages of Monorepos*](https://danluu.com/monorepo/), by Dan Luu
 
+### Related Projects
+
+* https://github.com/lucperkins/colossus - A demo using Bazel in monorepo fashion. Compared with this project, it goes far deeper on microservice architecture components and Kubernetes, and is not focused on Bazel.
+* https://github.com/enginoid/monorepo-base - Employs Bazel, gRPC, and Kubernetes like the above, and is similarly not as broad and deep on Bazel as this project.
+
 ## Project Structure
 
 ### *Golang* Support
@@ -53,18 +65,6 @@ There's a [Spring Boot](https://spring.io/projects/spring-boot) (with PostGres) 
 ##### Dependency Management
 
 Its third-party dependencies are managed by [`rules_jvm_external`](https://blog.bazel.build/2019/03/31/rules-jvm-external-maven.html) in the [`WORKSPACE`](/WORKSPACE) (See the `# JAVA SUPPORT` section).
-
-### *Ruby* Support
-
-> ⚠️ **Note:** [`rules_ruby`](https://github.com/bazelruby/rules_ruby) is, as of January 2020, actively developed but not yet production ready.
-
-There's Ruby code contained in [`ruby`](/ruby).
-
-##### Dependency Management
-
-Third-party Ruby dependencies are managed by `rules_ruby`, which accepts a `Gemfile`, located at [`tools/dependencies/Gemfile`](tools/dependencies/Gemfile).
-
-A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
 
 ### *Rust* Support
 
@@ -128,5 +128,5 @@ This project is using [Buildbuddy.IO](https://buildbuddy.io/). Every build run l
 
 ### Linting
 
-[`./tools/linting/lint.sh`](tools/linting/lint.sh) will lint all source-code in the repo _and_ all Bazel files.
+[thundergolfer/bazel-linting-system](https://github.com/thundergolfer/bazel-linting-system) is used. [`./tools/linting/lint.sh`](tools/linting/lint.sh) will lint all source-code in the repo and [`./tools/linting/lint_bzl_files.sh`](tools/linting/lint_bzl_files.sh) will lint all Bazel files.
 

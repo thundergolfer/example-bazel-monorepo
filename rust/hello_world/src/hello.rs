@@ -7,5 +7,5 @@ fn main() {
     println!("Hello World!");
 
     let x = rand::random::<u8>();
-    println!("{}", x);
+    println!("Here's a random number: {}", x);
 }
