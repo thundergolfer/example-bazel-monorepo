@@ -14,9 +14,6 @@ sudo yum install -y zip unzip
 sudo yum install -y python3-pip python3 python3-setuptools
 sudo yum install -y java-1.8.0-openjdk-devel
 
-# Ruby
-sudo amazon-linux-extras install ruby2.6
-
 # Node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 # shellcheck disable=SC1090

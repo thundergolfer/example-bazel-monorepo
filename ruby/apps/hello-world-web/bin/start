@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-/usr/bin/env ruby -I . bin/shotgun app/main.rb

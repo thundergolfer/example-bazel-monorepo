@@ -2,7 +2,7 @@
 
 > *Note:* Currently supporting the latest Bazel version as at mid April 2020, [3.0.0](https://github.com/bazelbuild/bazel/releases/tag/3.0.0) 
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Ruby* and *Rust* support is in-progress . 
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Rust* support is in-progress . 
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
@@ -58,18 +58,6 @@ There's a [Spring Boot](https://spring.io/projects/spring-boot) (with PostGres) 
 ##### Dependency Management
 
 Its third-party dependencies are managed by [`rules_jvm_external`](https://blog.bazel.build/2019/03/31/rules-jvm-external-maven.html) in the [`WORKSPACE`](/WORKSPACE) (See the `# JAVA SUPPORT` section).
-
-### *Ruby* Support
-
-> ⚠️ **Note:** [`rules_ruby`](https://github.com/bazelruby/rules_ruby) is, as of January 2020, actively developed but not yet production ready.
-
-There's Ruby code contained in [`ruby`](/ruby).
-
-##### Dependency Management
-
-Third-party Ruby dependencies are managed by `rules_ruby`, which accepts a `Gemfile`, located at [`tools/dependencies/Gemfile`](tools/dependencies/Gemfile).
-
-A way to easily update (and re-lock) the `Gemfile` is *coming soon*.
 
 ### *Rust* Support
 
