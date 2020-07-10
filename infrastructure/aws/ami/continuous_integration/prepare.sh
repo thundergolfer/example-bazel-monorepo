@@ -3,7 +3,7 @@
 set -o errexit
 set -o pipefail
 
-BAZEL_VERSION="3.0.0"
+BAZEL_VERSION="3.3.0"
 
 ## Install Bazel's and Project's dependencies
 
