@@ -303,15 +303,15 @@ http_archive(
     url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
 )
 
-linting_system_version = "0.4.1"
+linting_system_version = "832235b0bb51217f25aa82231ce057eef3f9d389"
 
 # Source code linting system
 # ⚠️ Currently in ALPHA as at 2020/06/10
 http_archive(
     name = "linting_system",
-    sha256 = "fa62cecb008e6f319a81f4f619c0d632ad7e3087c7d0c331028eb91c027d49e5",
+    sha256 = "",
     strip_prefix = "bazel-linting-system-{version}".format(version = linting_system_version),
-    url = "https://github.com/thundergolfer/bazel-linting-system/archive/v{version}.zip".format(version = linting_system_version),
+    url = "https://github.com/thundergolfer/bazel-linting-system/archive/{version}.zip".format(version = linting_system_version),
 )
 
 load("@linting_system//repositories:repositories.bzl", "repositories")
