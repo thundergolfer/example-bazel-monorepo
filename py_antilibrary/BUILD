@@ -1,5 +1,5 @@
 load("@py_deps//:requirements.bzl", "requirement")
-load("@graknlabs_bazel_distribution//pip:rules.bzl", "assemble_pip", "deploy_pip")
+load("//tools/python/distribution/pip:rules.bzl", "assemble_pip", "deploy_pip")
 load("//tools/python/interpreter:macro.bzl", "py_interpreter")
 
 exports_files([
@@ -72,7 +72,8 @@ assemble_pip(
 # 2. Run `bazel run //py_antilibrary:deploy-pip -- repository`
 deploy_pip(
     name = "deploy-pip",
-    deployment_properties = ":deployment.properties",
+    snapshot = "https://test.pypi.org/legacy/",
+    release = "https://upload.pypi.org/legacy/",
     tags = ["manual"],
     target = ":assemble-pip",
 )
