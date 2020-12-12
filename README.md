@@ -45,8 +45,8 @@ Adam Jacob, former CTO of [Chef](https://www.chef.io/)
 
 ### Related Projects
 
-* https://github.com/lucperkins/colossus - A demo using Bazel in monorepo fashion. Compared with this project, it goes far deeper on microservice architecture components and Kubernetes, and is not focused on Bazel.
-* https://github.com/enginoid/monorepo-base - Employs Bazel, gRPC, and Kubernetes like the above, and is similarly not as broad and deep on Bazel as this project.
+* [github.com/lucperkins/colossus](https://github.com/lucperkins/colossus) - A demo using Bazel in monorepo fashion. Compared with this project, it goes far deeper on microservice architecture components and Kubernetes, and is not focused on Bazel.
+* [github.com/enginoid/monorepo-base](https://github.com/enginoid/monorepo-base) - Employs Bazel, gRPC, and Kubernetes like the above, and is similarly not as broad and deep on Bazel as this project.
 
 ## Project Structure
 
