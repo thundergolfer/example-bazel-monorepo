@@ -221,7 +221,7 @@ scala_deps()
 # TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
-rules_nodejs_version = "2.3.1"  # latest # 2020/12/12
+rules_nodejs_version = "2.3.1"  # latest @ 2020/12/12
 
 http_archive(
     name = "build_bazel_rules_nodejs",
@@ -231,6 +231,10 @@ http_archive(
     ],
 )
 
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories")
+
+node_repositories(package_json = ["//3rdparty/typescript:package.json"])
+
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
@@ -238,10 +242,6 @@ yarn_install(
     package_json = "//3rdparty/typescript:package.json",
     yarn_lock = "//3rdparty/typescript:yarn.lock",
 )
-
-load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
-
-install_bazel_dependencies()
 
 # Set up TypeScript toolchain
 load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
