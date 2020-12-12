@@ -7,7 +7,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # GOLANG SUPPORT
 ######################
 
-rules_go_version = "v0.24.9"
+rules_go_version = "v0.24.9"  # latest @ 2020/12/12
 
 http_archive(
     name = "io_bazel_rules_go",
@@ -24,7 +24,7 @@ go_rules_dependencies()
 
 go_register_toolchains()
 
-gazelle_version = "v0.22.2"
+gazelle_version = "v0.22.2"  # latest @ 2020/12/12
 
 # Gazelle - used for Golang external dependencies
 http_archive(
