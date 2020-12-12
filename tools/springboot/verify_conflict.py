@@ -4,6 +4,7 @@ import os
 import sys
 import zipfile
 
+
 def _check_for_duplicate_classes(class_path_to_jar_paths, whitelisted_jars):
     """
     Prints error message and returns True if duplicate classes were found,
@@ -21,23 +22,36 @@ def _check_for_duplicate_classes(class_path_to_jar_paths, whitelisted_jars):
             previous_digest = None
             previous_jar_path = None
             for jar_path in jars:
-                jar = zipfile.ZipFile(jar_path, 'r')
+                jar = zipfile.ZipFile(jar_path, "r")
                 class_bytes = jar.read(class_path)
                 digest = hashlib.md5(class_bytes).hexdigest()
-                jar_path_and_md5s.append((jar_path, digest,))
+                jar_path_and_md5s.append(
+                    (
+                        jar_path,
+                        digest,
+                    )
+                )
                 if previous_digest is not None:
                     if previous_digest != digest:
-                        if os.path.basename(jar_path) not in whitelisted_jars or os.path.basename(previous_jar_path) not in whitelisted_jars:
+                        if (
+                            os.path.basename(jar_path) not in whitelisted_jars
+                            or os.path.basename(previous_jar_path) not in whitelisted_jars
+                        ):
                             all_hash_digests_match = False
                             found_duplicates = True
                 previous_digest = digest
                 previous_jar_path = jar_path
             if not all_hash_digests_match:
-                print("The class [%s] was found in multiple jars:\n%s\n\n" % (class_path, '\n'.join((str(t) for t in jar_path_and_md5s))))
+                print(
+                    "The class [%s] was found in multiple jars:\n%s\n\n"
+                    % (class_path, "\n".join((str(t) for t in jar_path_and_md5s)))
+                )
 
     return found_duplicates
 
+
 JARNAME_PREFIX = "Jarname: "
+
 
 def _parse_classes_index_file(filename):
     """
@@ -61,7 +75,7 @@ def _parse_classes_index_file(filename):
         for line in lines:
             line = line.strip()
             if line.startswith(JARNAME_PREFIX):
-                current_jar_path = line[len(JARNAME_PREFIX):].strip()
+                current_jar_path = line[len(JARNAME_PREFIX) :].strip()
             elif line.endswith(".class"):
                 # a line looks like this, get the path to the class only
                 # 2624  01-01-1980 00:00   com/salesforce/sconems/abstractions/BeanCreationFailureAnalyzer.class
@@ -76,10 +90,11 @@ def _parse_classes_index_file(filename):
 
     return class_path_to_jar_paths
 
+
 def _parse_whitelisted_jars_file(whitelist_file):
     """
     Reads the whitelist.txt file and returns the jars as a set.
-    """        
+    """
     whitelisted_jars = set()
 
     with open(whitelist_file, "r") as lines:
@@ -94,11 +109,14 @@ def _parse_whitelisted_jars_file(whitelist_file):
 
     return whitelisted_jars
 
+
 def run(classes_index_file_path, whitelisted_jar_path):
     whitelisted_jars = _parse_whitelisted_jars_file(whitelisted_jar_path)
     class_path_to_jar_paths = _parse_classes_index_file(classes_index_file_path)
     found_duplicates = _check_for_duplicate_classes(class_path_to_jar_paths, whitelisted_jars)
     if found_duplicates:
         raise Exception("Found duplicate classes in the packaged springboot jar")
+
+
 if __name__ == "__main__":
     run(sys.argv[1], sys.argv[2])
