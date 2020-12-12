@@ -285,11 +285,16 @@ graknlabs_bazel_distribution_pip_install()
 # OTHER
 ######################
 
+protobuf_version = "3.14.0"
+
+protobuf_version_sha256 = "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113"
+
 # requirement of 'com_github_bazelbuild_buildtools'
 http_archive(
     name = "com_google_protobuf",
-    strip_prefix = "protobuf-master",
-    urls = ["https://github.com/protocolbuffers/protobuf/archive/master.zip"],
+    sha256 = protobuf_version_sha256,
+    strip_prefix = "protobuf-%s" % protobuf_version,
+    url = "https://github.com/protocolbuffers/protobuf/archive/v%s.tar.gz" % protobuf_version,
 )
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
