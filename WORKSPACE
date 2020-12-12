@@ -47,9 +47,6 @@ go_dependencies()
 #######################
 # JAVA SUPPORT
 #######################
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 rules_jvm_external_version = "3.3"
 
 http_archive(
@@ -224,17 +221,13 @@ scala_deps()
 # TYPESCRIPT / NODEJS SUPPORT
 #######################################
 
-rules_nodejs_version = "1.7.0"
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+rules_nodejs_version = "2.3.1"  # latest # 2020/12/12
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "84abf7ac4234a70924628baa9a73a5a5cbad944c4358cf9abdb4aab29c9a5b77",
+    sha256 = "121f17d8b421ce72f3376431c3461cd66bfe14de49059edc7bb008d5aebd16be",
     urls = [
-        "https://github.com/bazelbuild/rules_nodejs/releases/download/{version}/rules_nodejs-{version}.tar.gz".format(
-            version = rules_nodejs_version,
-        ),
+        "https://github.com/bazelbuild/rules_nodejs/releases/download/{version}/rules_nodejs-{version}.tar.gz".format(version = rules_nodejs_version)
     ],
 )
 
