@@ -11,6 +11,8 @@
 
 Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. 
 
+Cloud Infrastructure-as-Code is done using _Terraform_.
+
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
 Others can use it to check out the Bazel way of doing things and use parts
@@ -91,6 +93,12 @@ In order to add new third-party packages for Python, add them to [`tools/depende
 ##### Gradual Type-Checking (MyPy)
 
 [thundergolfer/bazel-mypy-integration](https://github.com/thundergolfer/bazel-mypy-integration) is used to check any type annotations at `bazel build` time.
+
+### Infrastructure-as-Code (Hashicorp Terraform)
+
+The [`infrastructure/`](/infrastructure) top-level folder contains Terraform defining various AWS resources and their configuration. 
+
+----
 
 ## Development
 

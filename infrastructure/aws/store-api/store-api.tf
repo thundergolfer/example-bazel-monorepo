@@ -105,7 +105,7 @@ resource "aws_instance" "store_api" {
 }
 
 //
-// Connect traffic to api.antilibrary.xyz:$PORT to EC2 instance
+// Connect traffic to 'api.antilibrary.xyz:$PORT' through to EC2 instance
 //
 
 resource "aws_route53_zone" "main" {
@@ -113,7 +113,7 @@ resource "aws_route53_zone" "main" {
 }
 
 
-// This way of setting up the backend's subdomain is *NOT* highly-available or scalable,
+// ⚠️ This way of setting up the backend's subdomain is *NOT* highly-available or scalable,
 // but it is cheap and dead-simple.
 // Next step beyond this would be adding an Elastic IP.
 // The scalable and highly-available solution would be to use an AWS ALB with an EC2 auto-scaling group.
