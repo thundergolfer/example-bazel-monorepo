@@ -162,34 +162,6 @@ load("@mypy_integration//repositories:pip_repositories.bzl", mypy_integration_pi
 mypy_integration_pip_deps()
 
 ######################
-# RUST SUPPORT
-######################
-
-rules_rust_version = "fe50d3b54aecbaeac48abdc2ca7cd00a94969e15"
-
-http_archive(
-    name = "io_bazel_rules_rust",
-    sha256 = "3f6db529492d821a91560c230e2634e34b3e0a3147fc5c4c41ac5bc6ccd45d3f",
-    strip_prefix = "rules_rust-{version}".format(version = rules_rust_version),
-    urls = [
-        # Master branch as of 2019-10-07
-        "https://github.com/bazelbuild/rules_rust/archive/{version}.tar.gz".format(version = rules_rust_version),
-    ],
-)
-
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
-
-rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
-
-bazel_version(name = "bazel_version")
-
-load("//3rdparty/cargo:crates.bzl", "raze_fetch_remote_crates")
-
-raze_fetch_remote_crates()
-
-######################
 # SCALA SUPPORT
 ######################
 

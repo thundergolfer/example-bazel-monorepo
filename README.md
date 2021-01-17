@@ -9,7 +9,7 @@
 
 > *Note:* Currently supporting the latest Bazel version as at mid July 2020, [3.3.0](https://github.com/bazelbuild/bazel/releases/tag/3.3.0) 
 
-Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. *Rust* support is in-progress . 
+Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. 
 
 I use this project to explore how Bazel works with different languages and
 developer tools, and keep a record of best-practices I've learnt. So it is a work in progress.
@@ -25,7 +25,6 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 - [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `3.3.0`)
 - Python 3.6+
 - [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
-- [`rustc`, `cargo`, and `rustup`](https://www.rust-lang.org/tools/install) for the Rust code.
 
 Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
 
@@ -65,18 +64,6 @@ There's a [Spring Boot](https://spring.io/projects/spring-boot) (with PostGres) 
 ##### Dependency Management
 
 Its third-party dependencies are managed by [`rules_jvm_external`](https://blog.bazel.build/2019/03/31/rules-jvm-external-maven.html) in the [`WORKSPACE`](/WORKSPACE) (See the `# JAVA SUPPORT` section).
-
-### *Rust* Support
-
-There's 'hello world' code contained in [`rust/hello_world`](/rust/hello_world).
-
-##### Dependency Management
-
-Its third-party dependencies are managed by [`google/cargo-raze`](https://github.com/google/cargo-raze). The usage of that tool is wrapped up in a script
-as [`tools/update_rust_dependencies.sh`](tools/update_rust_dependencies.sh).
-
-To use it, you update the `Cargo.toml` file in [`3rdparty/cargo`](3rdparty/cargo) and then run the script.
-
 
 ### *Scala* Support
 
