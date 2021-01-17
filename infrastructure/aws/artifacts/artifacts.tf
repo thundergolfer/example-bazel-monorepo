@@ -14,9 +14,7 @@ provider "aws" {
   region = var.region
 }
 
-locals {
-  foo = "bar"
-}
+locals {}
 
 resource "aws_s3_bucket" "artifacts" {
   bucket = "example-bazel-monorepo-artifacts"
