@@ -23,6 +23,7 @@ test --strategy=Scalac=worker
 ############
 try-import %workspace%/linting.bazelrc
 
+# Don't hide log output from a test execution, which is annoying UX on test failures.
 test --test_output=all
 
 # Restrict workers from reading files that aren't declared as inputs
