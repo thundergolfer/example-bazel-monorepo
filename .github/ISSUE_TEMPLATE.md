@@ -19,3 +19,5 @@
 
 - Version:
 - Platform:
+
+<!-- END bug report section -->
