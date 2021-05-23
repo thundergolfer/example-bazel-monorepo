@@ -95,35 +95,16 @@ pinned_maven_install()
 ######################
 # PYTHON SUPPORT
 ######################
-rules_python_version = "0.0.2"
+rules_python_version = "ed6cc8f2c3692a6a7f013ff8bc185ba77eb9b4d2" # Latest master commit for the moment so I can use `compile_pip_requirements`
 
 http_archive(
     name = "rules_python",
-    sha256 = "b5668cde8bb6e3515057ef465a35ad712214962f0b3a314e551204266c7be90c",
+    sha256 = "",
     strip_prefix = "rules_python-{version}".format(version = rules_python_version),
-    url = "https://github.com/bazelbuild/rules_python/releases/download/{version}/rules_python-{version}.tar.gz".format(version = rules_python_version),
+    url = "https://github.com/bazelbuild/rules_python/archive/{version}.tar.gz".format(version = rules_python_version),
 )
 
-load("@rules_python//python:repositories.bzl", "py_repositories")
-
-py_repositories()
-
-# Third-Party packaging support
-rules_python_external_version = "0.1.5"
-
-http_archive(
-    name = "rules_python_external",
-    sha256 = "bc655e6d402915944e014c3b2cad23d0a97b83a66cc22f20db09c9f8da2e2789",
-    strip_prefix = "rules_python_external-{version}".format(version = rules_python_external_version),
-    url = "https://github.com/dillon-giacoppo/rules_python_external/archive/v{version}.zip".format(version = rules_python_external_version),
-)
-
-# Install the rule dependencies
-load("@rules_python_external//:repositories.bzl", "rules_python_external_dependencies")
-
-rules_python_external_dependencies()
-
-load("@rules_python_external//:defs.bzl", "pip_install")
+load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
     name = "py_deps",
@@ -131,13 +112,12 @@ pip_install(
 )
 
 # MYPY SUPPORT
-mypy_integration_version = "0.0.7"
+mypy_integration_version = "0.1.0"  # latest @ November 15th 2020
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "32b0d56827288931ed3b93f047f18bd417a98fbf25fb34f6a8d9ed8d35cdaa55",
-    strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
-    url = "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(
+    sha256 = "14d63ffa2a95e42ae468ad8785eec6c2cc489ce3b382cd0bdc7a4d115cf601b4",
+    url = "https://github.com/thundergolfer/bazel-mypy-integration/releases/download/{version}/bazel_mypy_integration-{version}.tar.gz".format(
         version = mypy_integration_version,
     ),
 )
@@ -156,10 +136,6 @@ mypy_configuration("//tools/typing:mypy.ini")
 load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
 
 mypy_integration_deps("//tools/typing:mypy_version.txt")
-
-load("@mypy_integration//repositories:pip_repositories.bzl", mypy_integration_pip_deps = "pip_deps")
-
-mypy_integration_pip_deps()
 
 ######################
 # SCALA SUPPORT
@@ -230,27 +206,19 @@ ts_setup_workspace()
 # CODE DISTRIBUTION
 ######################
 
-graknlabs_bazel_distribution_version = "af5283473c9c7dca59579532d0d233f3f6a47e5f"
+graknlabs_bazel_distribution_version = "bc6d555ca29ec75de9b9f16e1537bb8b2862c51a" # Latest at 2021/05/24
 
 http_archive(
     name = "graknlabs_bazel_distribution",
-    sha256 = "cbda10301d41d7b601b55d86d62576f30eea9af22e8f453178f424be28262fdc",
+    sha256 = "4bba7dc36934c6b9a34a049a4f1657f40faaf127f734cda71ca727273a54c64f",
     strip_prefix = "bazel-distribution-{version}".format(version = graknlabs_bazel_distribution_version),
-    urls = ["https://github.com/graknlabs/bazel-distribution/archive/{version}.zip".format(version = graknlabs_bazel_distribution_version)],
+    urls = ["https://github.com/vaticle/bazel-distribution/archive/{version}.zip".format(version = graknlabs_bazel_distribution_version)],
 )
 
-load("@rules_python//python:pip.bzl", "pip_import", "pip_repositories")
-
-pip_repositories()
-
-pip_import(
+pip_install(
     name = "graknlabs_bazel_distribution_pip",
     requirements = "@graknlabs_bazel_distribution//pip:requirements.txt",
 )
-
-load("@graknlabs_bazel_distribution_pip//:requirements.bzl", graknlabs_bazel_distribution_pip_install = "pip_install")
-
-graknlabs_bazel_distribution_pip_install()
 
 ######################
 # OTHER

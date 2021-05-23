@@ -32,7 +32,7 @@ py_interpreter(
 
 # TODO(Jonathon): This rule should support specifying the top-level package.
 # If py_antilibrary wasn't top-level in the repo and instead lived under 'xxx', then
-# user's of the package would have to import it like `import xxx.py_antilibrary`. Not ideal.
+# users of the package would have to import it like `import xxx.py_antilibrary`. Not ideal.
 assemble_pip(
     name = "assemble-pip",
     package_name = "py-antilibrary",
@@ -49,17 +49,13 @@ assemble_pip(
         "Environment :: Console",
     ],
     description = "API Client for antilibrary.xyz, a demo app for thundergolfer/example-bazel-monorepo",
-    # TODO(Jonathon): This rule should support automatic construction of this array
-    # Ref: https://github.com/graknlabs/bazel-distribution/issues/223
-    install_requires = [
-        "requests~=2.23.0",
-    ],
     keywords = [
         "antilibrary",
         "apiwrapper",
         "apiclient",
         "demo",
     ],
+    requirements_file = ":pkg_requirements.txt",
     license = "MIT",
     long_description_file = "//py_antilibrary:README.md",
     tags = ["manual"],
@@ -72,7 +68,8 @@ assemble_pip(
 # 2. Run `bazel run //py_antilibrary:deploy-pip -- repository`
 deploy_pip(
     name = "deploy-pip",
-    deployment_properties = ":deployment.properties",
+    snapshot = "https://test.pypi.org/legacy/",
+    release = "https://upload.pypi.org/legacy/",
     tags = ["manual"],
     target = ":assemble-pip",
 )
