@@ -2,6 +2,8 @@ package com.book.sorting
 
 import org.scalatest._
 
-class SorterTest extends WordSpec with Matchers {
-
+class SorterTestSuite extends FlatSpec {
+  "things" should "work" in {
+    assert("hello world" == "hello world")
+  }
 }

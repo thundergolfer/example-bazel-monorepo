@@ -141,23 +141,32 @@ mypy_integration_deps("//tools/typing:mypy_version.txt")
 # SCALA SUPPORT
 ######################
 
-rules_scala_version = "0c1ed832f2db5fa1069c7b21d546f234d078d210"
+rules_scala_version = "c9cc7c261d3d740eb91ef8ef048b7cd2229d12ec" # Latest at 2021/05/23
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "5be1fde5e5435da1485a8ff724e0588b7b2462c8315e406666ad00b7d769d152",
+    sha256 = "",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
 )
 
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+# Stores Scala version and other configuration
+# 2.12 is a default version, other versions can be use by passing them explicitly:
+# scala_config(scala_version = "2.11.12")
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+scala_config()
 
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 scala_repositories()
 
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-
 scala_register_toolchains()
+
+# optional: setup ScalaTest toolchain and dependencies
+load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
+scalatest_repositories()
+scalatest_toolchain()
 
 # Load dependencies managed by bazel-deps
 load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
