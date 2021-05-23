@@ -3,7 +3,7 @@ import subprocess
 import tempfile
 import shutil
 import unittest
-import verify_conflict
+from tools.springboot import verify_conflict
 import platform
 
 FAKE_CONT1 = "This is some class bytecode"
