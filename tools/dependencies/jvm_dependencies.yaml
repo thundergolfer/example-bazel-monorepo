@@ -21,13 +21,6 @@ dependencies:
       lang: scala
       version: "3.0.5"
 
-  org.scalatest:
-    scalatest:
-      exports:
-        - "org.scalactic:scalactic"
-      lang: scala
-      version: "3.0.5"
-
 replacements:
   org.scala-lang:
     scala-library:
