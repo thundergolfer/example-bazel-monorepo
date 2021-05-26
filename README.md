@@ -42,6 +42,7 @@ is a good place to go.
 * [*Monorepos, please
   do!*](https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70), by
 Adam Jacob, former CTO of [Chef](https://www.chef.io/)
+* [*Repo Style Wars: Mono vs. Multi*](https://gigamonkeys.com/mono-vs-multi/), by Peter Seibel
 * [*Advantages of Monorepos*](https://danluu.com/monorepo/), by Dan Luu
 
 ### Related Projects
