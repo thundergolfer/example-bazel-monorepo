@@ -99,7 +99,7 @@ rules_python_version = "ed6cc8f2c3692a6a7f013ff8bc185ba77eb9b4d2" # Latest maste
 
 http_archive(
     name = "rules_python",
-    sha256 = "",
+    sha256 = "3cebd7e9e4bbd255e21538ff231680a8633a15c4ce43662899453b150bf315c1",
     strip_prefix = "rules_python-{version}".format(version = rules_python_version),
     url = "https://github.com/bazelbuild/rules_python/archive/{version}.tar.gz".format(version = rules_python_version),
 )
@@ -145,7 +145,7 @@ rules_scala_version = "c9cc7c261d3d740eb91ef8ef048b7cd2229d12ec" # Latest at 202
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "",
+    sha256 = "8887906c9698a63f7ebf30498050fee695d7fdc70b0ee084fece549cbe922159",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
