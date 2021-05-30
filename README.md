@@ -28,7 +28,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 - Python 3.6+
 - [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
 
-Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
+Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, please [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
 
 ## Why use a Monorepo?
 
