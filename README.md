@@ -89,7 +89,7 @@ There's Python code in the [`/book_sorting`](/book_sorting) and [`/scraping`](/s
 
 ##### Dependency Management
 
-In order to add new third-party packages for Python, add them to [`tools/dependencies/python_requirements.txt`](/tools/dependencies/python_requirements.txt).
+In order to add new third-party packages for Python, add them to [`3rdparty/requirements.in`](/3rdparty/requirements.in) and run `bazel run //3rdparty:requirements.update`.
 
 ##### Gradual Type-Checking (MyPy)
 

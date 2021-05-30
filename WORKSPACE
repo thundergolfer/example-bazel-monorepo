@@ -108,7 +108,7 @@ load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
     name = "py_deps",
-    requirements = "//tools/dependencies:python_requirements.txt",
+    requirements = "//3rdparty:requirements.txt",
 )
 
 # MYPY SUPPORT
