@@ -118,8 +118,8 @@ as well as being [used by the Bazel open-source project itself](https://buildkit
 
 ### Deployment & Distribution
 
-Deployable artifacts are pushed to  S3 under commit-hash-versioned keys.
-Currently `store-api` deploy JAR is the only deployable.
+Deployable artifacts are pushed to S3 under commit-hash-versioned keys.
+Currently only the `store-api` deploy/fat JAR is deployable.
 
 [`graknlabs/bazel-distribution`](https://github.com/graknlabs/bazel-distribution) is used to publish Python packages to PyPi. 
 
