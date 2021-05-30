@@ -55,9 +55,9 @@ assemble_pip(
         "apiclient",
         "demo",
     ],
-    requirements_file = ":pkg_requirements.txt",
     license = "MIT",
     long_description_file = "//py_antilibrary:README.md",
+    requirements_file = ":pkg_requirements.txt",
     tags = ["manual"],
     target = ":py_antilibrary",
     url = "https://github.com/thundergolfer/example-bazel-monorepo/",
@@ -68,8 +68,8 @@ assemble_pip(
 # 2. Run `bazel run //py_antilibrary:deploy-pip -- repository`
 deploy_pip(
     name = "deploy-pip",
-    snapshot = "https://test.pypi.org/legacy/",
     release = "https://upload.pypi.org/legacy/",
+    snapshot = "https://test.pypi.org/legacy/",
     tags = ["manual"],
     target = ":assemble-pip",
 )
