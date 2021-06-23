@@ -95,13 +95,12 @@ pinned_maven_install()
 ######################
 # PYTHON SUPPORT
 ######################
-rules_python_version = "ed6cc8f2c3692a6a7f013ff8bc185ba77eb9b4d2"  # Latest master commit for the moment so I can use `compile_pip_requirements`
+rules_python_version = "0.3.0"
 
 http_archive(
     name = "rules_python",
-    sha256 = "3cebd7e9e4bbd255e21538ff231680a8633a15c4ce43662899453b150bf315c1",
-    strip_prefix = "rules_python-{version}".format(version = rules_python_version),
-    url = "https://github.com/bazelbuild/rules_python/archive/{version}.tar.gz".format(version = rules_python_version),
+    sha256 = "934c9ceb552e84577b0faf1e5a2f0450314985b4d8712b2b70717dc679fdc01b",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/{version}/rules_python-{version}.tar.gz".format(version = rules_python_version),
 )
 
 load("@rules_python//python:pip.bzl", "pip_install")
