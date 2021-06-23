@@ -18,10 +18,16 @@ main() {
 
   echo "Running 'build' phase of bazel-linting-system..."
 
-  bazel build //... \
+  # TODO(Jonathon): Remove -3rdparty/... when I can get the linter to ignore
+  # pip_compile_requirements code.
+  bazel build \
     ${BZL_FLAGS} \
     --aspects //tools/linting:aspect.bzl%lint \
-    --output_groups=report
+    --output_groups=report \
+    -- \
+    //... \
+    -3rdparty/...
+
 
   echo "Running 'apply' phase of bazel-linting-system..."
 
