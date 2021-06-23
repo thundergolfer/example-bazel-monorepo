@@ -7,7 +7,7 @@
 
 ----
 
-> *Note:* Currently supporting the latest Bazel version as at mid July 2020, [3.3.0](https://github.com/bazelbuild/bazel/releases/tag/3.3.0) 
+> *Note:* Currently supporting the latest Bazel version as at mid June 2021, [4.1.0](https://github.com/bazelbuild/bazel/releases/tag/4.1.0) 
 
 Example Bazel-ified monorepo, supporting *Golang*, *Java*, *Python*, *Scala*, and *Typescript*. 
 
@@ -24,7 +24,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 
 **Prerequisites:**
  
-- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `3.3.0`)
+- [Install Bazel](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `4.x.x`)
 - Python 3.6+
 - [`yarn`](https://yarnpkg.com/) **or** [`npm`](https://www.npmjs.com/) for the NodeJS and Typescript code
 
