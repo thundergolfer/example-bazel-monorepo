@@ -95,6 +95,12 @@ pinned_maven_install()
 ######################
 # PYTHON SUPPORT
 ######################
+load("//tools/build/bazel/py_toolchain:py_interpreter.bzl", "python_build_standalone_interpreter")
+
+python_build_standalone_interpreter(
+    name = "python_interpreter",
+)
+
 rules_python_version = "0.3.0"
 
 http_archive(
@@ -108,6 +114,7 @@ load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(
     name = "py_deps",
     requirements = "//3rdparty:requirements.txt",
+    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8"
 )
 
 # MYPY SUPPORT
@@ -278,3 +285,5 @@ repositories()
 load("@linting_system//repositories:go_repositories.bzl", "go_deps")
 
 go_deps()
+
+register_toolchains("//tools/build/bazel/py_toolchain:py_toolchain")
