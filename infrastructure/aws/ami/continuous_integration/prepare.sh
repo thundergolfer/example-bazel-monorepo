@@ -14,9 +14,10 @@ main() {
   sudo yum install -y zip unzip
 
   sudo yum install -y zstd
-  # TODO(Jonathon): Can remove python packages when 'black' is no longer pip installed in bootstrap script.
-  sudo yum install -y python3-pip python3 python3-setuptools
   sudo yum install -y java-1.8.0-openjdk-devel
+
+  # NOTE: Using (supposely) hermetic Python toolchain so only need Python for https://github.com/bazelbuild/bazel/issues/8446
+  #       and fortunately python2 is available in the base AMI.
 
   # Install Node
   curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | bash
