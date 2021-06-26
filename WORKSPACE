@@ -118,14 +118,15 @@ pip_install(
 )
 
 # MYPY SUPPORT
-mypy_integration_version = "0.1.0"  # latest @ November 15th 2020
+mypy_integration_version = "9e5cafcebfebd310981a02fc0fdf9fbd48350cf9"
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "14d63ffa2a95e42ae468ad8785eec6c2cc489ce3b382cd0bdc7a4d115cf601b4",
-    url = "https://github.com/thundergolfer/bazel-mypy-integration/releases/download/{version}/bazel_mypy_integration-{version}.tar.gz".format(
-        version = mypy_integration_version,
-    ),
+    sha256 = "2d9f5460ee0fe6fab4d3d87890f0b2cbe272de3c7edaec4458d1d135277f2582",
+    strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
+    urls = [
+        "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(version = mypy_integration_version),
+    ],
 )
 
 load(
@@ -141,7 +142,10 @@ mypy_configuration("//tools/typing:mypy.ini")
 
 load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
 
-mypy_integration_deps("//tools/typing:mypy_version.txt")
+mypy_integration_deps(
+    "//tools/typing:mypy_version.txt",
+    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8"
+)
 
 ######################
 # SCALA SUPPORT
