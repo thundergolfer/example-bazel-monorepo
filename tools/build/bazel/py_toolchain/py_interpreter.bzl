@@ -3,6 +3,7 @@ LINUX_OS_NAME = "linux"
 
 def _python_build_standalone_interpreter_impl(repository_ctx):
     os_name = repository_ctx.os.name.lower()
+
     # TODO(Jonathon): This can't differentiate ARM (Mac M1) from old x86.
     # TODO(Jonathon: Support Windows.
     if os_name == OSX_OS_NAME:
@@ -25,14 +26,14 @@ def _python_build_standalone_interpreter_impl(repository_ctx):
     unzstd_bin_path = repository_ctx.which("unzstd")
     if unzstd_bin_path == None:
         fail("On OSX and Linux this Python toolchain requires that the zstd and unzstd exes are available on the $PATH, but it was not found.")
-            
+
     # NOTE: *Not Hermetic*. Need to install 'unzstd' in rule and use it.
     res = repository_ctx.execute([unzstd_bin_path, "python.tar.zst"])
 
     if res.return_code:
         fail("Error decompressiong with zstd" + res.stdout + res.stderr)
 
-    repository_ctx.extract(archive="python.tar")
+    repository_ctx.extract(archive = "python.tar")
     repository_ctx.delete("python.tar")
     repository_ctx.delete("python.tar.zst")
 
@@ -56,8 +57,7 @@ filegroup(
     repository_ctx.file("BUILD.bazel", BUILD_FILE_CONTENT)
     return None
 
-
 python_build_standalone_interpreter = repository_rule(
-    implementation=_python_build_standalone_interpreter_impl,
-    attrs={}
+    implementation = _python_build_standalone_interpreter_impl,
+    attrs = {},
 )

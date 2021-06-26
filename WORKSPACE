@@ -113,8 +113,8 @@ load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
     name = "py_deps",
+    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8",
     requirements = "//3rdparty:requirements.txt",
-    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8"
 )
 
 # MYPY SUPPORT
@@ -144,7 +144,7 @@ load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
 
 mypy_integration_deps(
     "//tools/typing:mypy_version.txt",
-    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8"
+    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8",
 )
 
 ######################
