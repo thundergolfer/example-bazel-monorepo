@@ -27,24 +27,13 @@ def _python_build_standalone_interpreter_impl(repository_ctx):
         fail("On OSX and Linux this Python toolchain requires that the zstd and unzstd exes are available on the $PATH, but it was not found.")
             
     # NOTE: *Not Hermetic*. Need to install 'unzstd' in rule and use it.
-    if os_name == OSX_OS_NAME:
-        res = repository_ctx.execute([unzstd_bin_path, "python.tar.zst"])
+    res = repository_ctx.execute([unzstd_bin_path, "python.tar.zst"])
 
-        if res.return_code:
-            fail("Error decompressiong with zstd" + res.stdout + res.stderr)
+    if res.return_code:
+        fail("Error decompressiong with zstd" + res.stdout + res.stderr)
 
-        res = repository_ctx.execute(["tar", "-xvf", "python.tar"])
-        if res.return_code:
-            fail("error extracting Python runtime:\n" + res.stdout + res.stderr)
-        repository_ctx.delete("python.tar")
-    # NOTE: *Not Hermetic*. Need to use system's 'tar' command.
-    elif os_name == LINUX_OS_NAME:
-        # Linux's GNU tar (version >=1.31) supports zstd out-of-the-box
-        res = repository_ctx.execute(["tar", "-axvf", "python.tar.zst"])
-        if res.return_code:
-            fail("error extracting Python runtime:\n" + res.stdout + res.stderr)
-    else:
-        fail("OS '{}' is not supported.".format(os_name))
+    repository_ctx.extract(archive="python.tar")
+    repository_ctx.delete("python.tar")
     repository_ctx.delete("python.tar.zst")
 
     # NOTE: 'json' library is only available in Bazel 4.*.
