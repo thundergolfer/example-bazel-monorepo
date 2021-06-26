@@ -25,7 +25,7 @@ Rather than the typical To-Do list, this project's code uses the contrived scena
 #### Prerequisites:
  
 - [**Install Bazel**](https://docs.bazel.build/versions/master/install.html) (Currently supporting ~= `4.x.x`)
-- **Python 2 or 3**. Should only be required for https://github.com/bazelbuild/bazel/issues/8446.
+- **Python 2 or 3**. Should only be required to [do some bootstrapping under-the-hood](https://github.com/bazelbuild/bazel/issues/8446).
 - [**`yarn`**](https://yarnpkg.com/) or [**`npm`**](https://www.npmjs.com/) for the NodeJS and Typescript code
 
 Bazel aims to be 'build anything, anywhere' system, so building and testing should be as simple as `bazel test //...`. If it's not, please [create an issue](https://github.com/thundergolfer/example-bazel-monorepo/issues/new/choose). 
