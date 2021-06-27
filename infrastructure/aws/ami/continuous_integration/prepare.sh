@@ -16,7 +16,7 @@ main() {
   sudo yum install -y zstd
   sudo yum install -y java-1.8.0-openjdk-devel
 
-  # NOTE: Using (supposely) hermetic Python toolchain so only need Python for https://github.com/bazelbuild/bazel/issues/8446
+  # NOTE: Using (supposedly) hermetic Python toolchain so only need Python for https://github.com/bazelbuild/bazel/issues/8446
   #       and fortunately python2 is available in the base AMI.
 
   # Install Node
