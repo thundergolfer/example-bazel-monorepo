@@ -118,14 +118,14 @@ pip_install(
 )
 
 # MYPY SUPPORT
-mypy_integration_version = "9e5cafcebfebd310981a02fc0fdf9fbd48350cf9"
+mypy_integration_version = "0.2.0"  # Latest @ 26th June 2021
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "2d9f5460ee0fe6fab4d3d87890f0b2cbe272de3c7edaec4458d1d135277f2582",
+    sha256 = "621df076709dc72809add1f5fe187b213fee5f9b92e39eb33851ab13487bd67d",
     strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
     urls = [
-        "https://github.com/thundergolfer/bazel-mypy-integration/archive/{version}.tar.gz".format(version = mypy_integration_version),
+        "https://github.com/thundergolfer/bazel-mypy-integration/archive/refs/tags/{version}.tar.gz".format(version = mypy_integration_version),
     ],
 )
 
