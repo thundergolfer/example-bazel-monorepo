@@ -7,53 +7,32 @@ def _python_build_standalone_interpreter_impl(repository_ctx):
     # TODO(Jonathon): This can't differentiate ARM (Mac M1) from old x86.
     # TODO(Jonathon: Support Windows.
     if os_name == OSX_OS_NAME:
-        url = "https://github.com/indygreg/python-build-standalone/releases/download/20210228/cpython-3.8.8-x86_64-apple-darwin-pgo+lto-20210228T1503.tar.zst"
-        integrity_shasum = "4c859311dfd677e4a67a2c590ff39040e76b97b8be43ef236e3c924bff4c67d2"
+        url = "https://github.com/indygreg/python-build-standalone/releases/download/20211017/cpython-3.10.0-x86_64-apple-darwin-install_only-20211017T1616.tar.gz"
+        integrity_shasum = "fc0d184feb6db61f410871d0660d2d560e0397c36d08b086dfe115264d1963f4"
     elif os_name == "linux":
-        url = "https://github.com/indygreg/python-build-standalone/releases/download/20210228/cpython-3.8.8-x86_64-unknown-linux-gnu-pgo+lto-20210228T1503.tar.zst"
-        integrity_shasum = "74c9067b363758e501434a02af87047de46085148e673547214526da6e2b2155"
+        url = "https://github.com/indygreg/python-build-standalone/releases/download/20211017/cpython-3.10.0-x86_64-unknown-linux-gnu-install_only-20211017T1616.tar.gz"
+        integrity_shasum = "eada875c9b39cc4bf4a055dd8f5188e99c0c90dd5deb05b6c213f49482fe20a6"
     else:
         fail("OS '{}' is not supported.".format(os_name))
 
-    # TODO(Jonathon): Just use download_and_extract when it supports zstd. https://github.com/bazelbuild/bazel/pull/11968
-    repository_ctx.download(
+    repository_ctx.download_and_extract(
         url = [url],
         sha256 = integrity_shasum,
-        output = "python.tar.zst",
+        output = "",
     )
-
-    # TODO(Jonathon): NOT HERMETIC. Need to install 'unzstd' in rule and use it.
-    unzstd_bin_path = repository_ctx.which("unzstd")
-    if unzstd_bin_path == None:
-        fail("On OSX and Linux this Python toolchain requires that the zstd and unzstd exes are available on the $PATH, but it was not found.")
-
-    # NOTE: *Not Hermetic*. Need to install 'unzstd' in rule and use it.
-    res = repository_ctx.execute([unzstd_bin_path, "python.tar.zst"])
-
-    if res.return_code:
-        fail("Error decompressiong with zstd" + res.stdout + res.stderr)
-
-    repository_ctx.extract(archive = "python.tar")
-    repository_ctx.delete("python.tar")
-    repository_ctx.delete("python.tar.zst")
-
-    # NOTE: 'json' library is only available in Bazel 4.*.
-    python_build_data = json.decode(repository_ctx.read("python/PYTHON.json"))
-
     BUILD_FILE_CONTENT = """
 filegroup(
     name = "files",
-    srcs = glob(["install/**"], exclude = ["**/* *"]),
+    srcs = glob(["**"], allow_empty=False),
     visibility = ["//visibility:public"],
 )
 
 filegroup(
     name = "interpreter",
-    srcs = ["python/{interpreter_path}"],
+    srcs = ["python/bin/python3"],
     visibility = ["//visibility:public"],
 )
-""".format(interpreter_path = python_build_data["python_exe"])
-
+"""
     repository_ctx.file("BUILD.bazel", BUILD_FILE_CONTENT)
     return None
 
