@@ -113,7 +113,6 @@ python_register_toolchains(
 )
 
 load("@python39_resolved_interpreter//:defs.bzl", python_interpreter = "interpreter")
-
 load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
