@@ -95,25 +95,29 @@ pinned_maven_install()
 ######################
 # PYTHON SUPPORT
 ######################
-load("//tools/build/bazel/py_toolchain:py_interpreter.bzl", "python_build_standalone_interpreter")
-
-python_build_standalone_interpreter(
-    name = "python_interpreter",
-)
-
-rules_python_version = "0.3.0"
+rules_python_version = "0.7.0"
 
 http_archive(
     name = "rules_python",
-    sha256 = "934c9ceb552e84577b0faf1e5a2f0450314985b4d8712b2b70717dc679fdc01b",
-    url = "https://github.com/bazelbuild/rules_python/releases/download/{version}/rules_python-{version}.tar.gz".format(version = rules_python_version),
+    sha256 = "15f84594af9da06750ceb878abbf129241421e3abbd6e36893041188db67f2fb",
+    strip_prefix = "rules_python-0.7.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.7.0.tar.gz",
 )
 
+load("@rules_python//python:repositories.bzl", "python_register_toolchains")
+
+python_register_toolchains(
+    name = "python39",
+    # Available versions are listed in @rules_python//python:versions.bzl.
+    python_version = "3.9",
+)
+
+load("@python39_resolved_interpreter//:defs.bzl", python_interpreter = "interpreter")
 load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
     name = "py_deps",
-    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8",
+    python_interpreter_target = python_interpreter,
     requirements = "//3rdparty:requirements.txt",
 )
 
@@ -144,7 +148,7 @@ load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
 
 mypy_integration_deps(
     "//tools/typing:mypy_version.txt",
-    python_interpreter_target = "@python_interpreter//:python/install/bin/python3.8",
+    python_interpreter_target = python_interpreter,
 )
 
 ######################
@@ -289,5 +293,3 @@ repositories()
 load("@linting_system//repositories:go_repositories.bzl", "go_deps")
 
 go_deps()
-
-register_toolchains("//tools/build/bazel/py_toolchain:py_toolchain")
