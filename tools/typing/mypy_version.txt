@@ -1,2 +1,1 @@
-# NOTE: MyPy 0.760 doesn't work with Python 3.9
-mypy==0.812
+mypy==1.4.1

@@ -6,14 +6,14 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # GOLANG SUPPORT
 ######################
 
-rules_go_version = "v0.27.0"  # latest @ 2021/05/23
-
+# buildifier is written in Go and hence needs rules_go to be built.
+# See https://github.com/bazelbuild/rules_go for the up to date setup instructions.
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "69de5c704a05ff37862f7e0f5534d4f479418afc21806c887db544a316f3cb6b",
+    sha256 = "6dc2da7ab4cf5d7bfc7c949776b1b7c733f05e56edc4bcd9022bb249d2e2a996",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/{version}/rules_go-{version}.tar.gz".format(version = rules_go_version),
-        "https://github.com/bazelbuild/rules_go/releases/download/{version}/rules_go-{version}.tar.gz".format(version = rules_go_version),
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.39.1/rules_go-v0.39.1.zip",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.39.1/rules_go-v0.39.1.zip",
     ],
 )
 
@@ -21,27 +21,42 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.16")
+go_register_toolchains(version = "1.20.3")
 
 gazelle_version = "v0.23.0"  # latest @ 2021/05/23
 
 # Gazelle - used for Golang external dependencies
 http_archive(
     name = "bazel_gazelle",
-    sha256 = "62ca106be173579c0a167deb23358fdfe71ffa1e4cfdddf5582af26520f1c66f",
+    sha256 = "727f3e4edd96ea20c29e8c2ca9e8d2af724d8c7778e7923a854b2c80952bc405",
     urls = [
-        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/bazel-gazelle/releases/download/{version}/bazel-gazelle-{version}.tar.gz".format(version = gazelle_version),
-        "https://github.com/bazelbuild/bazel-gazelle/releases/download/{version}/bazel-gazelle-{version}.tar.gz".format(version = gazelle_version),
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v0.30.0/bazel-gazelle-v0.30.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.30.0/bazel-gazelle-v0.30.0.tar.gz",
     ],
 )
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
-gazelle_dependencies()
+# https://github.com/bazelbuild/bazel-gazelle/issues/678
+gazelle_dependencies(go_repository_default_config = "@//:WORKSPACE.bazel")
 
 load("//3rdparty:go_workspace.bzl", "go_dependencies")
 
 go_dependencies()
+
+# a dependency for bazel_mypy_integration
+http_archive(
+    name = "buildifier_prebuilt",
+    sha256 = "29a50ea545810dc077c408d520eb83e9de3eecfe6395e89cb07149d903fc31e5",
+    strip_prefix = "buildifier-prebuilt-6.1.2",
+    urls = [
+        "http://github.com/keith/buildifier-prebuilt/archive/6.1.2.tar.gz",
+    ],
+)
+
+load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
+
+buildifier_prebuilt_deps()
 
 #######################
 # JAVA SUPPORT
@@ -122,11 +137,11 @@ pip_install(
 )
 
 # MYPY SUPPORT
-mypy_integration_version = "0.2.0"  # Latest @ 26th June 2021
+mypy_integration_version = "0.4.0"  # Latest @ July 18, 2023
 
 http_archive(
     name = "mypy_integration",
-    sha256 = "621df076709dc72809add1f5fe187b213fee5f9b92e39eb33851ab13487bd67d",
+    sha256 = "cf94c102fbaccb587eea8de5cf1cb7f55c5c74396a2468932c3a2a4df989aa1d",
     strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
     urls = [
         "https://github.com/thundergolfer/bazel-mypy-integration/archive/refs/tags/{version}.tar.gz".format(version = mypy_integration_version),
@@ -252,9 +267,9 @@ pip_install(
 # OTHER
 ######################
 
-protobuf_version = "3.14.0"
+protobuf_version = "3.19.0"
 
-protobuf_version_sha256 = "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113"
+protobuf_version_sha256 = "3bd7828aa5af4b13b99c191e8b1e884ebfa9ad371b0ce264605d347f135d2568"
 
 # requirement of 'com_github_bazelbuild_buildtools'
 http_archive(
@@ -271,8 +286,11 @@ protobuf_deps()
 # buildifier BUILD file linter
 http_archive(
     name = "com_github_bazelbuild_buildtools",
-    strip_prefix = "buildtools-master",
-    url = "https://github.com/bazelbuild/buildtools/archive/master.zip",
+    sha256 = "ae34c344514e08c23e90da0e2d6cb700fcd28e80c02e23e4d5715dddcb42f7b3",
+    strip_prefix = "buildtools-4.2.2",
+    urls = [
+        "https://github.com/bazelbuild/buildtools/archive/refs/tags/4.2.2.tar.gz",
+    ],
 )
 
 linting_system_version = "7f8b336f4e9dbfcfd4fe6a1406047e72abc059aa"
