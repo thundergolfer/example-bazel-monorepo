@@ -5,8 +5,7 @@ build --python_path="/usr/local/bin/python3"
 
 # MyPy Aspect
 ###############
-build --aspects @mypy_integration//:mypy.bzl%mypy_aspect
-build --output_groups=+mypy
+
 
 ############
 # Java     #

@@ -64,14 +64,16 @@ buildifier_prebuilt_deps()
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-rules_jvm_external_version = "4.1"
+RULES_JVM_EXTERNAL_TAG = "5.3"
+RULES_JVM_EXTERNAL_SHA ="d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac"
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = "f36441aa876c4f6427bfb2d1f2d723b48e9d930b62662bf723ddfb8fc80f0140",
-    strip_prefix = "rules_jvm_external-{version}".format(version = rules_jvm_external_version),
-    url = "https://github.com/bazelbuild/rules_jvm_external/archive/{version}.zip".format(version = rules_jvm_external_version),
+    strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+    sha256 = RULES_JVM_EXTERNAL_SHA,
+    url = "https://github.com/bazelbuild/rules_jvm_external/releases/download/%s/rules_jvm_external-%s.tar.gz" % (RULES_JVM_EXTERNAL_TAG, RULES_JVM_EXTERNAL_TAG)
 )
+
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
@@ -79,7 +81,7 @@ maven_install(
     name = "maven",
     artifacts = [
         "com.google.guava:guava:27.1-jre",
-        "junit:junit:4.12",
+        "junit:junit:4.13.2",
         "org.hamcrest:hamcrest-library:1.3",
         "org.postgresql:postgresql:42.2.10",
         "org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE",
@@ -89,11 +91,11 @@ maven_install(
         "org.springframework.boot:spring-boot:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-starter-web:2.1.3.RELEASE",
         "org.springframework.boot:spring-boot-starter-data-jpa:2.1.3.RELEASE",
-        "org.springframework:spring-beans:5.1.5.RELEASE",
-        "org.springframework:spring-context:5.1.5.RELEASE",
-        "org.springframework:spring-test:5.1.5.RELEASE",
-        "org.springframework:spring-web:5.1.5.RELEASE",
-        "org.springframework:spring-webmvc:5.1.5.RELEASE",
+        "org.springframework:spring-beans:6.0.9",
+        "org.springframework:spring-context:6.0.9",
+        "org.springframework:spring-test:6.0.9",
+        "org.springframework:spring-web:6.0.9",
+        "org.springframework:spring-webmvc:6.0.9",
     ],
     fetch_sources = True,  # Fetch source jars. Defaults to False.
     maven_install_json = "@example_bazel_monorepo//3rdparty:maven_install.json",
@@ -136,114 +138,9 @@ pip_install(
     requirements = "//3rdparty:requirements.txt",
 )
 
-# MYPY SUPPORT
-mypy_integration_version = "0.4.0"  # Latest @ July 18, 2023
-
-http_archive(
-    name = "mypy_integration",
-    sha256 = "cf94c102fbaccb587eea8de5cf1cb7f55c5c74396a2468932c3a2a4df989aa1d",
-    strip_prefix = "bazel-mypy-integration-{version}".format(version = mypy_integration_version),
-    urls = [
-        "https://github.com/thundergolfer/bazel-mypy-integration/archive/refs/tags/{version}.tar.gz".format(version = mypy_integration_version),
-    ],
-)
-
-load(
-    "@mypy_integration//repositories:repositories.bzl",
-    mypy_integration_repositories = "repositories",
-)
-
-mypy_integration_repositories()
-
-load("@mypy_integration//:config.bzl", "mypy_configuration")
-
-mypy_configuration("//tools/typing:mypy.ini")
-
-load("@mypy_integration//repositories:deps.bzl", mypy_integration_deps = "deps")
-
-mypy_integration_deps(
-    "//tools/typing:mypy_version.txt",
-    python_interpreter_target = python_interpreter,
-)
-
-######################
-# SCALA SUPPORT
-######################
-
-rules_scala_version = "c9cc7c261d3d740eb91ef8ef048b7cd2229d12ec"  # Latest at 2021/05/23
-
-http_archive(
-    name = "io_bazel_rules_scala",
-    sha256 = "8887906c9698a63f7ebf30498050fee695d7fdc70b0ee084fece549cbe922159",
-    strip_prefix = "rules_scala-%s" % rules_scala_version,
-    type = "zip",
-    url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
-)
-
-# Stores Scala version and other configuration
-# 2.12 is a default version, other versions can be use by passing them explicitly:
-# scala_config(scala_version = "2.11.12")
-load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-
-scala_config()
-
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-
-scala_repositories()
-
-load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-
-scala_register_toolchains()
-
-# optional: setup ScalaTest toolchain and dependencies
-load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
-
-scalatest_repositories()
-
-scalatest_toolchain()
-
-# Load dependencies managed by bazel-deps
-load("//3rdparty:jvm_workspace.bzl", scala_deps = "maven_dependencies")
-load("//3rdparty:target_file.bzl", "build_external_workspace")
-
-build_external_workspace(name = "3rdparty_jvm")
-
-scala_deps()
-
 #######################################
 # TYPESCRIPT / NODEJS SUPPORT
 #######################################
-
-rules_nodejs_version = "1.7.0"
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "build_bazel_rules_nodejs",
-    sha256 = "84abf7ac4234a70924628baa9a73a5a5cbad944c4358cf9abdb4aab29c9a5b77",
-    urls = [
-        "https://github.com/bazelbuild/rules_nodejs/releases/download/{version}/rules_nodejs-{version}.tar.gz".format(
-            version = rules_nodejs_version,
-        ),
-    ],
-)
-
-load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
-
-yarn_install(
-    name = "npm",
-    package_json = "//3rdparty/typescript:package.json",
-    yarn_lock = "//3rdparty/typescript:yarn.lock",
-)
-
-load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
-
-install_bazel_dependencies()
-
-# Set up TypeScript toolchain
-load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
-
-ts_setup_workspace()
 
 ######################
 # CODE DISTRIBUTION
@@ -269,7 +166,7 @@ pip_install(
 
 protobuf_version = "3.19.0"
 
-protobuf_version_sha256 = "3bd7828aa5af4b13b99c191e8b1e884ebfa9ad371b0ce264605d347f135d2568"
+protobuf_version_sha256 = "4a045294ec76cb6eae990a21adb5d8b3c78be486f1507faa601541d1ccefbd6b"
 
 # requirement of 'com_github_bazelbuild_buildtools'
 http_archive(
